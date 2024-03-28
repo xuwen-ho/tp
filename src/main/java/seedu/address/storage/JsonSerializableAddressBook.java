@@ -22,6 +22,7 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    // private final List<JsonAdaptedAssignments> assignments = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
@@ -38,6 +39,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        //assignments.addAll
     }
 
     /**
@@ -54,6 +56,7 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
+        // do for loop for assignments
         return addressBook;
     }
 
