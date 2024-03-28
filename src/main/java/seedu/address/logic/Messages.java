@@ -1,11 +1,14 @@
 package seedu.address.logic;
 
+import java.util.Comparator;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.person.Availability;
 import seedu.address.model.person.Person;
+
 
 /**
  * Container for user visible messages.
@@ -52,4 +55,18 @@ public class Messages {
         return builder.toString();
     }
 
+    public static String formatAvailability(Person person) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(person.getName())
+            .append("; Availabilities: ");
+
+        // Join availabilities with comma and space
+        String formattedAvailabilities = person.getAvailabilities().stream()
+            .map(Availability::toString)
+            .collect(Collectors.joining(", "));
+
+        builder.append(formattedAvailabilities);
+
+        return builder.toString();
+    }
 }
