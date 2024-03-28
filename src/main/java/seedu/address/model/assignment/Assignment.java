@@ -22,6 +22,18 @@ public class Assignment {
         this.availability = availability;
     }
 
+    public Person getPerson() {
+        return assignedPerson;
+    }
+
+    public Availability getAvailability() {
+        return availability;
+    }
+
+    public String getDetails() {
+        return details.toString();
+    }
+
 
     /**
      * Returns true if both assignments have the same identity and data fields.
@@ -39,9 +51,9 @@ public class Assignment {
         }
 
         Assignment otherAssignment = (Assignment) other;
-        return assignedPerson.equals(((Assignment) other).assignedPerson)
-                && details.equals(((Assignment) other).details)
-                && availability.equals((((Assignment) other).availability));
+        return assignedPerson.equals(otherAssignment.assignedPerson)
+                && details.equals(otherAssignment.details)
+                && availability.equals(otherAssignment.availability);
     }
 
     @Override

@@ -17,7 +17,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.AssignmentDetails;
 import seedu.address.model.assignment.UniqueAssignmentList;
+import seedu.address.model.person.Availability;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -119,7 +122,11 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         UniqueAssignmentList assignmentList = new UniqueAssignmentList();
-        assignmentList.add(new Assignment(3));
+        Availability availability = new Availability("03/05/2024");
+        Person p = logic.getFilteredPersonList().get(0);
+        AssignmentDetails det = new AssignmentDetails("testtest");
+        Assignment a = new Assignment(p, det,availability );
+        assignmentList.add(a);
         assignmentListPanel = new AssignmentListPanel(assignmentList.asUnmodifiableObservableList());
 //        listPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
 

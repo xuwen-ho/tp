@@ -7,4 +7,9 @@ public class AssignmentDetails {
     public AssignmentDetails(String details) {
         this.details = details;
     }
+
+    @Override
+    public String toString() {
+        return details;
+    }
 }

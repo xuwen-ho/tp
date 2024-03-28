@@ -28,6 +28,8 @@ public class AssignmentCard extends UiPart<Region>{
     @FXML
     private Label id;
     @FXML
+    private Label details;
+    @FXML
     private Label phone;
     @FXML
     private Label availability;
@@ -42,13 +44,11 @@ public class AssignmentCard extends UiPart<Region>{
     public AssignmentCard(Assignment assignment, int displayedIndex) {
         super(FXML);
         this.assignment = assignment;
-        id.setText(displayedIndex + "testtest");
-//        name.setText(assignment.getName().fullName);
-//        phone.setText(assignment.getPhone().value);
-//        email.setText(assignment.getEmail().value);
-//        availability.setText("Availability: " + assignment.getAvailabilities().toString());
-//        assignment.getTags().stream()
-//                .sorted(Comparator.comparing(tag -> tag.tagName))
-//                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        id.setText(displayedIndex + ". ");
+        details.setText(assignment.getDetails());
+        name.setText(assignment.getPerson().getName().fullName);
+        phone.setText(assignment.getPerson().getPhone().value);
+        email.setText(assignment.getPerson().getEmail().value);
+        availability.setText("Availability: " + assignment.getAvailability().toString());
     }
 }
