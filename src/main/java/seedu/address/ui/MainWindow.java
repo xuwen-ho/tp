@@ -121,13 +121,13 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-        UniqueAssignmentList assignmentList = new UniqueAssignmentList();
-        Availability availability = new Availability("03/05/2024");
-        Person p = logic.getFilteredPersonList().get(0);
-        AssignmentDetails det = new AssignmentDetails("testtest");
-        Assignment a = new Assignment(p, det,availability );
-        assignmentList.add(a);
-        assignmentListPanel = new AssignmentListPanel(assignmentList.asUnmodifiableObservableList());
+//        UniqueAssignmentList assignmentList = new UniqueAssignmentList();
+//        Availability availability = new Availability("03/05/2024");
+//        Person p = logic.getFilteredPersonList().get(0);
+//        AssignmentDetails det = new AssignmentDetails("testtest");
+//        Assignment a = new Assignment(p, det,availability );
+//        assignmentList.add(a);
+        assignmentListPanel = new AssignmentListPanel(logic.getFilteredAssignmentList());
 //        listPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
