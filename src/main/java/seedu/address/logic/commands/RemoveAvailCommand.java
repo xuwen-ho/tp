@@ -25,23 +25,23 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Removes the availability of an existing person in the address book.
  */
-public class AddAvailCommand extends Command {
+public class RemoveAvailCommand extends Command {
 
-    public static final String COMMAND_WORD = "addavail";
+    public static final String COMMAND_WORD = "removeavail";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds the availability of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes the availability of the person identified "
         + "by the index number.\n "
-        + "Input availability will be added to the existing availabilities.\n"
+        + "Input availability will be removed from the existing availabilities.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_AVAIL + "AVAILABILITY] \n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_AVAIL + "26/04/2024";
 
-    public static final String MESSAGE_ADD_AVAILABILITY_SUCCESS = "Availability Added: %1$s";
-    public static final String MESSAGE_NOT_ADD_AVAIL = "At least one availability must be provided.";
-    public static final String MESSAGE_DUPLICATE_AVAIL = "Duplicate availability entered for this person.";
+    public static final String MESSAGE_REMOVE_AVAILABILITY_SUCCESS = "Availability Removed: %1$s";
+    public static final String MESSAGE_NOT_REMOVE_AVAIL = "At least one availability must be provided.";
+    public static final String MESSAGE_AVAIL_NOT_FOUND = "The specified availability does not exist for this person.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -50,7 +50,7 @@ public class AddAvailCommand extends Command {
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public AddAvailCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public RemoveAvailCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
@@ -69,12 +69,12 @@ public class AddAvailCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
-        // Check for duplicate availabilities
+        // Check if the availability exists
         Set<Availability> existingAvailabilities = personToEdit.getAvailabilities();
-        Set<Availability> newAvailabilities = editPersonDescriptor.getAvailabilities().orElse(Collections.emptySet());
-        for (Availability newAvailability : newAvailabilities) {
-            if (existingAvailabilities.contains(newAvailability)) {
-                throw new CommandException(MESSAGE_DUPLICATE_AVAIL);
+        Set<Availability> removeAvailabilities = editPersonDescriptor.getAvailabilities().orElse(Collections.emptySet());
+        for (Availability removeAvailability : removeAvailabilities) {
+            if (!existingAvailabilities.contains(removeAvailability)) {
+                throw new CommandException(MESSAGE_AVAIL_NOT_FOUND);
             }
         }
 
@@ -82,7 +82,7 @@ public class AddAvailCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_ADD_AVAILABILITY_SUCCESS,
+        return new CommandResult(String.format(MESSAGE_REMOVE_AVAILABILITY_SUCCESS,
             Messages.formatAvailability(editedPerson)));
     }
 
@@ -97,9 +97,9 @@ public class AddAvailCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Set<Availability> existingAvailabilities = personToEdit.getAvailabilities();
-        Set<Availability> newAvailabilities = editPersonDescriptor.getAvailabilities().orElse(Collections.emptySet());
+        Set<Availability> removeAvailabilities = editPersonDescriptor.getAvailabilities().orElse(Collections.emptySet());
         Set<Availability> combinedAvailabilities = new HashSet<>(existingAvailabilities);
-        combinedAvailabilities.addAll(newAvailabilities);
+        combinedAvailabilities.removeAll(removeAvailabilities);
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, combinedAvailabilities, updatedTags);
@@ -113,13 +113,13 @@ public class AddAvailCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddAvailCommand)) {
+        if (!(other instanceof RemoveAvailCommand)) {
             return false;
         }
 
-        AddAvailCommand otherAddAvailCommand = (AddAvailCommand) other;
-        return index.equals(otherAddAvailCommand.index)
-            && editPersonDescriptor.equals(otherAddAvailCommand.editPersonDescriptor);
+        RemoveAvailCommand otherRemoveAvailCommand = (RemoveAvailCommand) other;
+        return index.equals(otherRemoveAvailCommand.index)
+            && editPersonDescriptor.equals(otherRemoveAvailCommand.editPersonDescriptor);
     }
 
     @Override
@@ -244,4 +244,3 @@ public class AddAvailCommand extends Command {
         }
     }
 }
-

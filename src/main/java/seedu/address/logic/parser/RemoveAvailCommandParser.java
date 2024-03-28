@@ -9,19 +9,18 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddAvailCommand;
-import seedu.address.logic.commands.AddAvailCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.RemoveAvailCommand;
+import seedu.address.logic.commands.RemoveAvailCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Availability;
 
 /**
- * Parses input arguments and creates a new AddAvailCommand object
+ * Parses input arguments and creates a new RemoveAvailCommand object
  */
-public class AddAvailCommandParser implements Parser<AddAvailCommand> {
+public class RemoveAvailCommandParser implements Parser<RemoveAvailCommand> {
 
-    public AddAvailCommand parse(String args) throws ParseException {
+    public RemoveAvailCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_AVAIL);
@@ -31,19 +30,19 @@ public class AddAvailCommandParser implements Parser<AddAvailCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAvailCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveAvailCommand.MESSAGE_USAGE), pe);
         }
 
         List<String> availabilityValues = argMultimap.getAllValues(PREFIX_AVAIL);
         if (availabilityValues.isEmpty()) {
-            throw new ParseException(AddAvailCommand.MESSAGE_NOT_ADD_AVAIL);
+            throw new ParseException(RemoveAvailCommand.MESSAGE_NOT_REMOVE_AVAIL);
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         parseAvailabilitiesForEdit(availabilityValues)
             .ifPresent(editPersonDescriptor::setAvailabilities);
 
-        return new AddAvailCommand(index, editPersonDescriptor);
+        return new RemoveAvailCommand(index, editPersonDescriptor);
     }
 
     private Optional<Set<Availability>> parseAvailabilitiesForEdit(List<String> availabilities)
@@ -58,4 +57,3 @@ public class AddAvailCommandParser implements Parser<AddAvailCommand> {
         return Optional.of(availabilitySet);
     }
 }
-

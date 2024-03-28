@@ -59,8 +59,6 @@ public class Messages {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())
             .append("; Availabilities: ");
-
-        // Join availabilities with comma and space
         String formattedAvailabilities = person.getAvailabilities().stream()
             .map(Availability::toString)
             .collect(Collectors.joining(", "));
