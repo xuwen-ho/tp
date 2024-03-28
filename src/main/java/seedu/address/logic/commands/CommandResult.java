@@ -61,7 +61,7 @@ public class CommandResult {
     }
 
     public CommandResult(String feedbackToUser, ListPanelView listPanelView) {
-        this(feedbackToUser, false, false, false, listPanelView );
+        this(feedbackToUser, false, false, false, listPanelView);
     }
 
 
