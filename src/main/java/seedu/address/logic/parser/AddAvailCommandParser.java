@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddAvailCommand;
 import seedu.address.logic.commands.AddAvailCommand.EditPersonDescriptor;
@@ -21,6 +20,13 @@ import seedu.address.model.person.Availability;
  */
 public class AddAvailCommandParser implements Parser<AddAvailCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddAvailCommand
+     * and returns an AddAvailCommand object for execution.
+     * @param args The string containing the user input arguments.
+     * @return An AddAvailCommand object representing the user's command.
+     * @throws ParseException if the user input does not conform to the expected format.
+     */
     public AddAvailCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
@@ -47,7 +53,7 @@ public class AddAvailCommandParser implements Parser<AddAvailCommand> {
     }
 
     private Optional<Set<Availability>> parseAvailabilitiesForEdit(List<String> availabilities)
-        throws ParseException {
+            throws ParseException {
         Set<Availability> availabilitySet = new HashSet<>();
         for (String availability : availabilities) {
             if (availability.isBlank()) {

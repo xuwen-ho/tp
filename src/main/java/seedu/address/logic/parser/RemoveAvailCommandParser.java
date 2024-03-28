@@ -20,6 +20,13 @@ import seedu.address.model.person.Availability;
  */
 public class RemoveAvailCommandParser implements Parser<RemoveAvailCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the RemoveAvailCommand
+     * and returns a RemoveAvailCommand object for execution.
+     * @param args The string containing the user input arguments.
+     * @return A RemoveAvailCommand object representing the user's command.
+     * @throws ParseException if the user input does not conform to the expected format.
+     */
     public RemoveAvailCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
@@ -30,7 +37,8 @@ public class RemoveAvailCommandParser implements Parser<RemoveAvailCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveAvailCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                RemoveAvailCommand.MESSAGE_USAGE), pe);
         }
 
         List<String> availabilityValues = argMultimap.getAllValues(PREFIX_AVAIL);
@@ -46,7 +54,7 @@ public class RemoveAvailCommandParser implements Parser<RemoveAvailCommand> {
     }
 
     private Optional<Set<Availability>> parseAvailabilitiesForEdit(List<String> availabilities)
-        throws ParseException {
+            throws ParseException {
         Set<Availability> availabilitySet = new HashSet<>();
         for (String availability : availabilities) {
             if (availability.isBlank()) {

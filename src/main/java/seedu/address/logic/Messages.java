@@ -1,6 +1,5 @@
 package seedu.address.logic;
 
-import java.util.Comparator;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -55,6 +54,11 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the availabilities of the {@code person} for display to the user.
+     * @param person The person whose availabilities are to be formatted.
+     * @return A string representation of the person's availabilities.
+     */
     public static String formatAvailability(Person person) {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())

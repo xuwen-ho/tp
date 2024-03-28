@@ -71,7 +71,8 @@ public class RemoveAvailCommand extends Command {
 
         // Check if the availability exists
         Set<Availability> existingAvailabilities = personToEdit.getAvailabilities();
-        Set<Availability> removeAvailabilities = editPersonDescriptor.getAvailabilities().orElse(Collections.emptySet());
+        Set<Availability> removeAvailabilities = editPersonDescriptor.getAvailabilities()
+                .orElse(Collections.emptySet());
         for (Availability removeAvailability : removeAvailabilities) {
             if (!existingAvailabilities.contains(removeAvailability)) {
                 throw new CommandException(MESSAGE_AVAIL_NOT_FOUND);
@@ -97,7 +98,8 @@ public class RemoveAvailCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Set<Availability> existingAvailabilities = personToEdit.getAvailabilities();
-        Set<Availability> removeAvailabilities = editPersonDescriptor.getAvailabilities().orElse(Collections.emptySet());
+        Set<Availability> removeAvailabilities = editPersonDescriptor.getAvailabilities()
+            .orElse(Collections.emptySet());
         Set<Availability> combinedAvailabilities = new HashSet<>(existingAvailabilities);
         combinedAvailabilities.removeAll(removeAvailabilities);
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
