@@ -6,12 +6,7 @@ import seedu.address.model.person.Availability;
 import seedu.address.model.person.Person;
 
 public class Assignment {
-    // string to store assignment details
-    // Person assigned
-    // date of assignment
-    // show phone
-    // show email
-//    private final int test;
+
     private final Person assignedPerson;
     private final AssignmentDetails details;
     private final Availability availability;
