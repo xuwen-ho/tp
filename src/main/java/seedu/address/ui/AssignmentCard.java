@@ -51,6 +51,6 @@ public class AssignmentCard extends UiPart<Region> {
         name.setText(assignment.getPerson().getName().fullName);
         phone.setText(assignment.getPerson().getPhone().value);
         email.setText(assignment.getPerson().getEmail().value);
-        availability.setText("Availability: " + assignment.getAvailability().toString());
+        availability.setText(assignment.getAvailability().toString());
     }
 }

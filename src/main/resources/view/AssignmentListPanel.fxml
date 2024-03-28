@@ -12,7 +12,7 @@
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="30" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -20,7 +20,7 @@
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
             <HBox alignment="CENTER_LEFT">
-                <Label fx:id="details" text="Assignment Details" styleClass="cell_big_label" />
+                <Label fx:id="details" text="Assignment Details" styleClass="cell_small_label" />
             </HBox>
         </VBox>
 
