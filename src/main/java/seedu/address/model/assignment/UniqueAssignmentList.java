@@ -1,6 +1,7 @@
 package seedu.address.model.assignment;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 import javafx.collections.FXCollections;
@@ -45,5 +46,10 @@ public class UniqueAssignmentList implements Iterable<Assignment> {
     @Override
     public Spliterator<Assignment> spliterator() {
         return Iterable.super.spliterator();
+    }
+
+    public void setAssignments(List<Assignment> assignments) {
+        requireNonNull(assignments);
+        internalList.setAll((assignments));
     }
 }

@@ -53,12 +53,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setAssignments(List<Assignment> assignments) {
+        this.assignments.setAssignments(assignments);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setAssignments(newData.getAssignmentList());
     }
 
     //// person-level operations
@@ -123,7 +132,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-//    @Override
+    @Override
     public ObservableList<Assignment> getAssignmentList() {
         return assignments.asUnmodifiableObservableList();
     }

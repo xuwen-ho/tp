@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.assignment.Assignment;
 import seedu.address.model.person.Person;
 
 /**
@@ -28,8 +29,10 @@ class JsonSerializableAddressBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                       @JsonProperty("assignments") List<JsonAdaptedAssignment> assignments) {
         this.persons.addAll(persons);
+        this.assignments.addAll(assignments);
     }
 
     /**
@@ -39,7 +42,8 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        //assignments.addAll
+        assignments.addAll(source.getAssignmentList().stream().map(JsonAdaptedAssignment::new).
+                collect(Collectors.toList()));
     }
 
     /**
@@ -56,7 +60,10 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
-        // do for loop for assignments
+        for (JsonAdaptedAssignment jsonAdaptedAssignment: assignments) {
+            Assignment assignment = jsonAdaptedAssignment.toModelType();
+            addressBook.addAssignment(assignment);
+        }
         return addressBook;
     }
 

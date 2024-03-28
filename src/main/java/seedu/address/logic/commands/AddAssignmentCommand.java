@@ -31,7 +31,6 @@ public class AddAssignmentCommand extends Command {
     private final AssignmentDetails details;
     private final Availability availability;
 
-    //index
     public AddAssignmentCommand(Index index, AssignmentDetails details, Availability availability) {
         requireNonNull(index);
         requireNonNull(details);
