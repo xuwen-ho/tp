@@ -14,10 +14,16 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.AssignmentDetails;
 import seedu.address.model.person.Availability;
 
-
-
-
+/**
+ * Parses input arguments and creates a new AddAssignmentCommand object
+ */
 public class AddAssignmentParser {
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddAssignmentCommand
+     * and returns an AddAssignmentCommand object for execution
+     * @throws ParseException
+     */
     public AddAssignmentCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =

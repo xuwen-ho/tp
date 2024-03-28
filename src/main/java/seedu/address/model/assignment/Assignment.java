@@ -6,12 +6,22 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Availability;
 import seedu.address.model.person.Person;
 
+/**
+ * Represents an Assignment in the application.
+ * Guarantees: N/A
+ */
 public class Assignment {
 
     private final Person assignedPerson;
     private final AssignmentDetails details;
     private final Availability availability;
 
+    /**
+     * Creates an assignment with the given parameters.
+     * @param assignedPerson
+     * @param details
+     * @param availability
+     */
     public Assignment(Person assignedPerson, AssignmentDetails details, Availability availability) {
         this.assignedPerson = assignedPerson;
         this.details = details;

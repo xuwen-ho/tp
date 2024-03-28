@@ -140,6 +140,10 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Sets the display of the panel between Assignments and Person
+     * @param display
+     */
     private void handleListPanel(CommandResult.ListPanelView display) {
         if (display == CommandResult.ListPanelView.NO_EFFECT) {
             return;

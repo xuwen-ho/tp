@@ -15,8 +15,9 @@ import seedu.address.model.assignment.AssignmentDetails;
 import seedu.address.model.person.Availability;
 import seedu.address.model.person.Person;
 
-
-
+/**
+ * Adds an assignment to the application
+ */
 public class AddAssignmentCommand extends Command {
     public static final String COMMAND_WORD = "assign";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to the address book. "
@@ -34,6 +35,12 @@ public class AddAssignmentCommand extends Command {
     private final AssignmentDetails details;
     private final Availability availability;
 
+    /**
+     * Creates an AddAssignment command to add the specified Assignment with these parameters
+     * @param index
+     * @param details
+     * @param availability
+     */
     public AddAssignmentCommand(Index index, AssignmentDetails details, Availability availability) {
         requireNonNull(index);
         requireNonNull(details);
@@ -43,6 +50,10 @@ public class AddAssignmentCommand extends Command {
         this.availability = availability;
     }
 
+    /**
+     * Creates the assignment and adds it to the application
+     * @param model {@code Model} which the command should operate on.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

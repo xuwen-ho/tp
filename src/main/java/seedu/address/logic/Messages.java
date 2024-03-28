@@ -53,6 +53,9 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code assignment} fpr display to the user.
+     */
     public static String format(Assignment assignment) {
         final StringBuilder builder = new StringBuilder();
         builder.append(assignment.getPerson().getName().fullName)

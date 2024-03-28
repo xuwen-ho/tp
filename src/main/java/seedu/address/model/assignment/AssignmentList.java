@@ -10,8 +10,10 @@ import java.util.function.Consumer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-
-public class UniqueAssignmentList implements Iterable<Assignment> {
+/**
+ * A list of assignments that does not allow nulls.
+ */
+public class AssignmentList implements Iterable<Assignment> {
 
     private final ObservableList<Assignment> internalList = FXCollections.observableArrayList();
     private final ObservableList<Assignment> internalUnmodifiableList =

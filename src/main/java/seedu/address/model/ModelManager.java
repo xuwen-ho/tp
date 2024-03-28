@@ -132,14 +132,21 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Assignment> getFilteredAssignmentList() {
-        return filteredAssignments;
-    }
-
-    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Assignment List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@cod Assignment} backed by the internal list of
+     * {@cod versionedAddressBook}
+     * @return
+     */
+    @Override
+    public ObservableList<Assignment> getFilteredAssignmentList() {
+        return filteredAssignments;
     }
 
     @Override

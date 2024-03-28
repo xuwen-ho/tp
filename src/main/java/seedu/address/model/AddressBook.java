@@ -7,7 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.UniqueAssignmentList;
+import seedu.address.model.assignment.AssignmentList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -18,7 +18,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniqueAssignmentList assignments;
+    private final AssignmentList assignments;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,7 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        assignments = new UniqueAssignmentList();
+        assignments = new AssignmentList();
     }
 
     public AddressBook() {}
@@ -53,8 +53,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the assignment list with {@code assignments}.
      */
     public void setAssignments(List<Assignment> assignments) {
         this.assignments.setAssignments(assignments);
@@ -89,7 +88,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds an assignment to the address book.
+     * Adds an assignment to the application.
      */
     public void addAssignment(Assignment assignment) {
         assignments.add(assignment);

@@ -43,6 +43,14 @@ public class CommandResult {
         this.listPanelView = listPanelView;
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified fields, and ListPanelView to the
+     * default value.
+     * @param feedbackToUser
+     * @param confirmation
+     * @param showHelp
+     * @param exit
+     */
     public CommandResult(String feedbackToUser, boolean confirmation, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.confirmation = confirmation;
@@ -60,6 +68,10 @@ public class CommandResult {
                 ListPanelView.NO_EFFECT);
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * {@code listPanelView} and other fields set to their default value.
+     */
     public CommandResult(String feedbackToUser, ListPanelView listPanelView) {
         this(feedbackToUser, false, false, false, listPanelView);
     }

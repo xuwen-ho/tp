@@ -9,7 +9,9 @@ import seedu.address.model.assignment.AssignmentDetails;
 import seedu.address.model.person.Availability;
 import seedu.address.model.person.Person;
 
-
+/**
+ * Jackson-Friendly vrsion of {@link Assignment}
+ */
 public class JsonAdaptedAssignment {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Assignment's %s field is missing!";
 
