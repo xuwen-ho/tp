@@ -158,6 +158,11 @@ public class AddAssignmentCommandTest {
         }
 
         @Override
+        public boolean hasAssignment(Assignment assignment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -212,6 +217,12 @@ public class AddAssignmentCommandTest {
         public void addAssignment(Assignment assignment) {
             requireNonNull(assignment);
             assignmentsAdded.add(assignment);
+        }
+
+        @Override
+        public boolean hasAssignment(Assignment assignment) {
+            requireNonNull(assignment);
+            return assignmentsAdded.stream().anyMatch(assignment::equals);
         }
 
         @Override

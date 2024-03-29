@@ -111,7 +111,8 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && confirmation == otherCommandResult.confirmation
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && listPanelView == otherCommandResult.listPanelView;
     }
 
     @Override
@@ -126,6 +127,7 @@ public class CommandResult {
                 .add("confirmation", confirmation)
                 .add("showHelp", showHelp)
                 .add("exit", exit)
+                .add("listPanelView", listPanelView)
                 .toString();
     }
 

@@ -80,6 +80,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if an assignment with the same identity as {@code assignment} exists.
+     */
+    public boolean hasAssignment(Assignment assignment) {
+        requireNonNull(assignment);
+        return assignments.contains(assignment);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */

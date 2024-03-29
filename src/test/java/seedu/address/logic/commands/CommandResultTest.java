@@ -17,6 +17,7 @@ public class CommandResultTest {
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult(DEFAULT_FEEDBACK_MESSAGE)));
         assertTrue(commandResult.equals(new CommandResult(DEFAULT_FEEDBACK_MESSAGE, false, false, false)));
+        assertTrue(commandResult.equals(new CommandResult(DEFAULT_FEEDBACK_MESSAGE, CommandResult.ListPanelView.NO_EFFECT)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -38,6 +39,10 @@ public class CommandResultTest {
 
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult(DEFAULT_FEEDBACK_MESSAGE, false, false, true)));
+
+        // different panelview -> returns false
+        assertFalse(commandResult.equals(new CommandResult(DEFAULT_FEEDBACK_MESSAGE, CommandResult.ListPanelView.ASSIGNMENT)));
+
     }
 
     @Test
@@ -64,7 +69,9 @@ public class CommandResultTest {
         CommandResult commandResult = new CommandResult(DEFAULT_FEEDBACK_MESSAGE);
         String expected = CommandResult.class.getCanonicalName() + "{feedbackToUser="
                 + commandResult.getFeedbackToUser() + ", confirmation=" + commandResult.isConfirmation()
-                + ", showHelp=" + commandResult.isShowHelp() + ", exit=" + commandResult.isExit() + "}";
+                + ", showHelp=" + commandResult.isShowHelp() + ", exit=" + commandResult.isExit()
+                + ", listPanelView=" + commandResult.getView() + "}";
         assertEquals(expected, commandResult.toString());
     }
+
 }
