@@ -17,7 +17,8 @@ public class CommandResultTest {
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult(DEFAULT_FEEDBACK_MESSAGE)));
         assertTrue(commandResult.equals(new CommandResult(DEFAULT_FEEDBACK_MESSAGE, false, false, false)));
-        assertTrue(commandResult.equals(new CommandResult(DEFAULT_FEEDBACK_MESSAGE, CommandResult.ListPanelView.NO_EFFECT)));
+        assertTrue(commandResult.equals(new CommandResult(DEFAULT_FEEDBACK_MESSAGE,
+                CommandResult.ListPanelView.NO_EFFECT)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -41,7 +42,8 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult(DEFAULT_FEEDBACK_MESSAGE, false, false, true)));
 
         // different panelview -> returns false
-        assertFalse(commandResult.equals(new CommandResult(DEFAULT_FEEDBACK_MESSAGE, CommandResult.ListPanelView.ASSIGNMENT)));
+        assertFalse(commandResult.equals(new CommandResult(DEFAULT_FEEDBACK_MESSAGE,
+                CommandResult.ListPanelView.ASSIGNMENT)));
 
     }
 

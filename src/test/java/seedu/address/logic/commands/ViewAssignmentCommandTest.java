@@ -27,12 +27,14 @@ public class ViewAssignmentCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ViewAssignmentCommand(), model, ViewAssignmentCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ViewAssignmentCommand(), model, ViewAssignmentCommand.MESSAGE_SUCCESS,
+                CommandResult.ListPanelView.ASSIGNMENT, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ViewAssignmentCommand(), model, ViewAssignmentCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ViewAssignmentCommand(), model, ViewAssignmentCommand.MESSAGE_SUCCESS,
+                CommandResult.ListPanelView.ASSIGNMENT, expectedModel);
     }
 }
