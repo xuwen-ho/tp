@@ -1,5 +1,7 @@
 package seedu.address.model.assignment;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -23,6 +25,7 @@ public class Assignment {
      * @param availability
      */
     public Assignment(Person assignedPerson, AssignmentDetails details, Availability availability) {
+        requireAllNonNull(assignedPerson, details, availability);
         this.assignedPerson = assignedPerson;
         this.details = details;
         this.availability = availability;
