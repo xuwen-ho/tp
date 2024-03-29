@@ -2,9 +2,18 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_DETAILS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAILABILITY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.AssignmentBuilder.DEFAULT_AVAILABILITY;
 import static seedu.address.testutil.AssignmentBuilder.DEFAULT_DETAILS;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -19,8 +28,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.AssignmentDetails;
 import seedu.address.model.person.Availability;
@@ -34,6 +45,8 @@ import seedu.address.testutil.PersonBuilder;
  * Test the AddAssignmentCommand
  */
 public class AddAssignmentCommandTest {
+
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void constructor_nullAssignment_throwsNullPointerException() {
@@ -54,6 +67,30 @@ public class AddAssignmentCommandTest {
         assertEquals(String.format(AddAssignmentCommand.MESSAGE_SUCCESS, Messages.format(assignment)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(assignment), modelStub.assignmentsAdded);
+    }
+
+    @Test
+    public void equalsTest() {
+        Assignment assignment = new AssignmentBuilder().build();
+        Assignment assignmentCopy = new AssignmentBuilder().build();
+
+        assertTrue(assignment.equals(assignment));
+        assertTrue(assignment.equals(assignmentCopy));
+        assertFalse(assignment.equals(null));
+    }
+
+    @Test
+    public void execute_invalidPersonAtIndexFilterList_failure() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        AssignmentDetailsStub assignmentDetailsStub = new AssignmentDetailsStub();
+        AvailabilityStub availabilityStub = new AvailabilityStub();
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        AddAssignmentCommand addAssignmentCommand = new AddAssignmentCommand(outOfBoundIndex,
+                assignmentDetailsStub, availabilityStub);
+        assertCommandFailure(addAssignmentCommand, model,
+                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     /**
@@ -185,6 +222,23 @@ public class AddAssignmentCommandTest {
         @Override
         public ObservableList<Person> getFilteredPersonList() {
             return personsAdded;
+        }
+    }
+
+    private class AssignmentDetailsStub extends AssignmentDetails {
+        private String details;
+        private AssignmentDetailsStub() {
+            super(VALID_ASSIGNMENT_DETAILS);
+        }
+    }
+
+    private class AvailabilityStub extends Availability {
+
+        /**
+         * Constructs an {@code Address}.
+         */
+        public AvailabilityStub() {
+            super(VALID_AVAILABILITY_AMY);
         }
     }
 }
