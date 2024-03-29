@@ -28,6 +28,13 @@ public class AssignmentList implements Iterable<Assignment> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Checks if assignment is in the list
+     */
+    public boolean contains(Assignment toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::equals);
+    }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
@@ -37,23 +44,39 @@ public class AssignmentList implements Iterable<Assignment> {
     }
 
 
-    @Override
-    public Iterator<Assignment> iterator() {
-        return internalList.iterator();
-    }
-
-    @Override
-    public void forEach(Consumer<? super Assignment> action) {
-        Iterable.super.forEach(action);
-    }
-
-    @Override
-    public Spliterator<Assignment> spliterator() {
-        return Iterable.super.spliterator();
-    }
-
+    /**
+     * Sets the given list of assignments to the current list
+     */
     public void setAssignments(List<Assignment> assignments) {
         requireNonNull(assignments);
         internalList.setAll((assignments));
+    }
+
+    /**
+     * Sets the given list of assignments to the current list
+     */
+    public void setAssignments(AssignmentList assignments) {
+        requireNonNull(assignments);
+        internalList.setAll((assignments.internalList));
+    }
+
+    @Override
+    public Iterator<Assignment> iterator() {
+        return null;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return false;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AssignmentList)) {
+            return false;
+        }
+
+        AssignmentList otherAssignmentList = (AssignmentList) other;
+        return internalList.equals(otherAssignmentList.internalList);
     }
 }

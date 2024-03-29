@@ -12,7 +12,9 @@ import java.util.Arrays;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
@@ -46,7 +48,7 @@ public class AddAssignmentCommandTest {
         AssignmentDetails details = new AssignmentDetails(DEFAULT_DETAILS);
         Availability availability = new Availability(DEFAULT_AVAILABILITY);
         Index index = new IndexStub();
-        CommandResult commandResult = new AddAssignmentCommand(index, details,availability)
+        CommandResult commandResult = new AddAssignmentCommand(index, details, availability)
                 .execute(modelStub);
 
         assertEquals(String.format(AddAssignmentCommand.MESSAGE_SUCCESS, Messages.format(assignment)),

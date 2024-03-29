@@ -10,7 +10,7 @@ import seedu.address.model.person.Person;
  */
 public class AssignmentBuilder {
 
-    public static final String DEFAULT_AVAILABILITY ="01/01/2024";
+    public static final String DEFAULT_AVAILABILITY = "01/01/2024";
     public static final String DEFAULT_DETAILS = "Food Bank";
 
     private Person person;
@@ -45,6 +45,9 @@ public class AssignmentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code person} of the {@code Assignment} that we are building
+     */
     public AssignmentBuilder withPerson(Person person) {
         this.person = person;
         return this;
@@ -56,6 +59,6 @@ public class AssignmentBuilder {
      * @return Assignment
      */
     public Assignment build() {
-        return new Assignment(person,details,availability);
+        return new Assignment(person, details, availability);
     }
 }

@@ -17,7 +17,7 @@ import seedu.address.model.person.Availability;
 /**
  * Parses input arguments and creates a new AddAssignmentCommand object
  */
-public class AddAssignmentParser {
+public class AddAssignmentParser implements Parser<AddAssignmentCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddAssignmentCommand

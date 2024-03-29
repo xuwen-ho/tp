@@ -1,5 +1,7 @@
 package seedu.address.model.assignment;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents the details of the assignment
  */
@@ -8,6 +10,7 @@ public class AssignmentDetails {
 
 
     public AssignmentDetails(String details) {
+        requireNonNull(details);
         this.details = details;
     }
 

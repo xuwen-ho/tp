@@ -69,4 +69,21 @@ public class AddAssignmentCommand extends Command {
         model.addAssignment(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddAssignmentCommand)) {
+            return false;
+        }
+
+        AddAssignmentCommand otherAddAssignmentCommand = (AddAssignmentCommand) other;
+        return index.equals(otherAddAssignmentCommand.index)
+                && availability.equals(otherAddAssignmentCommand.availability)
+                && details.equals(otherAddAssignmentCommand.details);
+    }
 }
