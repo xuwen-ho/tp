@@ -18,10 +18,11 @@ import seedu.address.model.person.Availability;
 
 public class AddAssignmentParserTest {
 
-    private AddAssignmentParser parser = new AddAssignmentParser();
-
     private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             AddAssignmentCommand.MESSAGE_USAGE);
+
+    private AddAssignmentParser parser = new AddAssignmentParser();
+
 
     @Test
     public void parse_allFieldsPresent_success() {

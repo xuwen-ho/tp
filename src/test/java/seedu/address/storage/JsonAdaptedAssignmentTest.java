@@ -4,11 +4,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_DETA
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAILABILITY_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Person;
+
 
 public class JsonAdaptedAssignmentTest {
 

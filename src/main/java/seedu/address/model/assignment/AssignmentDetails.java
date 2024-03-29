@@ -8,7 +8,10 @@ import static java.util.Objects.requireNonNull;
 public class AssignmentDetails {
     private String details;
 
-
+    /**
+     * Creates an assignment object based on the given details.
+     * Detail needs to be non-null.
+     */
     public AssignmentDetails(String details) {
         requireNonNull(details);
         this.details = details;

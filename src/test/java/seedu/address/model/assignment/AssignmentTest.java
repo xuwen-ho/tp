@@ -3,7 +3,6 @@ package seedu.address.model.assignment;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAssignments.FOODDONATION;
 import static seedu.address.testutil.TypicalAssignments.FOODDONATIONCOPY;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -13,8 +12,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Availability;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.AssignmentBuilder;
-import seedu.address.testutil.PersonBuilder;
+
 
 public class AssignmentTest {
 
@@ -39,7 +37,7 @@ public class AssignmentTest {
     @Test
     public void getAvailabilityTest() {
         Availability availability = new Availability("14/02/2024");
-        assertEquals(FOODDONATION.getAvailability(),availability);
+        assertEquals(FOODDONATION.getAvailability(), availability);
     }
 
     @Test
@@ -58,6 +56,6 @@ public class AssignmentTest {
                 .add("Details", details)
                 .toString();
 
-        assertEquals(FOODDONATION.toString(),result);
+        assertEquals(FOODDONATION.toString(), result);
     }
 }

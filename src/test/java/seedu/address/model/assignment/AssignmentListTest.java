@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalAssignments.TUTORING;
 
 import java.util.Collections;
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 public class AssignmentListTest {
@@ -21,7 +22,7 @@ public class AssignmentListTest {
     }
 
     @Test
-    public void contains_AssignmentNotInList_returnsFalse() {
+    public void contains_assignmentNotInList_returnsFalse() {
         assertFalse(assignmentList.contains(FOODDONATION));
     }
 
@@ -39,13 +40,13 @@ public class AssignmentListTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-        -> assignmentList.asUnmodifiableObservableList().add(FOODDONATION));
+                -> assignmentList.asUnmodifiableObservableList().add(FOODDONATION));
     }
 
     @Test
     public void setAssignments_nullAssignmentList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, ()
-        -> assignmentList.setAssignments((AssignmentList) null));
+                -> assignmentList.setAssignments((AssignmentList) null));
     }
 
     @Test
