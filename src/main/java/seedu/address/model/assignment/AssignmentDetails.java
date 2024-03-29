@@ -15,4 +15,19 @@ public class AssignmentDetails {
     public String toString() {
         return details;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AssignmentDetails)) {
+            return false;
+        }
+
+        AssignmentDetails otherAssignmentDetails = (AssignmentDetails) other;
+        return details.equals(otherAssignmentDetails.details);
+    }
 }
