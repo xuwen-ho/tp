@@ -6,6 +6,14 @@ import static java.util.Objects.requireNonNull;
  * Represents the details of the assignment
  */
 public class AssignmentDetails {
+
+    public static final String MESSAGE_CONSTRAINTS = "Assignment Details cannot be empty.";
+    /*
+     * The first character of the string must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+
     private String details;
 
     /**
@@ -15,6 +23,13 @@ public class AssignmentDetails {
     public AssignmentDetails(String details) {
         requireNonNull(details);
         this.details = details;
+    }
+
+    /**
+     * Returns true if given string is a valid Assignment Details.
+     */
+    public static boolean isValidAssignmentDetails(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
