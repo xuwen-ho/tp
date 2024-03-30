@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class AssignmentDetails {
 
-    public static final String MESSAGE_CONSTRAINTS = "Assignment Details cannot be empty.";
+    public static final String MESSAGE_CONSTRAINTS = "Assignment Details must be alpha-numeric and not empty.";
     /*
      * The first character of the string must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
