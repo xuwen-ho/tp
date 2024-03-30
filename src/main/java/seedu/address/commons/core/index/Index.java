@@ -25,6 +25,9 @@ public class Index {
         this.zeroBasedIndex = zeroBasedIndex;
     }
 
+    public Index() {
+    }
+
     public int getZeroBased() {
         return zeroBasedIndex;
     }

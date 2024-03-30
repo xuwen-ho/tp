@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -13,6 +15,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.AddAssignmentCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -22,6 +25,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ViewAssignmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AvailableAtDatePredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -97,6 +101,21 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_viewAssignment() throws Exception {
+        assertTrue(parser.parseCommand(ViewAssignmentCommand.COMMAND_WORD)
+                instanceof ViewAssignmentCommand);
+        assertTrue(parser.parseCommand(ViewAssignmentCommand.COMMAND_WORD + " 3")
+                instanceof ViewAssignmentCommand);
+    }
+
+    @Test
+    public void parseCommand_addAssignment() throws Exception {
+        String addAssignmentCommand = AddAssignmentCommand.COMMAND_WORD + " 1 " + PREFIX_DETAILS
+                + "VALID_DETAILS " + PREFIX_AVAIL + "01/01/2024";
+        assertTrue(parser.parseCommand(addAssignmentCommand) instanceof AddAssignmentCommand);
     }
 
     @Test
