@@ -22,14 +22,41 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Application List Panel Selection */
+
+    public enum ListPanelView {
+        NO_EFFECT,
+        PERSON,
+        ASSIGNMENT
+    }
+
+    private final ListPanelView listPanelView;
     /**
      * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean confirmation, boolean showHelp, boolean exit,
+                         ListPanelView listPanelView) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.confirmation = confirmation;
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.listPanelView = listPanelView;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields, and ListPanelView to the
+     * default value.
+     * @param feedbackToUser
+     * @param confirmation
+     * @param showHelp
+     * @param exit
      */
     public CommandResult(String feedbackToUser, boolean confirmation, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.confirmation = confirmation;
         this.showHelp = showHelp;
         this.exit = exit;
+        this.listPanelView = ListPanelView.NO_EFFECT;
     }
 
     /**
@@ -37,8 +64,18 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, false,
+                ListPanelView.NO_EFFECT);
     }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * {@code listPanelView} and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, ListPanelView listPanelView) {
+        this(feedbackToUser, false, false, false, listPanelView);
+    }
+
 
     public String getFeedbackToUser() {
         return feedbackToUser;
@@ -53,6 +90,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public ListPanelView getView() {
+        return listPanelView;
     }
 
     @Override
@@ -70,7 +111,8 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && confirmation == otherCommandResult.confirmation
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && listPanelView == otherCommandResult.listPanelView;
     }
 
     @Override
@@ -85,6 +127,7 @@ public class CommandResult {
                 .add("confirmation", confirmation)
                 .add("showHelp", showHelp)
                 .add("exit", exit)
+                .add("listPanelView", listPanelView)
                 .toString();
     }
 
