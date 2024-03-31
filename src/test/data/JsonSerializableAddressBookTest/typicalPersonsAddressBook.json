@@ -6,14 +6,14 @@
       "phone": "94351253",
       "email": "alice@example.com",
       "availabilities": ["14/02/2024"],
-      "tags": ["Food Bank", "Education"]
+      "tags": ["friends"]
     },
     {
       "name": "Benson Meier",
       "phone": "98765432",
       "email": "johnd@example.com",
       "availabilities": ["20/03/2024", "03/05/2024"],
-      "tags": ["Elderly Care", "Education"]
+      "tags": ["owesMoney", "friends"]
     },
     {
       "name": "Carl Kurz",
@@ -27,7 +27,7 @@
       "phone": "87652533",
       "email": "cornelia@example.com",
       "availabilities": ["01/06/2024", "31/06/2024"],
-      "tags": ["Environment"]
+      "tags": ["friends"]
     },
     {
       "name": "Elle Meyer",
