@@ -46,14 +46,8 @@ public class RemoveAvailCommandParser implements Parser<RemoveAvailCommand> {
 
         Set<Availability> availabilitiesToRemove = new HashSet<>();
         for (String availabilityValue : availabilityValues) {
-            // Parse each availability string
             Availability availability;
-            try {
-                availability = ParserUtil.parseAvailability(availabilityValue);
-            } catch (ParseException pe) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    RemoveAvailCommand.MESSAGE_USAGE), pe);
-            }
+            availability = ParserUtil.parseAvailability(availabilityValue);
             availabilitiesToRemove.add(availability);
         }
 
