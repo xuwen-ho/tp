@@ -49,12 +49,7 @@ public class AddAvailCommandParser implements Parser<AddAvailCommand> {
         for (String availabilityValue : availabilityValues) {
             // Parse each availability string
             Availability availability;
-            try {
-                availability = ParserUtil.parseAvailability(availabilityValue);
-            } catch (ParseException pe) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddAvailCommand.MESSAGE_USAGE), pe);
-            }
+            availability = ParserUtil.parseAvailability(availabilityValue);
             availabilities.add(availability);
         }
 
