@@ -6,14 +6,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RemoveAvailCommand;
-import seedu.address.logic.commands.RemoveAvailCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Availability;
+
 
 /**
  * Parses input arguments and creates a new RemoveAvailCommand object
@@ -29,8 +28,7 @@ public class RemoveAvailCommandParser implements Parser<RemoveAvailCommand> {
      */
     public RemoveAvailCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_AVAIL);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_AVAIL);
 
         Index index;
 
@@ -46,22 +44,19 @@ public class RemoveAvailCommandParser implements Parser<RemoveAvailCommand> {
             throw new ParseException(RemoveAvailCommand.MESSAGE_NOT_REMOVE_AVAIL);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        parseAvailabilitiesForEdit(availabilityValues)
-            .ifPresent(editPersonDescriptor::setAvailabilities);
-
-        return new RemoveAvailCommand(index, editPersonDescriptor);
-    }
-
-    private Optional<Set<Availability>> parseAvailabilitiesForEdit(List<String> availabilities)
-            throws ParseException {
-        Set<Availability> availabilitySet = new HashSet<>();
-        for (String availability : availabilities) {
-            if (availability.isBlank()) {
-                throw new ParseException("Availability cannot be empty.");
+        Set<Availability> availabilitiesToRemove = new HashSet<>();
+        for (String availabilityValue : availabilityValues) {
+            // Parse each availability string
+            Availability availability;
+            try {
+                availability = ParserUtil.parseAvailability(availabilityValue);
+            } catch (ParseException pe) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    RemoveAvailCommand.MESSAGE_USAGE), pe);
             }
-            availabilitySet.add(ParserUtil.parseAvailability(availability));
+            availabilitiesToRemove.add(availability);
         }
-        return Optional.of(availabilitySet);
+
+        return new RemoveAvailCommand(index, availabilitiesToRemove);
     }
 }
