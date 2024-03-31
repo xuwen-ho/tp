@@ -14,7 +14,6 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Availability;
-import seedu.address.model.person.EditPersonDescriptor;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -43,8 +42,6 @@ public class AddAvailCommand extends Command {
     private final Index index;
     private final Set<Availability> availabilities;
 
-    private final EditPersonDescriptor editPersonDescriptor;
-
     /**
      * @param index of the person in the filtered person list to edit
      * @param availabilities date to be added to person
@@ -55,7 +52,6 @@ public class AddAvailCommand extends Command {
 
         this.index = index;
         this.availabilities = availabilities;
-        this.editPersonDescriptor = new EditPersonDescriptor();
     }
 
     @Override

@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -25,8 +26,7 @@ import seedu.address.model.person.Person;
 public class RemoveAvailCommandTest {
 
     private final Set<Availability> validAvailabilities = new HashSet<>() {{
-                add(new Availability("20/04/2024"));
-                add(new Availability("21/04/2024"));
+                add(new Availability("14/02/2024"));
         }
     };
 
@@ -55,23 +55,75 @@ public class RemoveAvailCommandTest {
     }
 
     @Test
-    public void execute_removeNonExistentAvailability_throwsCommandException() {
+    public void execute_invalidIndex_throwsCommandException() {
+        // Create an index that is out of bounds
+        Index invalidIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+
+        // Create an RemoveAvailCommand with the invalid index and a valid availability
+        RemoveAvailCommand removeAvailCommand = new RemoveAvailCommand(invalidIndex, validAvailabilities);
+
+        // Execute the command and expect a CommandException to be thrown
+        CommandException thrown = assertThrows(CommandException.class, () -> removeAvailCommand.execute(model));
+
+        // Verify the error message
+        assertEquals(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, thrown.getMessage());
+    }
+
+    @Test
+    public void execute_validInput_success() throws CommandException {
+        // Create a RemoveAvailCommand with valid index and availabilities
         RemoveAvailCommand removeAvailCommand = new RemoveAvailCommand(INDEX_FIRST_PERSON, validAvailabilities);
 
-        // Ensure that the person at INDEX_FIRST_PERSON does not have validAvailabilities initially
-        ModelManager modelWithNoAvailabilities = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Person personToEdit = modelWithNoAvailabilities.getFilteredPersonList()
-            .get(INDEX_FIRST_PERSON.getZeroBased());
+        // Get the person to edit from the model
+        Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        // Ensure that the person has the availabilities to be removed
         Set<Availability> existingAvailabilities = new HashSet<>(personToEdit.getAvailabilities());
+        assertTrue(existingAvailabilities.containsAll(validAvailabilities));
 
-        assertTrue(existingAvailabilities.stream().noneMatch(validAvailabilities::contains));
+        // Execute the command
+        CommandResult commandResult = removeAvailCommand.execute(model);
 
-        // Ensure that executing the command throws CommandException with appropriate message
-        CommandException thrown = assertThrows(CommandException.class, (
-                ) -> removeAvailCommand.execute(modelWithNoAvailabilities));
+        // Get the edited person after execution
+        Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
+        // Verify that the availabilities have been removed from the person
+        Set<Availability> expectedAvailabilities = new HashSet<>(personToEdit.getAvailabilities());
+        expectedAvailabilities.removeAll(validAvailabilities);
+        assertEquals(expectedAvailabilities, editedPerson.getAvailabilities());
+
+        // Verify that the model is updated with the edited person
+        assertEquals(editedPerson, model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
+
+        // Verify that the filtered person list is updated
+        assertTrue(model.getFilteredPersonList().contains(editedPerson));
+
+        // Verify that the correct CommandResult is returned
+        String expectedFeedback = String.format(RemoveAvailCommand.MESSAGE_REMOVE_AVAILABILITY_SUCCESS,
+            Messages.formatAvailability(editedPerson));
+        assertEquals(expectedFeedback, commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_nonExistentAvailability_throwsCommandException() {
+        // Create a RemoveAvailCommand with an index and availabilities
+        RemoveAvailCommand removeAvailCommand = new RemoveAvailCommand(INDEX_FIRST_PERSON,
+            validAvailabilitiesSecond);
+
+        // Get the person to edit from the model
+        Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        // Ensure that the person does not have the availabilities to be removed
+        Set<Availability> existingAvailabilities = new HashSet<>(personToEdit.getAvailabilities());
+        assertFalse(existingAvailabilities.containsAll(validAvailabilitiesSecond));
+
+        // Execute the command and expect a CommandException to be thrown
+        CommandException thrown = assertThrows(CommandException.class, () -> removeAvailCommand.execute(model));
+
+        // Verify that the correct error message is thrown
         assertEquals(RemoveAvailCommand.MESSAGE_AVAIL_NOT_FOUND, thrown.getMessage());
     }
+
 
     @Test
     public void createEditedPerson_validInput_success() {
@@ -97,6 +149,17 @@ public class RemoveAvailCommandTest {
         assertFalse(firstRemoveAvailCommand.equals(secondRemoveAvailCommand));
         assertFalse(firstRemoveAvailCommand.equals(thirdRemoveAvailCommand));
         assertFalse(firstRemoveAvailCommand.equals(fourthRemoveAvailCommand));
+    }
+
+    @Test
+    public void equals_differentClass_returnFalse() {
+        RemoveAvailCommand removeAvailCommand = new RemoveAvailCommand(INDEX_FIRST_PERSON, validAvailabilities);
+
+        // Create an instance of a different class
+        Object otherObject = new Object();
+
+        // Ensure that equals returns false when comparing with an instance of a different class
+        assertFalse(removeAvailCommand.equals(otherObject));
     }
 
     @Test

@@ -58,6 +58,21 @@ public class AddAvailCommandTest {
     }
 
     @Test
+    public void execute_invalidIndex_throwsCommandException() {
+        // Create an index that is out of bounds
+        Index invalidIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+
+        // Create an AddAvailCommand with the invalid index and a valid availability
+        AddAvailCommand addAvailCommand = new AddAvailCommand(invalidIndex, validAvailabilities);
+
+        // Execute the command and expect a CommandException to be thrown
+        CommandException thrown = assertThrows(CommandException.class, () -> addAvailCommand.execute(model));
+
+        // Verify the error message
+        assertEquals(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, thrown.getMessage());
+    }
+
+    @Test
     public void execute_validInput_success() {
         AddAvailCommand addAvailCommand = new AddAvailCommand(INDEX_FIRST_PERSON, validAvailabilities);
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
@@ -129,6 +144,18 @@ public class AddAvailCommandTest {
         assertFalse(firstAddAvailCommand.equals(fourthAddAvailCommand));
         assertTrue(firstAddAvailCommand.equals(firstAddAvailCommand));
     }
+
+    @Test
+    public void equals_differentClass_returnFalse() {
+        AddAvailCommand addAvailCommand = new AddAvailCommand(INDEX_FIRST_PERSON, validAvailabilities);
+
+        // Create an instance of a different class
+        Object otherObject = new Object();
+
+        // Ensure that equals returns false when comparing with an instance of a different class
+        assertFalse(addAvailCommand.equals(otherObject));
+    }
+
 
     @Test
     public void toStringTest() {
