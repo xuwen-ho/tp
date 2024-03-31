@@ -143,6 +143,15 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+//    @Override
+//    public void copyEmailsToClipboard() {
+//        for (Person person : filteredPersons) {
+//            String email = person.getEmail().toString();
+//
+//        }
+//    }
+
+
     //=========== Filtered Assignment List Accessors =============================================================
 
     /**

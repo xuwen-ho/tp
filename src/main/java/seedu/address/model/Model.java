@@ -93,5 +93,7 @@ public interface Model {
 
     void updateFilteredAssignmentList(Predicate<Assignment> predicate);
 
+//    void copyEmailsToClipboard();
+
     ObservableList<Assignment> getFilteredAssignmentList();
 }
