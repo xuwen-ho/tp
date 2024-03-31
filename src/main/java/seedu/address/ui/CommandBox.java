@@ -26,12 +26,15 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
-        
+
         commandTextField.setEditable(true);
         commandTextField.setVisibleRowCount(8);
-        commandTextField.setItems(FXCollections.observableArrayList("add", "clear", "delete", "edit", "exit", "find", "help", "list"));
+        commandTextField.setItems(
+            FXCollections.observableArrayList("add", "clear", "delete", "edit", "exit", "find", "help", "list"));
         // Set the command box to be auto-completable
-        AutoCompleteComboBoxPlus.config(commandTextField, (typedText, itemToCompare) -> itemToCompare.toLowerCase().contains(typedText.toLowerCase()) || itemToCompare.toString().equals(typedText), commandExecutor);
+        AutoCompleteComboBoxPlus.config(commandTextField, (typedText, itemToCompare) ->
+                itemToCompare.toLowerCase().contains(typedText.toLowerCase())
+                || itemToCompare.toString().equals(typedText), commandExecutor);
     }
 
     /**
@@ -46,5 +49,4 @@ public class CommandBox extends UiPart<Region> {
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
-
 }

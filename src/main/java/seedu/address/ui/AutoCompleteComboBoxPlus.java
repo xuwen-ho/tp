@@ -13,6 +13,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.CommandBox.CommandExecutor;
 
+/**
+ * Represents a utility class to enable auto-complete for ComboBox.
+ */
 public class AutoCompleteComboBoxPlus {
     private static final Logger logger = LogsCenter.getLogger(AutoCompleteComboBoxPlus.class);
 
@@ -26,7 +29,8 @@ public class AutoCompleteComboBoxPlus {
     /**
      * Configures the ComboBox to enable auto-complete.
      */
-    public static<T> void config(ComboBox<T> comboBox, AutoCompleteComparator<T> comparatorMethod, CommandExecutor commandExecutor) {
+    public static<T> void config(ComboBox<T> comboBox, AutoCompleteComparator<T> comparatorMethod,
+            CommandExecutor commandExecutor) {
         ObservableList<T> commandHistory = comboBox.getItems();
 
         comboBox.getEditor().focusedProperty().addListener(observable -> {
@@ -35,14 +39,16 @@ public class AutoCompleteComboBoxPlus {
             }
         });
         comboBox.addEventHandler(KeyEvent.KEY_PRESSED, t -> comboBox.hide());
-        comboBox.addEventHandler(KeyEvent.KEY_RELEASED, createHandler(comboBox, comparatorMethod, commandHistory, commandExecutor));
+        comboBox.addEventHandler(KeyEvent.KEY_RELEASED,
+                                 createHandler(comboBox, comparatorMethod, commandHistory, commandExecutor));
     }
 
     /**
      * Creates a EventHandler for the ComboBox.
      */
-    private static <T> EventHandler<KeyEvent> createHandler(ComboBox<T> comboBox, AutoCompleteComparator<T> comparatorMethod, ObservableList<T> commandHistory,
-     CommandExecutor commandExecutor) {
+    private static <T> EventHandler<KeyEvent> createHandler(ComboBox<T> comboBox,
+            AutoCompleteComparator<T> comparatorMethod, ObservableList<T> commandHistory,
+            CommandExecutor commandExecutor) {
         return new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -64,7 +70,9 @@ public class AutoCompleteComboBoxPlus {
                 comboBox.hide(); // reset the filter size
 
                 // Override the default behaviour of the ComboBox
-                if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.LEFT || event.getCode().equals(KeyCode.SHIFT) || event.getCode().equals(KeyCode.CONTROL)
+                if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.LEFT
+                        || event.getCode().equals(KeyCode.SHIFT)
+                        || event.getCode().equals(KeyCode.CONTROL)
                         || event.isControlDown() || event.getCode() == KeyCode.HOME
                         || event.getCode() == KeyCode.END || event.getCode() == KeyCode.TAB) {
                     return;
@@ -78,7 +86,7 @@ public class AutoCompleteComboBoxPlus {
     /**
      * Returns the value of the ComboBox.
      */
-    public static<T> T getComboBoxValue(ComboBox<T> comboBox){
+    public static<T> T getComboBoxValue(ComboBox<T> comboBox) {
         if (comboBox.getSelectionModel().getSelectedIndex() < 0) {
             return null;
         } else {
@@ -129,12 +137,13 @@ public class AutoCompleteComboBoxPlus {
         return caretPos;
     }
 
-    private static <T> void processEnter(ComboBox<T> comboBox, ObservableList<T> commandHistory, CommandExecutor commandExecutor){
+    @SuppressWarnings("unchecked")
+    private static <T> void processEnter(ComboBox<T> comboBox, ObservableList<T> commandHistory,
+            CommandExecutor commandExecutor) {
         String commandText = comboBox.getEditor().getText();
         if (commandText.equals("")) {
             return;
         }
-
         try {
             commandExecutor.execute(commandText);
             comboBox.getEditor().setText("");
@@ -152,11 +161,13 @@ public class AutoCompleteComboBoxPlus {
         }
     }
 
-    public static <T> void processTextInput(ComboBox<T> comboBox, ObservableList<T> commandHistory, AutoCompleteComparator<T> comparatorMethod) {
+    private static <T> void processTextInput(ComboBox<T> comboBox, ObservableList<T> commandHistory,
+            AutoCompleteComparator<T> comparatorMethod) {
         setStyleToDefault(comboBox);
         ObservableList<T> list = FXCollections.observableArrayList();
         for (T aData : commandHistory) {
-            if (aData != null && comboBox.getEditor().getText() != null && comparatorMethod.matches(comboBox.getEditor().getText(), aData)) {
+            if (aData != null && comboBox.getEditor().getText() != null
+                && comparatorMethod.matches(comboBox.getEditor().getText(), aData)) {
                 list.add(aData);
             }
         }
@@ -173,7 +184,7 @@ public class AutoCompleteComboBoxPlus {
         }
     }
 
-     /**
+    /**
      * Sets the command box style to indicate a failed command.
      */
     public static<T> void setStyleToIndicateCommandFailure(ComboBox<T> comboBox) {
