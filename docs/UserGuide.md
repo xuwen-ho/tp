@@ -152,6 +152,31 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Assigning volunteers : `assign`
+Adds an assignment to the address book.
+
+Format: `assign INDEX d/ASSIGNMENTDETAILS a/AVAILABILITY`
+* Assigns the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The index here works the same way as Edit!
+</div>
+
+Examples:
+* `assign 1 d/Tutoring a/01/01/2024`
+* `assign 2 d/Elderly Care a/02/03/2024`
+
+
+### Listing all assignments : `lista`
+
+Shows a list of all assignments in the address book.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To switch back to volunteer list, type `list`
+</div>
+
+Format: `lista`
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -205,5 +230,7 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/AVAILABILITY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [n/NAME] [a/AVAILABILITY] [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Assign** | `assign INDEX d/ASSIGNMENT_DETAILS a/AVAILABILITY`
+**View Assignments** | `lista`
 **List** | `list`
 **Help** | `help`

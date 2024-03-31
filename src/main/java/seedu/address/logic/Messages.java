@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.assignment.Assignment;
 import seedu.address.model.person.Person;
 
 /**
@@ -49,6 +50,18 @@ public class Messages {
         person.getAvailabilities().forEach(builder::append);
         builder.append("; Tags: ");
         person.getTags().forEach(builder::append);
+        return builder.toString();
+    }
+
+    /**
+     * Formats the {@code assignment} fpr display to the user.
+     */
+    public static String format(Assignment assignment) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(assignment.getPerson().getName().fullName)
+                .append(" assigned to ")
+                .append(assignment.getDetails()).append(" on ")
+                .append(assignment.getAvailability());
         return builder.toString();
     }
 
