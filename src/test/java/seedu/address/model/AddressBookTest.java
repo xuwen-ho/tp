@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAILABILITY_BO
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ELDERCARE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -18,9 +19,11 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.assignment.Assignment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
+
 
 public class AddressBookTest {
 
@@ -89,11 +92,48 @@ public class AddressBookTest {
         assertEquals(expected, addressBook.toString());
     }
 
+    @Test
+    public void setPerson_personInAddressBook() {
+        addressBook.addPerson(ALICE);
+        addressBook.setPerson(ALICE, BENSON);
+        assertFalse(addressBook.hasPerson(ALICE));
+        assertTrue(addressBook.hasPerson(BENSON));
+    }
+
+    @Test
+    public void removePerson_personInAddressBook() {
+        addressBook.addPerson(ALICE);
+        addressBook.removePerson(ALICE);
+        assertFalse(addressBook.hasPerson(ALICE));
+    }
+
+    @Test
+    public void hashCodeTest() {
+        AddressBook book1 = new AddressBook();
+        AddressBook book2 = new AddressBook();
+        book1.addPerson(ALICE);
+        book2.addPerson(ALICE);
+        assertEquals(book1.hashCode(), book2.hashCode());
+    }
+
+    @Test
+    public void equalTest() {
+        assertTrue(addressBook.equals(addressBook));
+        assertFalse(addressBook.equals("hello"));
+
+        AddressBook other = new AddressBook();
+        addressBook.addPerson(ALICE);
+        other.addPerson(ALICE);
+        assertTrue(addressBook.equals(other));
+    }
+
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Assignment> assignments = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -102,6 +142,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Assignment> getAssignmentList() {
+            return assignments;
         }
     }
 

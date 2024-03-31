@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.assignment.Assignment;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Assignment> filteredAssignments;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredAssignments = new FilteredList<>(this.addressBook.getAssignmentList());
     }
 
     public ModelManager() {
@@ -94,6 +97,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasAssignment(Assignment assignment) {
+        requireNonNull(assignment);
+        return addressBook.hasAssignment(assignment);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -102,6 +111,12 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addAssignment(Assignment assignment) {
+        addressBook.addAssignment(assignment);
+        updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENTS);
     }
 
     @Override
@@ -128,6 +143,24 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Filtered Assignment List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@cod Assignment} backed by the internal list of
+     * {@cod versionedAddressBook}
+     * @return
+     */
+    @Override
+    public ObservableList<Assignment> getFilteredAssignmentList() {
+        return filteredAssignments;
+    }
+
+    @Override
+    public void updateFilteredAssignmentList(Predicate<Assignment> predicate) {
+        requireNonNull(predicate);
+        filteredAssignments.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -142,7 +175,8 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && filteredAssignments.equals(otherModelManager.filteredAssignments);
     }
 
 }

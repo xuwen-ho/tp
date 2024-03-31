@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private AssignmentListPanel assignmentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,7 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -114,7 +115,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        assignmentListPanel = new AssignmentListPanel(logic.getFilteredAssignmentList());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -135,6 +137,25 @@ public class MainWindow extends UiPart<Stage> {
         if (guiSettings.getWindowCoordinates() != null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
+        }
+    }
+
+    /**
+     * Sets the display of the panel between Assignments and Person
+     * @param display
+     */
+    private void handleListPanel(CommandResult.ListPanelView display) {
+        if (display == CommandResult.ListPanelView.NO_EFFECT) {
+            return;
+        }
+        listPanelPlaceholder.getChildren().clear();
+
+        if (display == CommandResult.ListPanelView.ASSIGNMENT) {
+            listPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
+        }
+
+        if (display == CommandResult.ListPanelView.PERSON) {
+            listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         }
     }
 
@@ -189,6 +210,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.getView() != CommandResult.ListPanelView.NO_EFFECT) {
+                handleListPanel(commandResult.getView());
             }
 
             return commandResult;
