@@ -63,7 +63,6 @@ public class AutoCompleteComboBoxPlus {
                         caretPos = comboBox.getEditor().getCaretPosition();
                     }
                 } else if (event.getCode() == KeyCode.ENTER) {
-                    logger.info("Enter pressed");
                     String commandText = comboBox.getEditor().getText();
                     if (commandText.equals("")) {
                         return;
@@ -72,6 +71,7 @@ public class AutoCompleteComboBoxPlus {
                     try {
                         commandExecutor.execute(commandText);
                         comboBox.getEditor().setText("");
+                        commandText = commandText.trim();
                         if (!data.contains(commandText)) {
                             data.add(0, (T) commandText);
                         }

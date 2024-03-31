@@ -5,5 +5,5 @@
 <?import javafx.scene.layout.StackPane?>
 
 <StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <ComboBox fx:id="commandTextField" prefWidth="1.7976931348623157E308" promptText="Enter command here" styleClass="command-text-field" />
+  <ComboBox fx:id="commandTextField" prefWidth="1.7976931348623157E308" promptText="Enter command here" />
 </StackPane>
