@@ -155,6 +155,24 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Proposed\] Copy emails to Clipboard feature
+
+#### Proposed Implementation
+
+This feature allows a user to first filter the list using the find command (eg. specific names or availabilities), before copying all the emails to the clipboard (seperated by commas), so that they can be easily contacted.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time.
+
+Step 2. The user executes `find a/26/09/2009` command to find the people available on 26/09/2009
+
+Step 3. The user executes `copy` command, copying all emails into clipboard.
+
+The following sequence diagram shows how a copy operation goes through the Logic component:
+
+![CopySequenceDiagram](images/CopySequenceDiagram-Logic.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

@@ -10,12 +10,14 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ELDERCARE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TEACHING;
+import static seedu.address.testutil.TypicalAssignments.getTypicalAssignments;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.assignment.Assignment;
 import seedu.address.model.person.Person;
 
 /**
@@ -61,12 +63,16 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical persons and typical assignmments
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
+        }
+
+        for (Assignment assignment : getTypicalAssignments()) {
+            ab.addAssignment(assignment);
         }
         return ab;
     }

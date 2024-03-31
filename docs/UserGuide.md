@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Match is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Match is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Match can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,7 +14,7 @@ Match is a **desktop app for managing contacts, optimized for use via a Command 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `match.jar` from [here](https://github.com/AY2324S2-CS2103T-F10-4/tp/releases).
+1. Download our latest `match.jar` from [here](https://github.com/AY2324S2-CS2103T-F10-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your Match.
 
@@ -27,11 +27,11 @@ Match is a **desktop app for managing contacts, optimized for use via a Command 
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/25/05/2025` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Delete all contacts.
 
    * `exit` : Exits the app.
 
@@ -111,22 +111,20 @@ Examples:
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Find people whose names contain any of the given name, availability or keywords.
 
 Format: `find KEYWORD [n/NAME] [a/AVAILABILITY] [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
+* `find John` returns `john`, `John`, `John Doe` and so on...
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-* `find a/23/05/2024` returns entries that are available on 23/05/2024
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find a/23/05/2024` returns people that are available on 23/05/2024
 
 ### Deleting a person : `delete`
 
@@ -135,6 +133,8 @@ Deletes the specified person from the address book.
 Format: `delete INDEX`
 
 <div markdown="block" class="alert alert-info">
+
+**:information_source: Take note:**<br>
 
 * As delete is deemed as a critical operation, you will see a confirmation message shown below.
 
@@ -152,6 +152,31 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Assigning volunteers : `assign`
+Adds an assignment to the address book.
+
+Format: `assign INDEX d/ASSIGNMENTDETAILS a/AVAILABILITY`
+* Assigns the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The index here works the same way as Edit!
+</div>
+
+Examples:
+* `assign 1 d/Tutoring a/01/01/2024`
+* `assign 2 d/Elderly Care a/02/03/2024`
+
+
+### Listing all assignments : `lista`
+
+Shows a list of all assignments in the address book.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To switch back to volunteer list, type `list`
+</div>
+
+Format: `lista`
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -205,5 +230,7 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/AVAILABILITY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [n/NAME] [a/AVAILABILITY] [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Assign** | `assign INDEX d/ASSIGNMENT_DETAILS a/AVAILABILITY`
+**View Assignments** | `lista`
 **List** | `list`
 **Help** | `help`
