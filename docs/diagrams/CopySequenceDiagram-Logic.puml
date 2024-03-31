@@ -11,7 +11,7 @@ end box
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
-[-> LogicManager : execute(undo)
+[-> LogicManager : execute(copy)
 activate LogicManager
 
 LogicManager -> AddressBookParser : parseCommand(copy)
