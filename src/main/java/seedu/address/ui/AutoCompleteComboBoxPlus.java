@@ -75,8 +75,6 @@ public class AutoCompleteComboBoxPlus {
                     return;
                 }
 
-                comboBox.hide(); // reset the filter size
-
                 // Override the default behaviour of the ComboBox
                 if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.LEFT
                         || event.getCode().equals(KeyCode.SHIFT)
@@ -168,6 +166,7 @@ public class AutoCompleteComboBoxPlus {
             return;
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure(comboBox);
+            comboBox.hide();
             return;
         }
     }
@@ -187,7 +186,10 @@ public class AutoCompleteComboBoxPlus {
             t = comboBox.getEditor().getText();
         }
 
-        comboBox.setItems(list);
+        if (list.sorted().size() != comboBox.getItems().size()) {
+            comboBox.hide(); // reset the filter
+            comboBox.setItems(list);
+        }
         int currCaretPos = comboBox.getEditor().getCaretPosition();
         comboBox.getSelectionModel().clearSelection();
         comboBox.getEditor().setText(t);
