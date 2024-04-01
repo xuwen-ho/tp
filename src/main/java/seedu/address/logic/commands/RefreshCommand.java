@@ -24,7 +24,6 @@ public class RefreshCommand extends Command {
 
     public static final String MESSAGE_REFRESH_SUCCESS = "All availabilities before %1$s have been deleted.";
 
-    public static final String MESSAGE_NO_REFRESH = "No availabilities to update before the specified date.";
 
     private final Availability dateToDelete;
 
