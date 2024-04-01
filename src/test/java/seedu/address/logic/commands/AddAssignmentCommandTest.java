@@ -84,6 +84,20 @@ public class AddAssignmentCommandTest {
     }
 
     @Test
+    public void execute_unavailableVolunteerAssignment_throwsCommandException() {
+        Assignment assignment = new AssignmentBuilder().build();
+        AssignmentDetails details = new AssignmentDetails(DEFAULT_DETAILS);
+        // any other availability other than 01/01/2024 is considered unavailable
+        Availability availability = new Availability("02/02/2024");
+        Index index = new IndexStub();
+        AddAssignmentCommand addAssignmentCommand = new AddAssignmentCommand(index, details, availability);
+        ModelStub modelStub = new ModelStubWithAssignment(assignment);
+
+        assertThrows(CommandException.class, AddAssignmentCommand.MESSAGE_VOLUNTEER_NOT_AVAILABLE, ()
+                -> addAssignmentCommand.execute(modelStub));
+    }
+
+    @Test
     public void equalsTest() {
         Assignment assignment = new AssignmentBuilder().build();
         Assignment assignmentCopy = new AssignmentBuilder().build();
