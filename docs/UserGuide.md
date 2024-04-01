@@ -176,7 +176,33 @@ Shows a list of all assignments in the address book.
 To switch back to volunteer list, type `list`
 </div>
 
-Format: `lista`
+### Adding availabilities : `addavail`
+
+Adds availabilities to the address book.
+
+Format: `addavail INDEX a/AVAILABILITY`
+* Adds to person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
+* Availability must be not be present at the index in order to add. 
+
+Examples:
+* `addavail 1 a/01/01/2024`
+* `addavail 2 a/02/03/2024 a/03/03/2024`
+
+### Removing availabilities : `removeavail`
+
+Removes availabilities from the address book.
+
+Format: `removeavail INDEX a/AVAILABILITY`
+* Removes from person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
+* Availability must be present at the index in order to remove.
+
+Examples:
+* `removeavail 1 a/01/01/2024`
+* `removeavail 2 a/02/03/2024 a/03/03/2024`
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.

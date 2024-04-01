@@ -1,8 +1,8 @@
 package seedu.address.ui;
 
-import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -19,54 +19,22 @@ public class CommandBox extends UiPart<Region> {
     private final CommandExecutor commandExecutor;
 
     @FXML
-    private TextField commandTextField;
-
+    private ComboBox<String> commandTextField;
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
-        // calls #setStyleToDefault() whenever there is a change to the text of the command box.
-        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
-    }
 
-    /**
-     * Handles the Enter button pressed event.
-     */
-    @FXML
-    private void handleCommandEntered() {
-        String commandText = commandTextField.getText();
-        if (commandText.equals("")) {
-            return;
-        }
-
-        try {
-            commandExecutor.execute(commandText);
-            commandTextField.setText("");
-        } catch (CommandException | ParseException e) {
-            setStyleToIndicateCommandFailure();
-        }
-    }
-
-    /**
-     * Sets the command box style to use the default style.
-     */
-    private void setStyleToDefault() {
-        commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
-    }
-
-    /**
-     * Sets the command box style to indicate a failed command.
-     */
-    private void setStyleToIndicateCommandFailure() {
-        ObservableList<String> styleClass = commandTextField.getStyleClass();
-
-        if (styleClass.contains(ERROR_STYLE_CLASS)) {
-            return;
-        }
-
-        styleClass.add(ERROR_STYLE_CLASS);
+        commandTextField.setEditable(true);
+        commandTextField.setVisibleRowCount(8);
+        commandTextField.setItems(
+            FXCollections.observableArrayList("add", "clear", "delete", "edit", "exit", "find", "help", "list"));
+        // Set the command box to be auto-completable
+        AutoCompleteComboBoxPlus.config(commandTextField, (typedText, itemToCompare) ->
+                itemToCompare.toLowerCase().contains(typedText.toLowerCase())
+                || itemToCompare.toString().equals(typedText), commandExecutor);
     }
 
     /**
@@ -81,5 +49,4 @@ public class CommandBox extends UiPart<Region> {
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
-
 }

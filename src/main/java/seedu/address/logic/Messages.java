@@ -6,7 +6,9 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.person.Availability;
 import seedu.address.model.person.Person;
+
 
 /**
  * Container for user visible messages.
@@ -55,14 +57,33 @@ public class Messages {
 
     /**
      * Formats the {@code assignment} fpr display to the user.
+     * @param assignment The person whose availabilities are to be formatted.
+     * @return A string representation of the person's assignments.
      */
     public static String format(Assignment assignment) {
         final StringBuilder builder = new StringBuilder();
         builder.append(assignment.getPerson().getName().fullName)
-                .append(" assigned to ")
-                .append(assignment.getDetails()).append(" on ")
-                .append(assignment.getAvailability());
+            .append(" assigned to ")
+            .append(assignment.getDetails()).append(" on ")
+            .append(assignment.getAvailability());
         return builder.toString();
     }
 
+    /**
+     * Formats the availabilities of the {@code person} for display to the user.
+     * @param person The person whose availabilities are to be formatted.
+     * @return A string representation of the person's availabilities.
+     */
+    public static String formatAvailability(Person person) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(person.getName())
+            .append("; Availabilities: ");
+        String formattedAvailabilities = person.getAvailabilities().stream()
+            .map(Availability::toString)
+            .collect(Collectors.joining(", "));
+
+        builder.append(formattedAvailabilities);
+
+        return builder.toString();
+    }
 }
