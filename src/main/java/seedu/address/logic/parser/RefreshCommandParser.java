@@ -1,14 +1,13 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
+
+import java.util.stream.Stream;
 
 import seedu.address.logic.commands.RefreshCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Availability;
-
-import java.util.stream.Stream;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
 
 /**
  * Parses input arguments and creates a new RefreshAvailCommand object
