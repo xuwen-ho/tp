@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.util.List;
@@ -34,7 +34,10 @@ public class CopyCommand extends Command {
         }
 
         String emailString = extractEmails(lastShownList);
-        copyToClipboard(emailString);
+
+        if (!GraphicsEnvironment.isHeadless()) {
+            copyToClipboard(emailString);
+        }
 
         return new CommandResult(String.format(MESSAGE_COPY_SUCCESS));
     }
