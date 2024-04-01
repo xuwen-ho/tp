@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.skin.ComboBoxListViewSkin;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import seedu.address.commons.core.LogsCenter;
@@ -32,12 +33,19 @@ public class AutoCompleteComboBoxPlus {
     public static<T> void config(ComboBox<T> comboBox, AutoCompleteComparator<T> comparatorMethod,
             CommandExecutor commandExecutor) {
         ObservableList<T> commandHistory = comboBox.getItems();
+        // Prevent the default action of selecting the first item on Space/Enter
+        ComboBoxListViewSkin<T> comboBoxListViewSkin = new ComboBoxListViewSkin<T>(comboBox);
+        comboBoxListViewSkin.getPopupContent().addEventFilter(KeyEvent.ANY, (event) -> {
+            if (event.getCode() == KeyCode.SPACE) {
+                event.consume();
+            } else if (event.getCode() == KeyCode.ENTER) {
+                event.consume();
+                processEnter(comboBox, commandHistory, commandExecutor);
+            }
+        });
+        comboBox.setSkin(comboBoxListViewSkin);
 
-        // comboBox.getEditor().focusedProperty().addListener(observable -> {
-        //     if (comboBox.getSelectionModel().getSelectedIndex() < 0) {
-        //         comboBox.getEditor().setText("");
-        //     }
-        // });
+        // Handle the key typed event properly
         comboBox.addEventHandler(KeyEvent.KEY_PRESSED, t -> comboBox.hide());
         comboBox.addEventHandler(KeyEvent.KEY_RELEASED,
                                  createHandler(comboBox, comparatorMethod, commandHistory, commandExecutor));
@@ -112,6 +120,9 @@ public class AutoCompleteComboBoxPlus {
             if (!comboBox.isShowing()) {
                 comboBox.show();
             }
+            if (comboBox.getSelectionModel().getSelectedIndex() < 0) {
+                comboBox.getSelectionModel().selectFirst();
+            }
             if (comboBox.getEditor().getText() != null) {
                 moveCaret(comboBox, comboBox.getEditor().getText().length());
             }
@@ -178,6 +189,7 @@ public class AutoCompleteComboBoxPlus {
 
         comboBox.setItems(list);
         int currCaretPos = comboBox.getEditor().getCaretPosition();
+        comboBox.getSelectionModel().clearSelection();
         comboBox.getEditor().setText(t);
         if (currCaretPos == 0) {
             moveCaret(comboBox, t.length());
