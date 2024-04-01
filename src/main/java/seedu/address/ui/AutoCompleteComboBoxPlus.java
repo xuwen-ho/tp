@@ -182,6 +182,7 @@ public class AutoCompleteComboBoxPlus {
             }
         }
         String t = "";
+        int currCaretPos = comboBox.getEditor().getCaretPosition();
         if (comboBox.getEditor().getText() != null) {
             t = comboBox.getEditor().getText();
         }
@@ -190,7 +191,6 @@ public class AutoCompleteComboBoxPlus {
             comboBox.hide(); // reset the filter
             comboBox.setItems(list);
         }
-        int currCaretPos = comboBox.getEditor().getCaretPosition();
         comboBox.getSelectionModel().clearSelection();
         comboBox.getEditor().setText(t);
         if (currCaretPos == 0) {
