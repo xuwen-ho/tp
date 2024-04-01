@@ -1,27 +1,24 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.BeforeEach;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import static seedu.address.logic.Messages.MESSAGE_EMPTY_LIST;
-
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.Messages.MESSAGE_EMPTY_LIST;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
 import static seedu.address.testutil.TypicalPersons.getTypicalPersonsEmails;
 
-
-import org.junit.jupiter.api.Test;
-import seedu.address.model.person.Person;
-
-import java.awt.datatransfer.StringSelection;
 import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
 
 
 public class CopyCommandTest {
