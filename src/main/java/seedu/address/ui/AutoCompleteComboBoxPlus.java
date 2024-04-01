@@ -33,11 +33,11 @@ public class AutoCompleteComboBoxPlus {
             CommandExecutor commandExecutor) {
         ObservableList<T> commandHistory = comboBox.getItems();
 
-        comboBox.getEditor().focusedProperty().addListener(observable -> {
-            if (comboBox.getSelectionModel().getSelectedIndex() < 0) {
-                comboBox.getEditor().setText("");
-            }
-        });
+        // comboBox.getEditor().focusedProperty().addListener(observable -> {
+        //     if (comboBox.getSelectionModel().getSelectedIndex() < 0) {
+        //         comboBox.getEditor().setText("");
+        //     }
+        // });
         comboBox.addEventHandler(KeyEvent.KEY_PRESSED, t -> comboBox.hide());
         comboBox.addEventHandler(KeyEvent.KEY_RELEASED,
                                  createHandler(comboBox, comparatorMethod, commandHistory, commandExecutor));
@@ -177,8 +177,13 @@ public class AutoCompleteComboBoxPlus {
         }
 
         comboBox.setItems(list);
+        int currCaretPos = comboBox.getEditor().getCaretPosition();
         comboBox.getEditor().setText(t);
-        moveCaret(comboBox, t.length());
+        if (currCaretPos == 0) {
+            moveCaret(comboBox, t.length());
+        } else {
+            moveCaret(comboBox, currCaretPos);
+        }
         if (!list.isEmpty()) {
             comboBox.show();
         }
