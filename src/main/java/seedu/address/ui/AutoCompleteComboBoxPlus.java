@@ -181,20 +181,21 @@ public class AutoCompleteComboBoxPlus {
                 list.add(aData);
             }
         }
-        String t = "";
+        String input = "";
         int currCaretPos = comboBox.getEditor().getCaretPosition();
         if (comboBox.getEditor().getText() != null) {
-            t = comboBox.getEditor().getText();
+            input = comboBox.getEditor().getText();
         }
 
-        if (list.sorted().size() != comboBox.getItems().size()) {
+        if (list.size() != comboBox.getItems().size()) {
             comboBox.hide(); // reset the filter
             comboBox.setItems(list);
         }
+        comboBox.getSelectionModel().select(0);
         comboBox.getSelectionModel().clearSelection();
-        comboBox.getEditor().setText(t);
+        comboBox.getEditor().setText(input);
         if (currCaretPos == 0) {
-            moveCaret(comboBox, t.length());
+            moveCaret(comboBox, input.length());
         } else {
             moveCaret(comboBox, currCaretPos);
         }
