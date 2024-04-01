@@ -10,6 +10,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+/**
+ * Copy all the emails of the people in the filtered list
+ * Keyword matching is case insensitive.
+ */
 public class CopyCommand extends Command {
 
     public static final String COMMAND_WORD = "copy";
