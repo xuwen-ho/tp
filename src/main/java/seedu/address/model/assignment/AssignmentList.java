@@ -7,6 +7,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.assignment.exceptions.AssignmentNotFoundException;
 
 /**
  * A list of assignments that does not allow nulls.
@@ -56,6 +57,13 @@ public class AssignmentList implements Iterable<Assignment> {
     public void setAssignments(AssignmentList assignments) {
         requireNonNull(assignments);
         internalList.setAll((assignments.internalList));
+    }
+
+    public void remove(Assignment toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new AssignmentNotFoundException();
+        }
     }
 
     @Override
