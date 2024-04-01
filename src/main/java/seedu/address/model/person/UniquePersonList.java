@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -77,6 +78,10 @@ public class UniquePersonList implements Iterable<Person> {
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
+    }
+    public void deleteAvailabilities(Set<Availability> availabilitiesToDelete) {
+        requireNonNull(availabilitiesToDelete);
+        internalList.forEach(person -> person.deleteAvailabilities(availabilitiesToDelete));
     }
 
     public void setPersons(UniquePersonList replacement) {
