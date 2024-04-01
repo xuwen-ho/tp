@@ -25,12 +25,23 @@ public class CopyCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        copyEmailsToClipboard(lastShownList);
+        if (lastShownList.isEmpty()) {
+            throw new CommandException("There is no person currently displayed");
+        }
+
+        String emailString = extractEmails(lastShownList);
+        copyToClipboard(emailString);
 
         return new CommandResult(String.format(MESSAGE_COPY_SUCCESS));
     }
 
-    public void copyEmailsToClipboard(List<Person> filteredPersons) {
+    /**
+     * Extracts email addresses from a list of Person objects and returns them as a comma-separated string.
+     *
+     * @param filteredPersons A list of Person objects.
+     * @return A comma-separated string containing email addresses of the provided Person objects.
+     */
+    public String extractEmails(List<Person> filteredPersons) {
         StringBuilder sb = new StringBuilder();
 
         for (Person person : filteredPersons) {
@@ -45,10 +56,19 @@ public class CopyCommand extends Command {
             sb.delete(strlen - 2, strlen - 1);
         }
 
+        return sb.toString();
+    }
+
+    /**
+     * Copies the provided text to the system clipboard.
+     *
+     * @param desiredText The text to be copied to the clipboard.
+     */
+    public void copyToClipboard(String desiredText) {
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 
         // Create a StringSelection object to hold the text
-        StringSelection selection = new StringSelection(sb.toString());
+        StringSelection selection = new StringSelection(desiredText);
 
         // Set the contents of the clipboard to the StringSelection
         clipboard.setContents(selection, null);

@@ -23,6 +23,8 @@ public class Messages {
             + "[y/N]";
 
     public static final String MESSAGE_CONFIRMATION_CANCELLED = "Command execution has been cancelled.";
+    public static final String MESSAGE_EMPTY_LIST = "There is no person currently displayed";
+
 
     /**
      * Returns an error message indicating the duplicate prefixes.
