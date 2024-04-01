@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -18,8 +19,8 @@ public class DeleteAssignmentCommand extends Command {
     public static final String COMMAND_WORD = "removeassign";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the assignment identified by the index number used in the displayed" +
-            " assignment list.\n"
+            + ": Deletes the assignment identified by the index number used in the displayed"
+            + " assignment list.\n"
             + "Parameters: INDEX (must be a postive integer)\n"
             + "Example: " + COMMAND_WORD + "1";
 

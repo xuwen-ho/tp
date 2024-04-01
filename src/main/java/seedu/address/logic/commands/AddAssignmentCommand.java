@@ -29,8 +29,8 @@ public class AddAssignmentCommand extends Command {
             + PREFIX_AVAIL + "01/01/2024";
 
     public static final String MESSAGE_SUCCESS = "Assignment added successfully: %1$s";
-    public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This volunteer already have an existing assignment" +
-            " on this day";
+    public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This volunteer already have an existing assignment"
+            + " on this day";
 
 
     private final Index index;

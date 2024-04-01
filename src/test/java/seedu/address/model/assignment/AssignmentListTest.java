@@ -6,20 +6,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAssignments.FOODDONATION;
 import static seedu.address.testutil.TypicalAssignments.TUTORING;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.AddressBook;
+
 import seedu.address.model.assignment.exceptions.AssignmentNotFoundException;
 import seedu.address.model.assignment.exceptions.DuplicateAssignmentException;
 
 public class AssignmentListTest {
 
     private final AssignmentList assignmentList = new AssignmentList();
-//    private final AddressBook sampleAddressBook = getTypicalAddressBook();
 
     @Test
     public void contains_nullAssignment_throwsNullPointerException() {

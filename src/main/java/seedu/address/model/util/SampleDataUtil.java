@@ -48,9 +48,9 @@ public class SampleDataUtil {
         Person bernice = samplePersons[1];
         Person charlotte = samplePersons[2];
         return new Assignment[] {
-                new Assignment(alex, new AssignmentDetails("Willing Hearts"), new Availability("01/03/2024")),
-                new Assignment(bernice, new AssignmentDetails("Tutoring"), new Availability("20/03/2024")),
-                new Assignment(charlotte, new AssignmentDetails("Elderly Care"), new Availability("01/03/2024"))
+            new Assignment(alex, new AssignmentDetails("Willing Hearts"), new Availability("01/03/2024")),
+            new Assignment(bernice, new AssignmentDetails("Tutoring"), new Availability("20/03/2024")),
+            new Assignment(charlotte, new AssignmentDetails("Elderly Care"), new Availability("01/03/2024"))
         };
     }
 

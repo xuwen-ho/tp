@@ -79,8 +79,8 @@ public class AddAssignmentCommandTest {
         AddAssignmentCommand addAssignmentCommand = new AddAssignmentCommand(index, details, availability);
         ModelStub modelStub = new ModelStubWithAssignment(assignment);
 
-        assertThrows(CommandException.class, AddAssignmentCommand.MESSAGE_DUPLICATE_ASSIGNMENT,
-                () -> addAssignmentCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddAssignmentCommand.MESSAGE_DUPLICATE_ASSIGNMENT, ()
+                -> addAssignmentCommand.execute(modelStub));
     }
 
     @Test
@@ -203,7 +203,7 @@ public class AddAssignmentCommandTest {
 
         @Override
         public void addAssignment(Assignment toAdd) {
-             throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

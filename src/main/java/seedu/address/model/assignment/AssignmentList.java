@@ -63,6 +63,10 @@ public class AssignmentList implements Iterable<Assignment> {
         internalList.setAll((assignments.internalList));
     }
 
+    /**
+     * Removes the given assignment from the current list.
+     * {@code toRemove} must exist inthe list.
+     */
     public void remove(Assignment toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {

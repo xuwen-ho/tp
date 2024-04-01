@@ -77,7 +77,7 @@ public class DeleteAssignmentCommandTest {
         Index targetIndex = Index.fromOneBased(1);
         DeleteAssignmentCommand deleteAssignmentCommand = new DeleteAssignmentCommand(targetIndex);
         String expected = DeleteAssignmentCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
-        assertEquals(expected ,deleteAssignmentCommand.toString());
+        assertEquals(expected, deleteAssignmentCommand.toString());
     }
 
 }
