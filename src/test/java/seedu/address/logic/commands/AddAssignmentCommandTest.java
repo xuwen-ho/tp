@@ -3,12 +3,12 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_DETAILS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAILABILITY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.AssignmentBuilder.DEFAULT_AVAILABILITY;
 import static seedu.address.testutil.AssignmentBuilder.DEFAULT_DETAILS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -26,6 +26,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -67,6 +68,19 @@ public class AddAssignmentCommandTest {
         assertEquals(String.format(AddAssignmentCommand.MESSAGE_SUCCESS, Messages.format(assignment)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(assignment), modelStub.assignmentsAdded);
+    }
+
+    @Test
+    public void execute_duplicateAssignment_throwsCommandException() {
+        Assignment assignment = new AssignmentBuilder().build();
+        AssignmentDetails details = new AssignmentDetails(DEFAULT_DETAILS);
+        Availability availability = new Availability(DEFAULT_AVAILABILITY);
+        Index index = new IndexStub();
+        AddAssignmentCommand addAssignmentCommand = new AddAssignmentCommand(index, details, availability);
+        ModelStub modelStub = new ModelStubWithAssignment(assignment);
+
+        assertThrows(CommandException.class, AddAssignmentCommand.MESSAGE_DUPLICATE_ASSIGNMENT,
+                () -> addAssignmentCommand.execute(modelStub));
     }
 
     @Test
@@ -164,7 +178,7 @@ public class AddAssignmentCommandTest {
 
         @Override
         public void deleteAssignment(Assignment target) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -189,7 +203,7 @@ public class AddAssignmentCommandTest {
 
         @Override
         public void addAssignment(Assignment toAdd) {
-            throw new AssertionError("This method should not be called.");
+             throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -227,12 +241,38 @@ public class AddAssignmentCommandTest {
         @Override
         public boolean hasAssignment(Assignment assignment) {
             requireNonNull(assignment);
-            return assignmentsAdded.stream().anyMatch(assignment::equals);
+            return assignmentsAdded.stream().anyMatch(assignment::isAlreadyAssigned);
         }
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            return personsAdded;
+        }
+    }
+
+    private class ModelStubWithAssignment extends ModelStub {
+        final ObservableList<Person> personsAdded;
+        private final Assignment assignment;
+
+        ModelStubWithAssignment(Assignment assignment) {
+            requireNonNull(assignment);
+            this.assignment = assignment;
+            UniquePersonList personList = new UniquePersonList();
+            Person person = new PersonBuilder().build();
+            personList.add(person);
+            personsAdded = personList.asUnmodifiableObservableList();
+        }
+
+
+        @Override
+        public boolean hasAssignment(Assignment assignment) {
+            requireNonNull(assignment);
+            return this.assignment.isAlreadyAssigned(assignment);
         }
 
         @Override
