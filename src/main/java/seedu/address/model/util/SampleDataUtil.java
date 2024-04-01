@@ -21,10 +21,10 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 getAvailabilitySet("01/03/2024", "02/03/2024", "03/03/2024"),
-                getTagSet("FoodBank", "Teaching")),
+                getTagSet("Food Bank", "Teaching")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 getAvailabilitySet("20/03/2024", "22/03/2024"),
-                getTagSet("ElderlyCare", "Teaching")),
+                getTagSet("Elderly Care", "Teaching")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 getAvailabilitySet("01/03/2024"),
                 getTagSet("Environment")),
@@ -33,10 +33,10 @@ public class SampleDataUtil {
                 getTagSet("Healthcare")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 getAvailabilitySet("05/04/2024"),
-                getTagSet("AnimalWelfare")),
+                getTagSet("Animal Welfare")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 getAvailabilitySet("03/05/2024"),
-                getTagSet("FoodBank"))
+                getTagSet("Food Bank"))
         };
     }
 
