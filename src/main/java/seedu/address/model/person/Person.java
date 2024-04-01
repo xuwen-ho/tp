@@ -62,15 +62,6 @@ public class Person {
     }
 
     /**
-     * Deletes the specified availabilities from the person's list of availabilities.
-     *
-     * @param availabilitiesToDelete The set of availabilities to delete.
-     */
-    public void deleteAvailabilities(Set<Availability> availabilitiesToDelete) {
-        availabilities.removeIf(availabilitiesToDelete::contains);
-    }
-
-    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */

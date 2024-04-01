@@ -79,10 +79,6 @@ public class UniquePersonList implements Iterable<Person> {
             throw new PersonNotFoundException();
         }
     }
-    public void deleteAvailabilities(Set<Availability> availabilitiesToDelete) {
-        requireNonNull(availabilitiesToDelete);
-        internalList.forEach(person -> person.deleteAvailabilities(availabilitiesToDelete));
-    }
 
     public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);

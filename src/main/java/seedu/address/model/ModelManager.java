@@ -127,13 +127,6 @@ public class ModelManager implements Model {
 
         addressBook.setPerson(target, editedPerson);
     }
-    @Override
-    public void deleteAvailabilities(Set<Availability> availabilitiesToDelete) {
-        addressBook.deleteAvailabilities(availabilitiesToDelete);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
 
     //=========== Filtered Person List Accessors =============================================================
 

@@ -127,10 +127,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    public void deleteAvailabilities(Set<Availability> availabilitiesToDelete) {
-        persons.deleteAvailabilities(availabilitiesToDelete);
-    }
-
     //// util methods
 
     @Override

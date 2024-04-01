@@ -98,5 +98,4 @@ public interface Model {
 
     ObservableList<Assignment> getFilteredAssignmentList();
 
-    void deleteAvailabilities(Set<Availability> availabilitiesToDelete);
 }
