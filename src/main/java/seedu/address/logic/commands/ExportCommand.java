@@ -23,9 +23,6 @@ public class ExportCommand extends Command {
 
     public static final String COMMAND_WORD = "export";
 
-    public static final String JSON_KEY_PERSONS = "persons";
-    public static final String JSON_KEY_ASSIGNMENTS = "assignments";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Export the information of all the people and activities in the application to a CSV file.\n";
 
