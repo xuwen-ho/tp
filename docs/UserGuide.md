@@ -61,6 +61,7 @@ Match is a **desktop app for managing contacts, optimized for use via a Command 
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+
 </div>
 
 ### Viewing help : `help`
@@ -202,6 +203,19 @@ Examples:
 * `removeavail 1 a/01/01/2024`
 * `removeavail 2 a/02/03/2024 a/03/03/2024`
 
+### Exporting to CSV: `export`
+
+Exports data to a comma-separated values (CSV) file located at `[JAR file location]/data`. Both persons and assignments are exported as `persons.csv` and `assignments.csv` respectively.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about `export` command:**<br>
+
+* When using the application for the first time, executing the `export` command when the `addressbook.json` is missing will result in an error. Try executing other commands first. This will result `addressbook.json` file to be created.
+
+</div>
+
+Format: `export`
 
 ### Clearing all entries : `clear`
 
