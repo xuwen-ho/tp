@@ -104,7 +104,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
 
 
-    /// public void addAssignment(Assignment a) {}
+    public void removeAssignment(Assignment key) {
+        assignments.remove(key);
+    }
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
