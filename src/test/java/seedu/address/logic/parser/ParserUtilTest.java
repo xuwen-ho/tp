@@ -193,4 +193,22 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseInvalidAvailability_throwsParseException() throws Exception {
+        // not date format
+        assertThrows(ParseException.class, () -> ParserUtil.parseAvailability("not a date"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseAvailability("02/02/2024/02"));
+
+        // should not be empty
+        assertThrows(ParseException.class, () -> ParserUtil.parseAvailability(""));
+    }
+
+    @Test
+    public void parseInvalidAssignmentDetails_throwsParseException() throws Exception {
+        // should be alphanumeric
+        assertThrows(ParseException.class, () -> ParserUtil.parseAssignmentDetails("*/2"));
+        // should not be empty
+        assertThrows(ParseException.class, () -> ParserUtil.parseAssignmentDetails(""));
+    }
 }
