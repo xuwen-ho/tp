@@ -26,7 +26,8 @@ public class ExportCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Export the information of all the people and activities in the application to a CSV file.\n";
 
-    public static final String MESSAGE_COPY_SUCCESS = "Data successfully exported.";
+    public static final String MESSAGE_SUCCESS = "Data successfully exported.";
+    public static final String MESSAGE_DIRECTORY_JSON_FILE_ABSENT = "Unable to locate data directory or json file.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -36,9 +37,9 @@ public class ExportCommand extends Command {
         try {
             exportCsv(addressBookFilePath);
         } catch (IOException | AssertionError e) {
-            throw new CommandException("Unable to locate data directory.");
+            throw new CommandException(MESSAGE_DIRECTORY_JSON_FILE_ABSENT);
         }
-        return new CommandResult(String.format(MESSAGE_COPY_SUCCESS));
+        return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 
     /**
@@ -55,8 +56,8 @@ public class ExportCommand extends Command {
 
         Path addressBookDirectoryPath = addressBookFilePath.getParent();
 
-        JSONArray jsonArrayPersons = jsonObject.getJSONArray(JSON_KEY_PERSONS);
-        JSONArray jsonArrayAssignments = jsonObject.getJSONArray(JSON_KEY_ASSIGNMENTS);
+        JSONArray jsonArrayPersons = jsonObject.getJSONArray(PERSONS_PROPERTY);
+        JSONArray jsonArrayAssignments = jsonObject.getJSONArray(ASSIGNMENTS_PROPERTY);
 
         Path csvFilePathPersons = Path.of(addressBookDirectoryPath + "/" + PERSONS_PROPERTY + ".csv");
         Path csvFilePathAssignments = Path.of(addressBookDirectoryPath + "/" + ASSIGNMENTS_PROPERTY + ".csv");
