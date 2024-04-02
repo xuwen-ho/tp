@@ -52,6 +52,15 @@ public class AddAssignmentParserTest {
                 + VALID_AVAILABILITY_AMY, MESSAGE_INVALID_FORMAT);
     }
 
+    @Test
+    public void parse_duplicatePrefixTags() {
+        assertParseFailure(parser, "0" + VALID_ASSIGNMENT_DETAILS + VALID_ASSIGNMENT_DETAILS,
+                MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + VALID_ASSIGNMENT_DETAILS + VALID_ASSIGNMENT_DETAILS
+                + VALID_AVAILABILITY_AMY,
+                MESSAGE_INVALID_FORMAT);
+    }
+
 
     private class AssignmentDetailsStub extends AssignmentDetails {
         private String details;

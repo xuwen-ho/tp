@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.assignment.AssignmentDetails;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Availability;
 import seedu.address.model.person.Email;
@@ -105,6 +106,19 @@ public class ParserUtil {
             availabilitiesSet.add(parseAvailability(availability));
         }
         return availabilitiesSet;
+    }
+
+    /**
+     * Parses {@code String Details} into a {@code AssignmentDetails}.
+     */
+    public static AssignmentDetails parseAssignmentDetails(String details) throws ParseException {
+        requireNonNull(details);
+        String trimmedDetails = details.trim();
+        if (!AssignmentDetails.isValidAssignmentDetails(trimmedDetails)) {
+            throw new ParseException(AssignmentDetails.MESSAGE_CONSTRAINTS);
+        }
+        AssignmentDetails assignmentDetails = new AssignmentDetails(trimmedDetails);
+        return assignmentDetails;
     }
 
     /**
