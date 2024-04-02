@@ -20,7 +20,8 @@
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
             <HBox alignment="CENTER_LEFT">
-                <Label fx:id="details" text="Assignment Details" styleClass="cell_small_label" />
+                <Label fx:id="details" text="Assignment Details" styleClass="cell_small_label"
+                       style="-fx-text-fill: white;"/>
             </HBox>
         </VBox>
 
@@ -28,26 +29,26 @@
             <padding>
                 <Insets top="5" right="5" bottom="5" left="5" />
             </padding>
-            <Label fx:id="name" styleClass="cell_small_label" text="Volunteer" />
+            <Label fx:id="name" styleClass="cell_small_label" text="Volunteer" style="-fx-text-fill: white;"/>
         </VBox>
 
         <VBox alignment="CENTER_LEFT" GridPane.columnIndex="2">
             <padding>
                 <Insets top="5" right="5" bottom="5" left="5" />
             </padding>
-            <Label fx:id="phone" styleClass="cell_small_label" text="Phone Number" />
+            <Label fx:id="phone" styleClass="cell_small_label" text="Phone Number" style="-fx-text-fill: white;"/>
         </VBox>
         <VBox alignment="CENTER_LEFT" GridPane.columnIndex="3">
             <padding>
                 <Insets top="5" right="5" bottom="5" left="5" />
             </padding>
-            <Label fx:id="email" styleClass="cell_small_label" text="Email" />
+            <Label fx:id="email" styleClass="cell_small_label" text="Email" style="-fx-text-fill: white;"/>
         </VBox>
         <VBox alignment="CENTER_LEFT" GridPane.columnIndex="4">
             <padding>
                 <Insets top="5" right="5" bottom="5" left="5" />
             </padding>
-            <Label fx:id="availability" styleClass="cell_small_label" text="Date" />
+            <Label fx:id="availability" styleClass="cell_small_label" text="Date" style="-fx-text-fill: white;"/>
         </VBox>
     </GridPane>
     <ListView fx:id="assignmentListView" VBox.vgrow="ALWAYS" />
