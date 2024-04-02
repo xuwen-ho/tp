@@ -11,13 +11,14 @@ import java.nio.file.Path;
 import org.json.CDL;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import seedu.address.commons.util.FileUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
  * Export all the information of people and assignments in the entire address book as comma-separated values files.
- * The files are located in <location of jar file>\data directory.
+ * The files are located in data directory.
  */
 public class ExportCommand extends Command {
 

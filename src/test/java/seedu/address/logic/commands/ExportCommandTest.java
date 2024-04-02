@@ -11,8 +11,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -43,14 +44,14 @@ public class ExportCommandTest {
         Path personsJsonFilePath = modelStubJsonFilePresent.getAddressBookFilePath().getParent();
         Path personsCsvFilePath = Path.of(personsJsonFilePath.toString() + "/persons.csv");
         String personsResultContent = Files.readString(personsCsvFilePath);
-        String personsExpectedContent = "phone,availabilities,name,email,tags\n" +
-                "94351253,[\"14/02/2024\"],Alice Pauline,alice@example.com,\"[Food Bank,Education]\"\n" +
-                "98765432,\"[20/03/2024,03/05/2024]\",Benson Meier,johnd@example.com,\"[Elderly Care,Education]\"\n" +
-                "95352563,[\"12/12/2024\"],Carl Kurz,heinz@example.com,[]\n" +
-                "87652533,\"[01/06/2024,31/06/2024]\",Daniel Meier,cornelia@example.com,[\"Environment\"]\n" +
-                "9482224,[\"25/05/2024\"],Elle Meyer,werner@example.com,[]\n" +
-                "9482427,[\"02/05/2024\"],Fiona Kunz,lydia@example.com,[]\n" +
-                "9482442,[\"04/06/2024\"],George Best,anna@example.com,[]\n";
+        String personsExpectedContent = "phone,availabilities,name,email,tags\n"
+                + "94351253,[\"14/02/2024\"],Alice Pauline,alice@example.com,\"[Food Bank,Education]\"\n"
+                + "98765432,\"[20/03/2024,03/05/2024]\",Benson Meier,johnd@example.com,\"[Elderly Care,Education]\"\n"
+                + "95352563,[\"12/12/2024\"],Carl Kurz,heinz@example.com,[]\n"
+                + "87652533,\"[01/06/2024,31/06/2024]\",Daniel Meier,cornelia@example.com,[\"Environment\"]\n"
+                + "9482224,[\"25/05/2024\"],Elle Meyer,werner@example.com,[]\n"
+                + "9482427,[\"02/05/2024\"],Fiona Kunz,lydia@example.com,[]\n"
+                + "9482442,[\"04/06/2024\"],George Best,anna@example.com,[]\n";
 
         Path assignmentsJsonFilePath = modelStubJsonFilePresent.getAddressBookFilePath().getParent();
         Path assignmentsCsvFilePath = Path.of(assignmentsJsonFilePath.toString() + "/assignments.csv");
@@ -65,9 +66,9 @@ public class ExportCommandTest {
     public void execute_addressBookAbsent_throwsCommandException() throws CommandException {
         ModelStubJsonFileAbsent modelStubJsonFileAbsent = new ModelStubJsonFileAbsent();
         ExportCommand exportCommand = new ExportCommand();
-        ;
-        assertThrows(CommandException.class, ExportCommand.MESSAGE_JSON_FILE_ABSENT,
-                () -> exportCommand.execute(modelStubJsonFileAbsent));
+
+        assertThrows(CommandException.class, ExportCommand.MESSAGE_JSON_FILE_ABSENT, ()
+                -> exportCommand.execute(modelStubJsonFileAbsent));
     }
 
     @Test
