@@ -162,10 +162,13 @@ public class AutoCompleteComboBoxPlus {
             }
             commandHistory.add(0, (T) commandText);
             comboBox.setItems(commandHistory);
+            comboBox.getSelectionModel().clearSelection();
             comboBox.hide();
+            setStyleToDefault(comboBox);
             return;
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure(comboBox);
+            comboBox.getSelectionModel().clearSelection();
             comboBox.hide();
             return;
         }
@@ -192,7 +195,7 @@ public class AutoCompleteComboBoxPlus {
             comboBox.setItems(list);
         }
         comboBox.getSelectionModel().select(0);
-        comboBox.getSelectionModel().clearSelection();
+        comboBox.getSelectionModel().clearSelection(0);
         comboBox.getEditor().setText(input);
         if (currCaretPos == 0) {
             moveCaret(comboBox, input.length());
