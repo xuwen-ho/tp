@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.function.Predicate;
@@ -30,6 +32,33 @@ public class ExportCommandTest {
         CommandResult commandResult = new ExportCommand().execute(modelStubJsonFilePresent);
 
         assertEquals(ExportCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_addressBookTypicalPersonFile_checkContents() throws CommandException, IOException {
+        ModelStubJsonFilePresent modelStubJsonFilePresent = new ModelStubJsonFilePresent();
+
+        new ExportCommand().execute(modelStubJsonFilePresent);
+
+        Path personsJsonFilePath = modelStubJsonFilePresent.getAddressBookFilePath().getParent();
+        Path personsCsvFilePath = Path.of(personsJsonFilePath.toString() + "/persons.csv");
+        String personsResultContent = Files.readString(personsCsvFilePath);
+        String personsExpectedContent = "phone,availabilities,name,email,tags\n" +
+                "94351253,[\"14/02/2024\"],Alice Pauline,alice@example.com,\"[Food Bank,Education]\"\n" +
+                "98765432,\"[20/03/2024,03/05/2024]\",Benson Meier,johnd@example.com,\"[Elderly Care,Education]\"\n" +
+                "95352563,[\"12/12/2024\"],Carl Kurz,heinz@example.com,[]\n" +
+                "87652533,\"[01/06/2024,31/06/2024]\",Daniel Meier,cornelia@example.com,[\"Environment\"]\n" +
+                "9482224,[\"25/05/2024\"],Elle Meyer,werner@example.com,[]\n" +
+                "9482427,[\"02/05/2024\"],Fiona Kunz,lydia@example.com,[]\n" +
+                "9482442,[\"04/06/2024\"],George Best,anna@example.com,[]\n";
+
+        Path assignmentsJsonFilePath = modelStubJsonFilePresent.getAddressBookFilePath().getParent();
+        Path assignmentsCsvFilePath = Path.of(assignmentsJsonFilePath.toString() + "/assignments.csv");
+        String assignmentsResultContent = Files.readString(assignmentsCsvFilePath);
+        String assignmentsExpectedContent = "";
+
+        assertEquals(personsResultContent, personsExpectedContent);
+        assertEquals(assignmentsResultContent, assignmentsExpectedContent);
     }
 
     @Test
@@ -111,6 +140,11 @@ public class ExportCommandTest {
 
         @Override
         public boolean hasAssignment(Assignment assignment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteAssignment(Assignment target) {
             throw new AssertionError("This method should not be called.");
         }
 
