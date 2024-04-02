@@ -26,8 +26,8 @@ public class ExportCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Export the information of all the people and activities in the application to a CSV file.\n";
 
-    public static final String MESSAGE_SUCCESS = "Data successfully exported.";
-    public static final String MESSAGE_DIRECTORY_JSON_FILE_ABSENT = "Unable to locate data directory or json file.";
+    public static final String MESSAGE_SUCCESS = "Data successfully exported to data directory.";
+    public static final String MESSAGE_JSON_FILE_ABSENT = "Unable to locate the json file.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -37,7 +37,7 @@ public class ExportCommand extends Command {
         try {
             exportCsv(addressBookFilePath);
         } catch (IOException | AssertionError e) {
-            throw new CommandException(MESSAGE_DIRECTORY_JSON_FILE_ABSENT);
+            throw new CommandException(MESSAGE_JSON_FILE_ABSENT);
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }

@@ -66,7 +66,7 @@ public class ExportCommandTest {
         ModelStubJsonFileAbsent modelStubJsonFileAbsent = new ModelStubJsonFileAbsent();
         ExportCommand exportCommand = new ExportCommand();
         ;
-        assertThrows(CommandException.class, ExportCommand.MESSAGE_DIRECTORY_JSON_FILE_ABSENT,
+        assertThrows(CommandException.class, ExportCommand.MESSAGE_JSON_FILE_ABSENT,
                 () -> exportCommand.execute(modelStubJsonFileAbsent));
     }
 
