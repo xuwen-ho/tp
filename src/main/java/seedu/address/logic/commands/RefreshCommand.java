@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -24,42 +26,55 @@ public class RefreshCommand extends Command {
 
     public static final String MESSAGE_REFRESH_SUCCESS = "All availabilities before %1$s have been deleted.";
 
+    public static final String VALIDATION_REGEX = "dd/MM/yyyy";
+
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern(VALIDATION_REGEX);
 
     private final Availability dateToDelete;
 
     /**
      * Creates a RefreshAvailCommand to delete availabilities before the specified date.
      */
-    public RefreshCommand(Availability dateToDelete) {
-        requireNonNull(dateToDelete);
-        this.dateToDelete = dateToDelete;
+    public RefreshCommand() {
+        LocalDate currentDate = LocalDate.now();
+        this.dateToDelete = new Availability(currentDate.format(formatter));
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Set<Person> personsToUpdate = model.getAddressBook().getPersonList().stream()
-            .map(person -> {
-                Set<Availability> updatedAvailabilities = person.getAvailabilities().stream()
-                    .filter(availability -> !availability.getDate().isBefore(dateToDelete.getDate()))
-                    .collect(Collectors.toSet());
-                return new Person(person.getName(), person.getPhone(), person.getEmail(),
-                    updatedAvailabilities, person.getTags());
-            })
-            .collect(Collectors.toSet());
+        // Filter and update availabilities for each person
+        Set<Person> personsToUpdate = updatePersonAvailabilities(model, dateToDelete);
 
-        for (Person editedPerson : personsToUpdate) {
-            model.getFilteredPersonList().stream()
-                .filter(person -> person.isSamePerson(editedPerson))
-                .findFirst()
-                .ifPresent(personToEdit -> model.setPerson(personToEdit, editedPerson));
-        }
+        // Update the model with updated persons
+        updateModelWithPersons(model, personsToUpdate);
 
         return new CommandResult(String.format(MESSAGE_REFRESH_SUCCESS, dateToDelete));
     }
 
+    private Set<Person> updatePersonAvailabilities(Model model, Availability dateToDelete) {
+        return model.getAddressBook().getPersonList().stream()
+            .map(person -> updatePersonAvailability(person, dateToDelete))
+            .collect(Collectors.toSet());
+    }
 
+    private Person updatePersonAvailability(Person person, Availability dateToDelete) {
+        Set<Availability> updatedAvailabilities = person.getAvailabilities().stream()
+            .filter(availability -> !availability.getDate().isBefore(dateToDelete.getDate()))
+            .collect(Collectors.toSet());
+        return new Person(person.getName(), person.getPhone(), person.getEmail(),
+            updatedAvailabilities, person.getTags());
+    }
+
+    private void updateModelWithPersons(Model model, Set<Person> personsToUpdate) {
+        personsToUpdate.forEach(editedPerson ->
+            model.getFilteredPersonList().stream()
+                .filter(person -> person.isSamePerson(editedPerson))
+                .findFirst()
+                .ifPresent(personToEdit -> model.setPerson(personToEdit, editedPerson))
+        );
+    }
     @Override
     public boolean equals(Object other) {
         return other == this

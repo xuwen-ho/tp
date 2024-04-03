@@ -1,31 +1,40 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Availability;
+import seedu.address.model.person.Person;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for
- * {@code RefreshCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for RefreshCommand.
  */
 public class RefreshCommandTest {
+    private Model expectedModel;
+    private RefreshCommand refreshCommand;
+
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_refreshBeforeDateWithAvailabilities_success() {
         // Choose a date before which there are availabilities
-        Availability dateToDelete = new Availability("01/01/2022");
+        Availability dateToDelete = new Availability(LocalDate.now().format(formatter));
 
-        RefreshCommand refreshCommand = new RefreshCommand(dateToDelete);
+        RefreshCommand refreshCommand = new RefreshCommand();
 
         String expectedMessage = String.format(RefreshCommand.MESSAGE_REFRESH_SUCCESS, dateToDelete);
 
@@ -36,26 +45,6 @@ public class RefreshCommandTest {
 
     @Test
     public void equals() {
-        Availability firstDate = new Availability("01/01/2022");
-        Availability secondDate = new Availability("02/01/2022");
-
-        RefreshCommand refreshFirstCommand = new RefreshCommand(firstDate);
-        RefreshCommand refreshSecondCommand = new RefreshCommand(secondDate);
-
-        // same object -> returns true
-        assertTrue(refreshFirstCommand.equals(refreshFirstCommand));
-
-        // same values -> returns true
-        RefreshCommand refreshFirstCommandCopy = new RefreshCommand(firstDate);
-        assertTrue(refreshFirstCommand.equals(refreshFirstCommandCopy));
-
-        // different types -> returns false
-        assertFalse(refreshFirstCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(refreshFirstCommand.equals(null));
-
-        // different dates -> returns false
-        assertFalse(refreshFirstCommand.equals(refreshSecondCommand));
+        assertEquals(refreshCommand, new RefreshCommand());
     }
 }
