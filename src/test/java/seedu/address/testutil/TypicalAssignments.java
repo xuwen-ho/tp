@@ -38,6 +38,6 @@ public class TypicalAssignments {
      * Returns a list of typical assignments
      */
     public static List<Assignment> getTypicalAssignments() {
-        return new ArrayList<>(Arrays.asList(FOODDONATION, FOODDONATIONCOPY, TUTORING, ELDERLYCARE));
+        return new ArrayList<>(Arrays.asList(FOODDONATION, TUTORING, ELDERLYCARE));
     }
 }

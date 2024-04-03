@@ -32,6 +32,8 @@ public class AddAssignmentParser implements Parser<AddAssignmentCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_DETAILS, PREFIX_AVAIL)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAssignmentCommand.MESSAGE_USAGE));
         }
+
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_AVAIL, PREFIX_DETAILS);
         Index index;
 
         try {
@@ -41,8 +43,8 @@ public class AddAssignmentParser implements Parser<AddAssignmentCommand> {
                     AddAssignmentCommand.MESSAGE_USAGE), pe);
         }
 
-        Availability availability = new Availability(argMultimap.getValue(PREFIX_AVAIL).get());
-        AssignmentDetails details = new AssignmentDetails(argMultimap.getValue(PREFIX_DETAILS).get());
+        Availability availability = ParserUtil.parseAvailability(argMultimap.getValue(PREFIX_AVAIL).get());
+        AssignmentDetails details = ParserUtil.parseAssignmentDetails(argMultimap.getValue(PREFIX_DETAILS).get());
         return new AddAssignmentCommand(index, details, availability);
     }
 

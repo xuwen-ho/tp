@@ -7,6 +7,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.assignment.exceptions.AssignmentNotFoundException;
+import seedu.address.model.assignment.exceptions.DuplicateAssignmentException;
 
 /**
  * A list of assignments that does not allow nulls.
@@ -23,6 +25,9 @@ public class AssignmentList implements Iterable<Assignment> {
      */
     public void add(Assignment toAdd) {
         requireNonNull(toAdd);
+        if (contains(toAdd)) {
+            throw new DuplicateAssignmentException();
+        }
         internalList.add(toAdd);
     }
 
@@ -31,7 +36,7 @@ public class AssignmentList implements Iterable<Assignment> {
      */
     public boolean contains(Assignment toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isAlreadyAssigned);
     }
 
     /**
@@ -58,15 +63,26 @@ public class AssignmentList implements Iterable<Assignment> {
         internalList.setAll((assignments.internalList));
     }
 
+    /**
+     * Removes the given assignment from the current list.
+     * {@code toRemove} must exist inthe list.
+     */
+    public void remove(Assignment toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new AssignmentNotFoundException();
+        }
+    }
+
     @Override
     public Iterator<Assignment> iterator() {
-        return null;
+        return internalList.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         if (other == this) {
-            return false;
+            return true;
         }
 
         // instanceof handles nulls

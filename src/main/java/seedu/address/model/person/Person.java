@@ -75,6 +75,13 @@ public class Person {
     }
 
     /**
+     * Checks if the person is available on {@code availability}
+     */
+    public boolean isAvailable(Availability availability) {
+        return this.availabilities.contains(availability);
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
