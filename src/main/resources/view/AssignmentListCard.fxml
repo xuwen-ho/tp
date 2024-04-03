@@ -20,6 +20,9 @@
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
             <HBox alignment="CENTER_LEFT">
+                <padding>
+                    <Insets top="5" right="5" bottom="5" left="5" />
+                </padding>
                 <Label fx:id="id" styleClass="cell_big_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
