@@ -76,10 +76,10 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/AVAILABILITY [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [a/AVAILABILITY] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags and any number of availabilities (including 0)
 </div>
 
 Examples:
@@ -122,9 +122,10 @@ Format: `find KEYWORD [n/NAME] [a/AVAILABILITY] [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john`, `John`, `John Doe` and so on...
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-* `find a/23/05/2024` returns people that are available on 23/05/2024
+* `find n/John` returns `john`, `John`, `John Doe` and so on...
+* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find a/23/05/2024` returns people who are available on 23/05/2024
+*  find a/23/05/2024 a/24/05/2024 returns people who are available on either 23/05/2024 or 24/05/2024
 
 ### Deleting a person : `delete`
 
@@ -157,7 +158,10 @@ Adds an assignment to the address book.
 
 Format: `assign INDEX d/ASSIGNMENTDETAILS a/AVAILABILITY`
 * Assigns the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
+* Availability must be in the format of DD/MM/YYYY eg: `28/03/2024`
+* The person at the specified `INDEX` must be available on the `AVAILABILITY` entered.
+* Each person can only be assigned 1 volunteer activity per day.
+* `ASSIGNMENTDETAILS` must be alpha-numeric and cannot be empty. eg: `Willing Hearts`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The index here works the same way as Edit!
@@ -175,6 +179,18 @@ Shows a list of all assignments in the address book.
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 To switch back to volunteer list, type `list`
 </div>
+
+
+### Remove assignments : `removeassign`
+
+Removes an assignment from the assignment list.
+Format: `removeassign INDEX`
+* Removes the assignment at that `INDEX`. The index refers to the index number shown in the displayed assignment list. The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+`removeassign 1`
+`removeassign 2`
+
 
 ### Adding availabilities : `addavail`
 
@@ -244,6 +260,7 @@ _Details coming soon ..._
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+2. **When deleting a person or availability**, the assignment associated will not be deleted. This will be fixed in v1.4.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -257,6 +274,7 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/AVAILABILITY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [n/NAME] [a/AVAILABILITY] [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Assign** | `assign INDEX d/ASSIGNMENT_DETAILS a/AVAILABILITY`
+**Remove Assignments** | `removeassign INDEX`
 **View Assignments** | `lista`
 **List** | `list`
 **Help** | `help`
