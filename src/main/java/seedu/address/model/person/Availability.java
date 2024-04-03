@@ -6,6 +6,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 /**
  * Represents a Person's availability in the address book.
@@ -13,12 +15,14 @@ import java.time.format.DateTimeParseException;
  */
 public class Availability {
     public static final String MESSAGE_CONSTRAINTS = "Availabilities must be in the format of dd/MM/yyyy";
+    public static final String MESSAGE_CONSTRAINTS_DATE = "Availabilities must be a valid date";
 
     /**
      * The first character of the availability must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "dd/MM/yyyy";
+    public static final String VALIDATION_REGEX_DATE = "\\d{2}/\\d{2}/\\d{4}";
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern(VALIDATION_REGEX);
 
     private LocalDate date;
@@ -30,8 +34,16 @@ public class Availability {
      */
     public Availability(String availability) {
         requireNonNull(availability);
+        checkArgument(isValidDateFormat(availability), MESSAGE_CONSTRAINTS_DATE);
         checkArgument(isValidAvailability(availability), MESSAGE_CONSTRAINTS);
         this.date = LocalDate.parse(availability, formatter);
+    }
+
+    /**
+     * Returns true if a given string is a valid date format.
+     */
+    public static boolean isValidDateFormat(String test) {
+        return Pattern.matches(VALIDATION_REGEX_DATE, test);
     }
 
     /**
