@@ -300,4 +300,4 @@ Action | Format, Examples
 **List** | `list`
 **Help** | `help`
 
-[^1]: Are deemed as critical operations and will have an additional confirmation step.
+[^1]: Are critical operations and will have an additional confirmation step.
