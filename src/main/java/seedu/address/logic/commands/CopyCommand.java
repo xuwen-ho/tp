@@ -37,7 +37,9 @@ public class CopyCommand extends Command {
         String emailString = extractEmails(lastShownList);
 
         if (!GraphicsEnvironment.isHeadless()) {
-            copyToClipboard(emailString);
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+
+            copyToClipboard(emailString, clipboard);
         }
 
         return new CommandResult(String.format(MESSAGE_COPY_SUCCESS));
@@ -72,13 +74,12 @@ public class CopyCommand extends Command {
      *
      * @param desiredText The text to be copied to the clipboard.
      */
-    public void copyToClipboard(String desiredText) {
-        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+    public void copyToClipboard(String desiredText, Clipboard targetClipboard) {
 
         // Create a StringSelection object to hold the text
         StringSelection selection = new StringSelection(desiredText);
 
         // Set the contents of the clipboard to the StringSelection
-        clipboard.setContents(selection, null);
+        targetClipboard.setContents(selection, null);
     }
 }

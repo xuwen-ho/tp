@@ -152,6 +152,28 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Copying emails : `copy`
+
+Copies the email addresses of all people in the currently filtered list to the clipboard.
+
+<div markdown="block" class="alert alert-info">
+
+**Notes about the command:**<br>
+
+* This command cannot be used when the assignment list is being displayed. Switch back to the volunteer list by using the `list` command before using `copy`.
+
+* The email addresses will be copied in a comma-separated format, e.g. `john@example.com, jane@example.com, ...`.
+
+* If there are no people in the filtered list, an error message will be shown.
+
+</div>
+
+Format: `copy`
+
+Examples:
+* `list` followed by `copy` copies all email addresses in the address book.
+* `find n/john` followed by `copy` copies the email addresses of people whose names contain "john".
+
 ### Assigning volunteers : `assign`
 Adds an assignment to the address book.
 
@@ -253,6 +275,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/AVAILABILITY [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/25/05/2024 t/friend t/colleague`
 **Clear** | `clear`
+**Copy** | `copy`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/AVAILABILITY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [n/NAME] [a/AVAILABILITY] [MORE_KEYWORDS]`<br> e.g., `find James Jake`

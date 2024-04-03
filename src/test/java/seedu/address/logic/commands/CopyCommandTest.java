@@ -2,6 +2,10 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.isNull;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static seedu.address.logic.Messages.MESSAGE_EMPTY_LIST;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -9,6 +13,8 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
 import static seedu.address.testutil.TypicalPersons.getTypicalPersonsEmails;
 
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -67,4 +73,14 @@ public class CopyCommandTest {
         assertTrue(emails.equals(expectedEmails));
     }
 
+    @Test
+    public void testCopyToClipboard() {
+        Clipboard mockClipboard = mock(Clipboard.class);
+        String text = "test text";
+
+        CopyCommand copyCommand = new CopyCommand();
+        copyCommand.copyToClipboard(text, mockClipboard);
+
+        verify(mockClipboard).setContents(any(StringSelection.class), isNull());
+    }
 }
