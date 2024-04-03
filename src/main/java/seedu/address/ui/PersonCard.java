@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Availability;
 import seedu.address.model.person.Person;
 
 /**
@@ -51,7 +52,19 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
-        availability.setText(person.getAvailabilities().toString());
+
+        String availabilitiesString = "";
+        for (Availability a : person.getAvailabilities()) {
+            availabilitiesString += a.toString();
+            availabilitiesString += "\n";
+        }
+
+        if (availabilitiesString != "") {
+            availability.setText(availabilitiesString);
+        } else {
+            availability.setText("Unavailable");
+        }
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
