@@ -45,6 +45,21 @@ public class Assignment {
 
 
     /**
+     * Returns true if both assignments have the same assigned person
+     * and date.
+     * This defines a weaker notion of equality between two assignments and
+     * prevent volunteers from being assigned 2 assignments on the same day.
+     */
+    public boolean isAlreadyAssigned(Assignment otherAssignment) {
+        if (otherAssignment == this) {
+            return true;
+        }
+
+        return otherAssignment.availability.equals(availability)
+                && otherAssignment.assignedPerson.equals(assignedPerson);
+    }
+
+    /**
      * Returns true if both assignments have the same identity and data fields.
      * This defines a stronger notion of equality between two assignments
      */

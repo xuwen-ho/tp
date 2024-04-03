@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.AssignmentDetails;
 import seedu.address.model.person.Availability;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -40,10 +42,26 @@ public class SampleDataUtil {
         };
     }
 
+    public static Assignment[] getSampleAssignments() {
+        Person[] samplePersons = getSamplePersons();
+        Person alex = samplePersons[0];
+        Person bernice = samplePersons[1];
+        Person charlotte = samplePersons[2];
+        return new Assignment[] {
+            new Assignment(alex, new AssignmentDetails("Willing Hearts"), new Availability("01/03/2024")),
+            new Assignment(bernice, new AssignmentDetails("Tutoring"), new Availability("20/03/2024")),
+            new Assignment(charlotte, new AssignmentDetails("Elderly Care"), new Availability("01/03/2024"))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+
+        for (Assignment sampleAssignment : getSampleAssignments()) {
+            sampleAb.addAssignment(sampleAssignment);
         }
         return sampleAb;
     }

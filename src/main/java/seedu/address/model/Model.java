@@ -59,8 +59,6 @@ public interface Model {
      */
     boolean hasPerson(Person person);
 
-    boolean hasAssignment(Assignment assignment);
-
     /**
      * Deletes the given person.
      * The person must exist in the address book.
@@ -72,6 +70,24 @@ public interface Model {
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+
+    /**
+     * Adds the given assignment.
+     * {@code assignment} must not already exist in the address book.
+     */
+    void addAssignment(Assignment assignment);
+
+    /**
+     * Returns true if an assignment with the same identity as
+     * {@code assignment} exists in the address book.
+     */
+    boolean hasAssignment(Assignment assignment);
+
+    /**
+     * Deletes the given assignment.
+     * The assignment must exist in the address book.
+     */
+    void deleteAssignment(Assignment target);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -89,9 +105,17 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    void addAssignment(Assignment toAdd);
+    /**
+     * Returns an unmodifiable view of the filtered assignment List
+     */
+    ObservableList<Assignment> getFilteredAssignmentList();
 
+
+    /**
+     * Updates the filter of the filered assignment list to filter by the given
+     * {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     void updateFilteredAssignmentList(Predicate<Assignment> predicate);
 
-    ObservableList<Assignment> getFilteredAssignmentList();
 }

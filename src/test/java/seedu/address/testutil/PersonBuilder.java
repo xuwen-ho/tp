@@ -35,6 +35,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         availabilities = new HashSet<>();
+        availabilities.add(new Availability(DEFAULT_AVAILABILITY));
         tags = new HashSet<>();
     }
 

@@ -114,7 +114,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addAssignment() throws Exception {
         String addAssignmentCommand = AddAssignmentCommand.COMMAND_WORD + " 1 " + PREFIX_DETAILS
-                + "VALID_DETAILS " + PREFIX_AVAIL + "01/01/2024";
+                + "VALIDDETAILS " + PREFIX_AVAIL + "01/01/2024";
         assertTrue(parser.parseCommand(addAssignmentCommand) instanceof AddAssignmentCommand);
     }
 

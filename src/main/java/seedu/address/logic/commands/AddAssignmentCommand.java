@@ -29,6 +29,9 @@ public class AddAssignmentCommand extends Command {
             + PREFIX_AVAIL + "01/01/2024";
 
     public static final String MESSAGE_SUCCESS = "Assignment added successfully: %1$s";
+    public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This volunteer already have an existing assignment"
+            + " on this day";
+    public static final String MESSAGE_VOLUNTEER_NOT_AVAILABLE = "This volunteer is not available on this date";
 
 
     private final Index index;
@@ -65,7 +68,16 @@ public class AddAssignmentCommand extends Command {
 
         Person personToAssign = lastShownList.get(index.getZeroBased());
 
+        if (!personToAssign.isAvailable(this.availability)) {
+            throw new CommandException(MESSAGE_VOLUNTEER_NOT_AVAILABLE);
+        }
+
         Assignment toAdd = new Assignment(personToAssign, details, availability);
+
+        if (model.hasAssignment(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
+        }
+
         model.addAssignment(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }

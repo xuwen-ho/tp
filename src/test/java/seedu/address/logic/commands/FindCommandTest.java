@@ -62,7 +62,8 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, CommandResult.ListPanelView.PERSON,
+                expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
@@ -72,7 +73,8 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, CommandResult.ListPanelView.PERSON,
+                expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 
@@ -94,8 +96,10 @@ public class FindCommandTest {
             FindCommand command1 = new FindCommandParser().parse(" n/Kurz a/25/05/2024");
             FindCommand command2 = new FindCommandParser().parse(" a/25/05/2024 n/Kurz");
             expectedModel.updateFilteredPersonList(predicate1.or(predicate2));
-            assertCommandSuccess(command1, model, expectedMessage, expectedModel);
-            assertCommandSuccess(command2, model, expectedMessage, expectedModel);
+            assertCommandSuccess(command1, model, expectedMessage, CommandResult.ListPanelView.PERSON,
+                    expectedModel);
+            assertCommandSuccess(command2, model, expectedMessage, CommandResult.ListPanelView.PERSON,
+                    expectedModel);
             assertEquals(Arrays.asList(CARL, ELLE), model.getFilteredPersonList());
         } catch (Exception e) {
             e.printStackTrace();
