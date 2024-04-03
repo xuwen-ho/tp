@@ -204,11 +204,10 @@ Examples:
 
 ### Refreshing availabilities : `refresh`
 
-Refresh availabilities in the address book.
+Remove outdated availabilities based on current date from address book.
 
-Format: `refresh a/AVAILABILITY`
-* Removes from every person in the list.
-* Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
+Format: `refresh`
+
 
 Examples:
 * `refresh a/01/01/2024`
