@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 
 /**
  * Represents a Person's availability in the address book.
@@ -34,8 +33,8 @@ public class Availability {
      */
     public Availability(String availability) {
         requireNonNull(availability);
-        checkArgument(isValidDateFormat(availability), MESSAGE_CONSTRAINTS_DATE);
-        checkArgument(isValidAvailability(availability), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDateFormat(availability), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidAvailability(availability), MESSAGE_CONSTRAINTS_DATE);
         this.date = LocalDate.parse(availability, formatter);
     }
 

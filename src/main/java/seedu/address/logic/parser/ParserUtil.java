@@ -90,7 +90,7 @@ public class ParserUtil {
      */
     public static Availability parseAvailability(String availability) throws ParseException {
         String trimmedAvailability = availability.trim();
-        if  (!Availability.isValidDateFormat(trimmedAvailability)) {
+        if (!Availability.isValidDateFormat(trimmedAvailability)) {
             throw new ParseException(Availability.MESSAGE_CONSTRAINTS);
         }
         if (!Availability.isValidAvailability(trimmedAvailability)) {
