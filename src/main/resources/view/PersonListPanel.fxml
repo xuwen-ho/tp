@@ -8,10 +8,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 
-<!--<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">-->
-<!--  <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />-->
-<!--</VBox>-->
-
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
 <GridPane HBox.hgrow="ALWAYS">
   <columnConstraints>
