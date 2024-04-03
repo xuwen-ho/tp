@@ -1,0 +1,10 @@
+{
+  "persons" : [ {
+    "name" : "James",
+    "phone" : "12345678",
+    "email" : "hellothere@gmail.com",
+    "availabilities" : [ ],
+    "tags" : [ ]
+  } ],
+  "assignments" : [ ]
+}
