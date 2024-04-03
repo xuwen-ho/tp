@@ -5,10 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.io.FileOutputStream;
+import java.io.File;
 import java.io.IOException;
-import java.nio.channels.FileChannel;
-import java.nio.channels.FileLock;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -84,15 +82,13 @@ public class ExportCommandTest {
         Path personsJsonFilePath = modelStubJsonFilePresent.getAddressBookFilePath().getParent();
         Path personsCsvFilePath = Path.of(personsJsonFilePath.toString() + "/persons.csv");
 
-        try (FileOutputStream file = new FileOutputStream(personsCsvFilePath.toString());
-             FileChannel channel = file.getChannel();
-             FileLock lock = channel.lock()) {
-            assertThrows(CommandException.class, ExportCommand.MESSAGE_CSV_IS_USED, ()
+        // Simulate another application is using the file, hence the file cannot be written
+        File file = new File(personsCsvFilePath.toString());
+        file.setWritable(false);
+        assertThrows(CommandException.class, ExportCommand.MESSAGE_CSV_IS_USED, ()
                     -> exportCommand.execute(modelStubJsonFilePresent));
-            lock.release();
-        }
+        file.setWritable(true);
     }
-
 
     @Test
     public void equals() {
