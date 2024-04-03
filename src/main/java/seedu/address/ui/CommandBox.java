@@ -30,8 +30,10 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.setEditable(true);
         commandTextField.setVisibleRowCount(8);
         commandTextField.setItems(
-            FXCollections.observableArrayList("add", "addavail", "assign", "clear", "copy", "delete", "edit", "exit",
-                    "find", "help", "list", "lista", "removeavail", "removeassign"));
+            FXCollections.observableArrayList("add", "addavail", "assign",
+                    "clear", "copy", "delete", "edit", "exit", "export",
+                    "find", "help", "list", "lista",
+                    "refresh", "removeavail", "removeassign"));
         // Set the command box to be auto-completable
         AutoCompleteComboBoxPlus.config(commandTextField, (typedText, itemToCompare) ->
                 itemToCompare.toLowerCase().contains(typedText.toLowerCase())
