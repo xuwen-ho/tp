@@ -20,10 +20,10 @@ import seedu.address.model.person.Person;
  */
 public class AddAssignmentCommand extends Command {
     public static final String COMMAND_WORD = "assign";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to the address book. \n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_DETAILS + "DETAILS "
-            + PREFIX_AVAIL + "DATE OF ASSIGNMENT "
+            + PREFIX_AVAIL + "DATE OF ASSIGNMENT\n "
             + "Example: " + COMMAND_WORD + " "
             + "1 " + PREFIX_DETAILS + "Food Distribution "
             + PREFIX_AVAIL + "01/01/2024";
