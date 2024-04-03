@@ -117,8 +117,4 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredAssignmentList(Predicate<Assignment> predicate);
-
-
-    ObservableList<Assignment> getFilteredAssignmentList();
-
 }
