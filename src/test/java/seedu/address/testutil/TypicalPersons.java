@@ -80,4 +80,19 @@ public class TypicalPersons {
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
+
+    /**
+     * Returns the emails of the typical persons.
+     */
+    public static String getTypicalPersonsEmails() {
+        StringBuilder emails = new StringBuilder();
+        for (Person person : getTypicalPersons()) {
+            emails.append(person.getEmail().toString()).append(", ");
+        }
+
+        int strlen = emails.length();
+        emails.delete(strlen - 2, strlen - 1);
+
+        return emails.toString();
+    }
 }
