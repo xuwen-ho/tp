@@ -47,6 +47,15 @@ public class Availability {
         return true;
     }
 
+    /**
+     * Returns the date of availability.
+     *
+     * @return The date of availability.
+     */
+    public LocalDate getDate() {
+        return date;
+    }
+
     @Override
     public String toString() {
         return date.format(formatter);
