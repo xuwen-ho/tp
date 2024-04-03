@@ -28,16 +28,17 @@ public class ExportCommand extends Command {
             + ": Export the information of all the people and activities in the application to a CSV file.\n";
 
     public static final String MESSAGE_SUCCESS = "Data successfully exported to data directory.";
-    public static final String MESSAGE_JSON_FILE_ABSENT = "Unable to locate [JAR file location]/data/addressbook.json file.";
-    public static final String MESSAGE_CSV_IS_USED = "persons.csv or assignment.csv is being used by another application";
+    public static final String MESSAGE_JSON_FILE_ABSENT =
+            "Unable to locate [JAR file location]/data/addressbook.json file.";
+    public static final String MESSAGE_CSV_IS_USED =
+            "persons.csv or assignment.csv is being used by another application";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Path addressBookFilePath = model.getAddressBookFilePath();
-        assert addressBookFilePath != null;
 
-        if (!Files.exists(addressBookFilePath)) {
+        if (addressBookFilePath == null || !Files.exists(addressBookFilePath)) {
             throw new CommandException(MESSAGE_JSON_FILE_ABSENT);
         }
 
@@ -61,6 +62,7 @@ public class ExportCommand extends Command {
         JSONObject jsonObject = new JSONObject(jsonString);
 
         Path addressBookDirectoryPath = addressBookFilePath.getParent();
+        assert addressBookDirectoryPath != null;
 
         JSONArray jsonArrayPersons = jsonObject.getJSONArray(PERSONS_PROPERTY);
         JSONArray jsonArrayAssignments = jsonObject.getJSONArray(ASSIGNMENTS_PROPERTY);

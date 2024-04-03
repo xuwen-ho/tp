@@ -5,7 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -63,13 +66,32 @@ public class ExportCommandTest {
     }
 
     @Test
-    public void execute_addressBookAbsent_throwsCommandException() throws CommandException {
+    public void execute_addressBookAbsent_throwsCommandExceptionJsonFileAbsent() throws CommandException {
         ModelStubJsonFileAbsent modelStubJsonFileAbsent = new ModelStubJsonFileAbsent();
+
         ExportCommand exportCommand = new ExportCommand();
 
         assertThrows(CommandException.class, ExportCommand.MESSAGE_JSON_FILE_ABSENT, ()
                 -> exportCommand.execute(modelStubJsonFileAbsent));
     }
+
+    @Test
+    public void execute_addressBookAbsent_throwsCommandExceptionCsvIsUsed() throws CommandException, IOException {
+        ModelStubJsonFilePresent modelStubJsonFilePresent = new ModelStubJsonFilePresent();
+
+        ExportCommand exportCommand = new ExportCommand();
+
+        Path personsJsonFilePath = modelStubJsonFilePresent.getAddressBookFilePath().getParent();
+        Path personsCsvFilePath = Path.of(personsJsonFilePath.toString() + "/persons.csv");
+
+        try (FileOutputStream file = new FileOutputStream(personsCsvFilePath.toString());
+             FileChannel channel = file.getChannel();
+             FileLock lock = channel.lock()) {
+            assertThrows(CommandException.class, ExportCommand.MESSAGE_CSV_IS_USED, ()
+                    -> exportCommand.execute(modelStubJsonFilePresent));
+        }
+    }
+
 
     @Test
     public void equals() {
