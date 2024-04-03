@@ -224,6 +224,12 @@ Examples:
 * `removeavail 1 a/01/01/2024`
 * `removeavail 2 a/02/03/2024 a/03/03/2024`
 
+### Refreshing availabilities : `refresh`
+
+Remove outdated availabilities based on current date from address book.
+
+Format: `refresh`
+
 
 ### Clearing all entries : `clear`
 
