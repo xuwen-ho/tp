@@ -89,6 +89,7 @@ public class ExportCommandTest {
              FileLock lock = channel.lock()) {
             assertThrows(CommandException.class, ExportCommand.MESSAGE_CSV_IS_USED, ()
                     -> exportCommand.execute(modelStubJsonFilePresent));
+            lock.release();
         }
     }
 
