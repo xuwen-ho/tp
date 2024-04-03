@@ -209,9 +209,6 @@ Remove outdated availabilities based on current date from address book.
 Format: `refresh`
 
 
-Examples:
-* `refresh a/01/01/2024`
-
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
