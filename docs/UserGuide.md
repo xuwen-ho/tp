@@ -64,34 +64,20 @@ Match is a **desktop app for managing contacts, optimized for use via a Command 
 
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
 ### Adding a person: `add`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/AVAILABILITY [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [a/AVAILABILITY] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags and any number of availabilities (including 0)
 </div>
 
 Examples:
 
 - `add n/John Doe p/98765432 e/johnd@example.com a/22/05/2024`
 - `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/25/05/2024 p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
 
 ### Editing a person : `edit`
 
@@ -111,6 +97,42 @@ Examples:
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+### Adding availabilities : `addavail`
+
+Adds availabilities to the address book.
+
+Format: `addavail INDEX a/AVAILABILITY`
+
+- Adds to person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+- Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
+- Availability must be not be present at the index in order to add.
+
+Examples:
+
+- `addavail 1 a/01/01/2024`
+- `addavail 2 a/02/03/2024 a/03/03/2024`
+
+### Removing availabilities : `removeavail`
+
+Removes availabilities from the address book.
+
+Format: `removeavail INDEX a/AVAILABILITY`
+
+- Removes from person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+- Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
+- Availability must be present at the index in order to remove.
+
+<div markdown="block" class="alert alert-warning">
+:exclamation: **Caution:**
+In this version of Match, removing an availability will not delete his/her assignments on that day.
+</div>
+
+### Listing all persons : `list`
+
+Shows a list of all persons in the address book.
+
+Format: `list`
+
 ### Locating persons by name: `find`
 
 Find people whose names contain any of the given name, availability or keywords.
@@ -125,9 +147,10 @@ Format: `find KEYWORD [n/NAME] [a/AVAILABILITY] [MORE_KEYWORDS]`
 
 Examples:
 
-- `find John` returns `john`, `John`, `John Doe` and so on...
-- `find alex david` returns `Alex Yeoh`, `David Li`<br>
-- `find a/23/05/2024` returns people that are available on 23/05/2024
+* `find n/John` returns `john`, `John`, `John Doe` and so on...
+* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find a/23/05/2024` returns people who are available on 23/05/2024
+*  find a/23/05/2024 a/24/05/2024 returns people who are available on either 23/05/2024 or 24/05/2024
 
 ### Deleting a person : `delete`
 
@@ -156,6 +179,73 @@ Examples:
 - `list` followed by `delete 2` deletes the 2nd person in the address book.
 - `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+
+<div markdown="block" class="alert alert-warning">
+:exclamation: **Caution:**
+In this version of Match, deleting a person will not delete his/her assignments.
+</div>
+
+### Clearing all entries : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Take note:**<br>
+
+* As clear is deemed as a critical operation, you will see a confirmation message.
+
+* Do not panic, entering `y` following it will delete proceed to delete the specified entry, while entering anything else will default to cancelling the operation.
+
+</div>
+
+### Assigning volunteers : `assign`
+
+Adds an assignment to the address book.
+
+Format: `assign INDEX d/ASSIGNMENTDETAILS a/AVAILABILITY`
+
+* Assigns the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Availability must be in the format of DD/MM/YYYY eg: `28/03/2024`
+* The person at the specified `INDEX` must be available on the `AVAILABILITY` entered.
+* Each person can only be assigned 1 volunteer activity per day.
+* `ASSIGNMENTDETAILS` must be alpha-numeric and cannot be empty. eg: `Willing Hearts`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The index here works the same way as Edit!
+</div>
+
+Examples:
+
+- `assign 1 d/Tutoring a/01/01/2024`
+- `assign 2 d/Elderly Care a/02/03/2024`
+
+### Listing all assignments : `lista`
+
+Shows a list of all assignments in the address book.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To switch back to volunteer list, type `list`
+</div>
+
+### Remove assignments : `removeassign`
+
+Removes an assignment from the assignment list.
+Format: `removeassign INDEX`
+* Removes the assignment at that `INDEX`. The index refers to the index number shown in the displayed assignment list. The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+`removeassign 1`
+`removeassign 2`
+
+### Refreshing availabilities : `refresh`
+
+Remove outdated availabilities based on current date from address book.
+
+Format: `refresh`
+
 ### Copying emails : `copy`
 
 Copies the email addresses of all people in the currently filtered list to the clipboard.
@@ -179,73 +269,29 @@ Examples:
 - `list` followed by `copy` copies all email addresses in the address book.
 - `find n/john` followed by `copy` copies the email addresses of people whose names contain "john".
 
-### Assigning volunteers : `assign`
+### Exporting to CSV: `export`
 
-Adds an assignment to the address book.
+Exports data to a comma-separated values (CSV) file located at `[JAR file location]/data`. Both persons and assignments are exported as `persons.csv` and `assignments.csv` respectively.
 
-Format: `assign INDEX d/ASSIGNMENTDETAILS a/AVAILABILITY`
+<div markdown="block" class="alert alert-info">
 
-- Assigns the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-- Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
+**:information_source: Notes about `export` command:**<br>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The index here works the same way as Edit!
+* When using the application for the first time, executing the `export` command when the `addressbook.json` is missing will result in an error. Try executing other commands first. This will result `addressbook.json` file to be created.
+* When the `perons.csv` or `assignments.csv` files are being used by another application running `export` command will result in an error.
+
 </div>
-
-Examples:
-
-- `assign 1 d/Tutoring a/01/01/2024`
-- `assign 2 d/Elderly Care a/02/03/2024`
-
-### Listing all assignments : `lista`
-
-Shows a list of all assignments in the address book.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-To switch back to volunteer list, type `list`
-</div>
-
-### Adding availabilities : `addavail`
-
-Adds availabilities to the address book.
-
-Format: `addavail INDEX a/AVAILABILITY`
-
-- Adds to person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-- Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
-- Availability must be not be present at the index in order to add.
-
-Examples:
-
-- `addavail 1 a/01/01/2024`
-- `addavail 2 a/02/03/2024 a/03/03/2024`
-
-### Removing availabilities : `removeavail`
-
-Removes availabilities from the address book.
-
-Format: `removeavail INDEX a/AVAILABILITY`
-
-- Removes from person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-- Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
-- Availability must be present at the index in order to remove.
-
-Examples:
 
 - `removeavail 1 a/01/01/2024`
 - `removeavail 2 a/02/03/2024 a/03/03/2024`
 
-### Refreshing availabilities : `refresh`
+### Viewing help : `help`
 
-Remove outdated availabilities based on current date from address book.
+Shows a message explaning how to access the help page.
 
-Format: `refresh`
+![help message](images/helpMessage.png)
 
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
+Format: `help`
 
 ### Exiting the program : `exit`
 
@@ -293,22 +339,30 @@ _Details coming soon ..._
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-
-2. **Invisible input caret**, there are times when the input caret (cursor) may become invisible even though the input field has focus. To resolve this, regain focus in the input field by pressing the Tab key a few times.
+2. **When deleting a person or availability**, the assignment associated will not be deleted. This will be fixed in v1.4.
+3. **Invisible input caret**, there are times when the input caret (cursor) may become invisible even though the input field has focus. To resolve this, regain focus in the input field by pressing the Tab key a few times.
 
 ---
 
 ## Command summary
 
-| Action               | Format, Examples                                                                                                                                            |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/AVAILABILITY [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/25/05/2024 t/friend t/colleague` |
-| **Clear**            | `clear`                                                                                                                                                     |
-| **Copy**             | `copy`                                                                                                                                                      |
-| **Delete**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                         |
-| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/AVAILABILITY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                            |
-| **Find**             | `find KEYWORD [n/NAME] [a/AVAILABILITY] [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                        |
-| **Assign**           | `assign INDEX d/ASSIGNMENT_DETAILS a/AVAILABILITY`                                                                                                          |
-| **View Assignments** | `lista`                                                                                                                                                     |
-| **List**             | `list`                                                                                                                                                      |
-| **Help**             | `help`                                                                                                                                                      |
+Action | Format, Examples
+--------|------------------
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/AVAILABILITY [t/TAG]…​`<br> e.g., `add n/James Ho p/96311212 e/jamesho@example.com a/25/05/2024 t/friend t/colleague`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/AVAILABILITY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Add Availability** | `addavail INDEX a/AVAILABILITY`<br> e.g., `addavail 1 a/01/01/2024`
+**Remove Availability** | `removeavail INDEX a/AVAILABILITY`<br> e.g., `removeavail 1 a/01/01/2024`
+**List** | `list`
+**Find** | `find KEYWORD [n/NAME] [a/AVAILABILITY] [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Delete**[^1] | `delete INDEX`<br> e.g., `delete 3`
+**Clear**[^1] | `clear`
+**Assign** | `assign INDEX d/ASSIGNMENT_DETAILS a/AVAILABILITY`
+**List Assignments** | `lista`
+**Remove Assignments** | `removeassign INDEX`
+**Refresh** | `refresh`
+**Copy** | `copy`
+**Export** | `export`
+**Help** | `help`
+**Exit** | `exit`
+
+[^1]: Are critical operations and will have an additional confirmation step.

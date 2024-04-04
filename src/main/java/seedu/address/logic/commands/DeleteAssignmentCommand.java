@@ -22,7 +22,7 @@ public class DeleteAssignmentCommand extends Command {
             + ": Deletes the assignment identified by the index number used in the displayed"
             + " assignment list.\n"
             + "Parameters: INDEX (must be a postive integer)\n"
-            + "Example: " + COMMAND_WORD + "1";
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_ASSIGNMENT_SUCCESS = "Assignment removed : %1$s";
 

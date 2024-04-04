@@ -20,6 +20,10 @@ Class Phone
 Class Availability
 Class Tag
 
+Class AssignmentList
+Class Assignment
+Class AssignmentDetails
+
 Class I #FFFFFF
 }
 
@@ -36,12 +40,18 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+AddressBook *--> "1" AssignmentList
+UniquePersonList --> "*" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> "*" Availability
 Person *--> "*" Tag
+
+AssignmentList *--> "*" Assignment
+Assignment *--> "1"Person
+Assignment *--> "1" AssignmentDetails
+Assignment *--> "1" Availability
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
