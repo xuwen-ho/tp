@@ -1,5 +1,5 @@
 .background {
-  -fx-background-color: derive(#000000, 80%);
+  -fx-background-color: derive(#000000, 75%);
   background-color: #676f9d; /* Used in the default.html file */
 }
 
@@ -57,7 +57,7 @@
   -fx-size: 35;
   -fx-border-width: 0 0 1 0;
   -fx-background-color: transparent;
-  -fx-border-color: transparent transparent derive(-fx-base, 80%) transparent;
+  -fx-border-color: transparent transparent derive(-fx-base, 75%) transparent;
   -fx-border-insets: 0 10 1 0;
 }
 
@@ -74,20 +74,20 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-  -fx-background-color: derive(#000000, 20%);
+  -fx-background-color: derive(#000000, 25%);
   -fx-border-color: transparent transparent transparent #6c7b8b;
 }
 
 .split-pane {
   -fx-border-radius: 1;
   -fx-border-width: 1;
-  -fx-background-color: derive(#2d3250, 20%);
+  -fx-background-color: derive(#2d3250, 25%);
 }
 
 .list-view {
   -fx-background-insets: 0;
   -fx-padding: 0;
-  -fx-background-color: derive(#2d3250, 20%);
+  -fx-background-color: derive(#2d3250, 25%);
 }
 
 .list-cell {
@@ -130,17 +130,17 @@
 }
 
 .stack-pane {
-  -fx-background-color: derive(#2d3250, 20%);
+  -fx-background-color: derive(#2d3250, 25%);
 }
 
 .pane-with-border {
-  -fx-background-color: derive(#2d3250, 20%);
-  -fx-border-color: derive(#2d3250, 10%);
+  -fx-background-color: derive(#2d3250, 25%);
+  -fx-border-color: derive(#2d3250, 15%);
   -fx-border-top-width: 1px;
 }
 
 .status-bar {
-  -fx-background-color: derive(#2d3250, 30%);
+  -fx-background-color: derive(#2d3250, 35%);
 }
 
 .result-display {
@@ -162,8 +162,8 @@
 }
 
 .status-bar-with-border {
-  -fx-background-color: derive(#2d3250, 30%);
-  -fx-border-color: derive(#2d3250, 25%);
+  -fx-background-color: derive(#2d3250, 35%);
+  -fx-border-color: derive(#2d3250, 30%);
   -fx-border-width: 1px;
 }
 
@@ -172,17 +172,17 @@
 }
 
 .grid-pane {
-  -fx-background-color: derive(#2d3250, 30%);
-  -fx-border-color: derive(#2d3250, 30%);
+  -fx-background-color: derive(#2d3250, 25%);
+  -fx-border-color: derive(#2d3250, 25%);
   -fx-border-width: 1px;
 }
 
 .grid-pane .stack-pane {
-  -fx-background-color: derive(#2d3250, 30%);
+  -fx-background-color: derive(#2d3250, 25%);
 }
 
 .context-menu {
-  -fx-background-color: derive(#2d3250, 50%);
+  -fx-background-color: derive(#2d3250, 45%);
 }
 
 .context-menu .label {
@@ -190,7 +190,7 @@
 }
 
 .menu-bar {
-  -fx-background-color: derive(#2d3250, 20%);
+  -fx-background-color: derive(#2d3250, 25%);
 }
 
 .menu-bar .label {
@@ -252,7 +252,7 @@
 }
 
 .button:default:hover {
-  -fx-background-color: derive(-fx-focus-color, 30%);
+  -fx-background-color: derive(-fx-focus-color, 25%);
 }
 
 .dialog-pane {
@@ -270,7 +270,7 @@
 }
 
 .dialog-pane:header *.header-panel {
-  -fx-background-color: derive(#2d3250, 25%);
+  -fx-background-color: derive(#2d3250, 30%);
 }
 
 .dialog-pane:header *.header-panel *.label {
@@ -281,7 +281,7 @@
 }
 
 .scroll-bar {
-  -fx-background-color: derive(#2d3250, 20%);
+  -fx-background-color: derive(#2d3250, 25%);
 }
 
 .scroll-bar .thumb {
@@ -372,10 +372,17 @@
   -fx-background-color: rgb(66, 73, 114);
 }
 
-.combo-box .arrow-button {
+.combo-box {
   -fx-background-color: null;
   -fx-background-insets: 0;
   -fx-background-radius: 0;
+  -fx-padding: 0em 0em 0em 0em;
+}
+
+.arrow-button {
+  -fx-background-color: null;
+  -fx-background-insets: 0;
+  -fx-background-radius: 1;
   -fx-padding: 0em 0em 0em 0em;
 }
 
