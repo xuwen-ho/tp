@@ -258,6 +258,16 @@ Exits the program.
 
 Format: `exit`
 
+### Accessing the command history
+
+To access the command history:
+* From the input field, press the down arrow key (↓) to bring out the drop-down menu of previous commands.
+* Use the up (↑) and down (↓) arrow keys to navigate through the command history.
+
+### Using the autocomplete
+
+Autocomplete provides suggestions based on your command history as you type. You can navigate through the suggestions using the arrow keys, similar to the command history.
+
 ### Saving the data
 
 Match data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -287,6 +297,8 @@ _Details coming soon ..._
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+
+2. **Invisible input caret**, there are times when the input caret (cursor) may become invisible even though the input field has focus. To resolve this, regain focus in the input field by pressing the Tab key a few times.
 
 --------------------------------------------------------------------------------------------------------------------
 
