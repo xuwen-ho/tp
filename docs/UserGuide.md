@@ -5,10 +5,12 @@ title: User Guide
 
 Match is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Match can get your contact management tasks done faster than traditional GUI apps.
 
-- Table of Contents
-  {:toc}
+* Table of Contents
+{:toc}
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -38,6 +40,8 @@ Match is a **desktop app for managing contacts, optimized for use via a Command 
 1. Refer to the [Features](#features) below for details of each command.
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -79,6 +83,9 @@ Examples:
 - `add n/John Doe p/98765432 e/johnd@example.com a/22/05/2024`
 - `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/25/05/2024 p/1234567 t/criminal`
 
+What you should see:
+![add](images/features/add.png)
+
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
@@ -112,6 +119,9 @@ Examples:
 - `addavail 1 a/01/01/2024`
 - `addavail 2 a/02/03/2024 a/03/03/2024`
 
+What you should see:
+![addavail](images/features/addavail.png)
+
 ### Removing availabilities : `removeavail`
 
 Removes availabilities from the address book.
@@ -127,11 +137,17 @@ Format: `removeavail INDEX a/AVAILABILITY`
 In this version of Match, removing an availability will not delete his/her assignments on that day.
 </div>
 
+What you should see:
+![removeavail](images/features/removeavail.png)
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
+
+What you should see:
+![list](images/features/list.png)
 
 ### Locating persons by name: `find`
 
@@ -152,6 +168,9 @@ Examples:
 * `find a/23/05/2024` returns people who are available on 23/05/2024
 *  find a/23/05/2024 a/24/05/2024 returns people who are available on either 23/05/2024 or 24/05/2024
 
+What you should see:
+![find](images/features/find.png)
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -162,9 +181,7 @@ Format: `delete INDEX`
 
 **:information_source: Take note:**<br>
 
-- As delete is deemed as a critical operation, you will see a confirmation message shown below.
-
-![delete confirmation](./images/features/DeleteConfirmation.gif)
+- As delete is deemed as a critical operation, you will see a confirmation message.
 
 - Do not panic, entering `y` following it will delete proceed to delete the specified entry, while entering anything else will default to cancelling the operation.
 
@@ -222,6 +239,10 @@ Examples:
 - `assign 1 d/Tutoring a/01/01/2024`
 - `assign 2 d/Elderly Care a/02/03/2024`
 
+What you should see:
+![assign](images/features/assign.png)
+![lista](images/features/lista.png)
+
 ### Listing all assignments : `lista`
 
 Shows a list of all assignments in the address book.
@@ -229,6 +250,8 @@ Shows a list of all assignments in the address book.
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 To switch back to volunteer list, type `list`
 </div>
+
+What you should see: [here](UserGuide.md/#assigning-volunteers--assign)
 
 ### Remove assignments : `removeassign`
 
@@ -269,6 +292,9 @@ Examples:
 - `list` followed by `copy` copies all email addresses in the address book.
 - `find n/john` followed by `copy` copies the email addresses of people whose names contain "john".
 
+What you should see:
+![copy](images/features/copy.png)
+
 ### Exporting to CSV: `export`
 
 Exports data to a comma-separated values (CSV) file located at `[JAR file location]/data`. Both persons and assignments are exported as `persons.csv` and `assignments.csv` respectively.
@@ -289,7 +315,7 @@ Exports data to a comma-separated values (CSV) file located at `[JAR file locati
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
+![add](images/features/help.jpg)
 
 Format: `help`
 
@@ -329,12 +355,16 @@ _Details coming soon ..._
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Match home folder.
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Known issues
 
@@ -343,6 +373,8 @@ _Details coming soon ..._
 3. **Invisible input caret**, there are times when the input caret (cursor) may become invisible even though the input field has focus. To resolve this, regain focus in the input field by pressing the Tab key a few times.
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
@@ -356,9 +388,9 @@ Action | Format, Examples
 **Find** | `find KEYWORD [n/NAME] [a/AVAILABILITY] [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Delete**[^1] | `delete INDEX`<br> e.g., `delete 3`
 **Clear**[^1] | `clear`
-**Assign** | `assign INDEX d/ASSIGNMENT_DETAILS a/AVAILABILITY`
+**Assign** | `assign INDEX d/ASSIGNMENT_DETAILS a/AVAILABILITY`<br> e.g., `assign 1 d/Food Distribution a/01/01/2024`
 **List Assignments** | `lista`
-**Remove Assignments** | `removeassign INDEX`
+**Remove Assignments** | `removeassign INDEX`<br> e.g. `removeassign 1`
 **Refresh** | `refresh`
 **Copy** | `copy`
 **Export** | `export`
