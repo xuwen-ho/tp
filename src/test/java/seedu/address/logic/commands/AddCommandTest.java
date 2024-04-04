@@ -228,6 +228,18 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasPhone(Phone phone) {
+            requireNonNull(phone);
+            return personsAdded.stream().anyMatch(person -> person.getPhone().equals(phone));
+        }
+
+        @Override
+        public boolean hasEmail(Email email) {
+            requireNonNull(email);
+            return personsAdded.stream().anyMatch(person -> person.getEmail().equals(email));
+        }
+
+        @Override
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
