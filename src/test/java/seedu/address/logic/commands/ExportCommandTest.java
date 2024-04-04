@@ -49,7 +49,7 @@ public class ExportCommandTest {
                 + "94351253,[\"14/02/2024\"],Alice Pauline,alice@example.com,\"[Food Bank,Education]\"\n"
                 + "98765432,\"[20/03/2024,03/05/2024]\",Benson Meier,johnd@example.com,\"[Elderly Care,Education]\"\n"
                 + "95352563,[\"12/12/2024\"],Carl Kurz,heinz@example.com,[]\n"
-                + "87652533,\"[01/06/2024,31/06/2024]\",Daniel Meier,cornelia@example.com,[\"Environment\"]\n"
+                + "87652533,\"[01/06/2024,30/06/2024]\",Daniel Meier,cornelia@example.com,[\"Environment\"]\n"
                 + "9482224,[\"25/05/2024\"],Elle Meyer,werner@example.com,[]\n"
                 + "9482427,[\"02/05/2024\"],Fiona Kunz,lydia@example.com,[]\n"
                 + "9482442,[\"04/06/2024\"],George Best,anna@example.com,[]\n";
