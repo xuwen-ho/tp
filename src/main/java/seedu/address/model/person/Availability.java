@@ -50,12 +50,13 @@ public class Availability {
      */
     public static boolean isValidAvailability(String test) {
         test = test.trim();
+        String result;
         try {
-            formatter.parse(test);
+            result = LocalDate.parse(test, formatter).format(formatter);
         } catch (DateTimeParseException e) {
             return false;
         }
-        return true;
+        return result.equals(test);
     }
 
     @Override
