@@ -61,6 +61,7 @@ Match is a **desktop app for managing contacts, optimized for use via a Command 
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+
 </div>
 
 ### Viewing help : `help`
@@ -140,7 +141,7 @@ Format: `delete INDEX`
 
 ![delete confirmation](./images/features/DeleteConfirmation.gif)
 
-* Do not panic, entering `y` following it will delete proceed to delete the specified entry, while entering anything else will default to cancelling the operation. 
+* Do not panic, entering `y` following it will delete proceed to delete the specified entry, while entering anything else will default to cancelling the operation.
 
 </div>
 
@@ -204,8 +205,8 @@ Adds availabilities to the address book.
 
 Format: `addavail INDEX a/AVAILABILITY`
 * Adds to person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
-* Availability must be not be present at the index in order to add. 
+* Availability must be in the format of DD/MM/YYYY eg: 28/03/2024.
+* Availability must be not be present at the index in order to add.
 
 Examples:
 * `addavail 1 a/01/01/2024`
@@ -224,12 +225,26 @@ Examples:
 * `removeavail 1 a/01/01/2024`
 * `removeavail 2 a/02/03/2024 a/03/03/2024`
 
+### Exporting to CSV: `export`
+
+Exports data to a comma-separated values (CSV) file located at `[JAR file location]/data`. Both persons and assignments are exported as `persons.csv` and `assignments.csv` respectively.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about `export` command:**<br>
+
+* When using the application for the first time, executing the `export` command when the `addressbook.json` is missing will result in an error. Try executing other commands first. This will result `addressbook.json` file to be created.
+* When the `perons.csv` or `assignments.csv` files are being used by another application running `export` command will result in an error.
+
+</div>
+
+Format: `export`
+
 ### Refreshing availabilities : `refresh`
 
 Remove outdated availabilities based on current date from address book.
 
 Format: `refresh`
-
 
 ### Clearing all entries : `clear`
 
@@ -252,6 +267,16 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
+
+### Accessing the command history
+
+To access the command history:
+* From the input field, press the down arrow key (↓) to bring out the drop-down menu of previous commands.
+* Use the up (↑) and down (↓) arrow keys to navigate through the command history.
+
+### Using the autocomplete
+
+Autocomplete provides suggestions based on your command history as you type. You can navigate through the suggestions using the arrow keys, similar to the command history.
 
 ### Saving the data
 
@@ -282,6 +307,8 @@ _Details coming soon ..._
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+
+2. **Invisible input caret**, there are times when the input caret (cursor) may become invisible even though the input field has focus. To resolve this, regain focus in the input field by pressing the Tab key a few times.
 
 --------------------------------------------------------------------------------------------------------------------
 
