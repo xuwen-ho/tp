@@ -154,7 +154,7 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 <div markdown="block" class="alert alert-warning">
-**:warning: Warning**<br>
+:exclamation: **Caution:**
 In this version of Match, deleting a person will not delete his/her assignments.
 </div>
 
@@ -224,7 +224,7 @@ Examples:
 * `removeavail 2 a/02/03/2024 a/03/03/2024`
 
 <div markdown="block" class="alert alert-warning">
-**:warning: Warning**<br>
+:exclamation: **Caution:**
 In this version of Match, removing an availability will not delete his/her assignments on that day.
 </div>
 
