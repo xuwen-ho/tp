@@ -12,7 +12,9 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -94,6 +96,18 @@ public class ModelManager implements Model {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
+    }
+
+    @Override
+    public boolean hasPhone(Phone phone) {
+        requireNonNull(phone);
+        return addressBook.hasPhone(phone);
+    }
+
+    @Override
+    public boolean hasEmail(Email email) {
+        requireNonNull(email);
+        return addressBook.hasEmail(email);
     }
 
     @Override

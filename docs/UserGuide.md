@@ -140,7 +140,7 @@ Format: `delete INDEX`
 
 ![delete confirmation](./images/features/DeleteConfirmation.gif)
 
-* Do not panic, entering `y` following it will delete proceed to delete the specified entry, while entering anything else will default to cancelling the operation. 
+* Do not panic, entering `y` following it will delete proceed to delete the specified entry, while entering anything else will default to cancelling the operation.
 
 </div>
 
@@ -205,7 +205,7 @@ Adds availabilities to the address book.
 Format: `addavail INDEX a/AVAILABILITY`
 * Adds to person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
-* Availability must be not be present at the index in order to add. 
+* Availability must be not be present at the index in order to add.
 
 Examples:
 * `addavail 1 a/01/01/2024`

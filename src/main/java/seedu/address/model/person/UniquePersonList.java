@@ -36,6 +36,16 @@ public class UniquePersonList implements Iterable<Person> {
         return internalList.stream().anyMatch(toCheck::isSamePerson);
     }
 
+    public boolean contains(Phone phone) {
+        requireNonNull(phone);
+        return internalList.stream().anyMatch(person -> person.getPhone().equals(phone));
+    }
+
+    public boolean contains(Email email) {
+        requireNonNull(email);
+        return internalList.stream().anyMatch(person -> person.getEmail().equals(email));
+    }
+
     /**
      * Adds a person to the list.
      * The person must not already exist in the list.
