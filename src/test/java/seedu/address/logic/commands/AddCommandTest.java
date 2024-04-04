@@ -23,7 +23,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -140,6 +142,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasPhone(Phone phone) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEmail(Email email) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasAssignment(Assignment assignment) {
             throw new AssertionError("This method should not be called.");
         }
@@ -213,6 +225,18 @@ public class AddCommandTest {
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return personsAdded.stream().anyMatch(person::isSamePerson);
+        }
+
+        @Override
+        public boolean hasPhone(Phone phone) {
+            requireNonNull(phone);
+            return personsAdded.stream().anyMatch(person -> person.getPhone().equals(phone));
+        }
+
+        @Override
+        public boolean hasEmail(Email email) {
+            requireNonNull(email);
+            return personsAdded.stream().anyMatch(person -> person.getEmail().equals(email));
         }
 
         @Override
