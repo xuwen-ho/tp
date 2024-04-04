@@ -18,9 +18,12 @@ import seedu.address.model.person.Person;
  * An Immutable AddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+public class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+
+    public static final String PERSONS_PROPERTY = "persons";
+    public static final String ASSIGNMENTS_PROPERTY = "assignments";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedAssignment> assignments = new ArrayList<>();
@@ -29,8 +32,8 @@ class JsonSerializableAddressBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("assignments") List<JsonAdaptedAssignment> assignments) {
+    public JsonSerializableAddressBook(@JsonProperty(PERSONS_PROPERTY) List<JsonAdaptedPerson> persons,
+                                       @JsonProperty(ASSIGNMENTS_PROPERTY) List<JsonAdaptedAssignment> assignments) {
         this.persons.addAll(persons);
         this.assignments.addAll(assignments);
     }

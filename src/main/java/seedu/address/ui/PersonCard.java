@@ -58,7 +58,6 @@ public class PersonCard extends UiPart<Region> {
             availabilitiesString += a.toString();
             availabilitiesString += "\n";
         }
-
         if (availabilitiesString != "") {
             availability.setText(availabilitiesString);
         } else {
