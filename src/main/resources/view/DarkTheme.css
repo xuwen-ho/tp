@@ -312,7 +312,8 @@
 
 #cardPane {
   -fx-background-color: #2d3250;
-  -fx-border-width: 0;
+  -fx-border-color: #676f9d;
+  -fx-border-width: 0.5;
 }
 
 #commandTypeLabel {
@@ -371,13 +372,16 @@
   -fx-background-color: rgb(66, 73, 114);
 }
 
-.combo-box .text-input {
-  -fx-background-color: transparent #676f9d transparent #676f9d;
+.combo-box .arrow-button {
+  -fx-background-color: null;
   -fx-background-insets: 0;
-  -fx-border-color: #676f9d #676f9d #ffffff #676f9d;
-  -fx-border-insets: 0;
-  -fx-border-width: 1;
-  -fx-font-family: "Segoe UI Light";
-  -fx-font-size: 13pt;
-  -fx-text-fill: white;
+  -fx-background-radius: 0;
+  -fx-padding: 0em 0em 0em 0em;
+}
+
+.combo-box .arrow-button .arrow {
+  -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
+  -fx-background-insets: 0 0 0 0, 0;
+  -fx-padding: 0em 0em 0em 0em;
+  -fx-shape: null;
 }

@@ -22,7 +22,7 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Set<Availability> availabilities;
+    private final Set<Availability> availabilities = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -33,7 +33,7 @@ public class Person {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.availabilities = availabilities;
+        this.availabilities.addAll(availabilities);
         this.tags.addAll(tags);
     }
 

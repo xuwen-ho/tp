@@ -61,6 +61,7 @@ Match is a **desktop app for managing contacts, optimized for use via a Command 
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+
 </div>
 
 ### Viewing help : `help`
@@ -141,7 +142,7 @@ Format: `delete INDEX`
 
 ![delete confirmation](./images/features/DeleteConfirmation.gif)
 
-* Do not panic, entering `y` following it will delete proceed to delete the specified entry, while entering anything else will default to cancelling the operation. 
+* Do not panic, entering `y` following it will delete proceed to delete the specified entry, while entering anything else will default to cancelling the operation.
 
 </div>
 
@@ -153,10 +154,35 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+
 <div markdown="block" class="alert alert-warning">
 :exclamation: **Caution:**
 In this version of Match, deleting a person will not delete his/her assignments.
 </div>
+
+
+### Copying emails : `copy`
+
+Copies the email addresses of all people in the currently filtered list to the clipboard.
+
+<div markdown="block" class="alert alert-info">
+
+**Notes about the command:**<br>
+
+* This command cannot be used when the assignment list is being displayed. Switch back to the volunteer list by using the `list` command before using `copy`.
+
+* The email addresses will be copied in a comma-separated format, e.g. `john@example.com, jane@example.com, ...`.
+
+* If there are no people in the filtered list, an error message will be shown.
+
+</div>
+
+Format: `copy`
+
+Examples:
+* `list` followed by `copy` copies all email addresses in the address book.
+* `find n/john` followed by `copy` copies the email addresses of people whose names contain "john".
+
 
 ### Assigning volunteers : `assign`
 Adds an assignment to the address book.
@@ -203,8 +229,8 @@ Adds availabilities to the address book.
 
 Format: `addavail INDEX a/AVAILABILITY`
 * Adds to person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
-* Availability must be not be present at the index in order to add. 
+* Availability must be in the format of DD/MM/YYYY eg: 28/03/2024.
+* Availability must be not be present at the index in order to add.
 
 Examples:
 * `addavail 1 a/01/01/2024`
@@ -223,10 +249,33 @@ Examples:
 * `removeavail 1 a/01/01/2024`
 * `removeavail 2 a/02/03/2024 a/03/03/2024`
 
+
 <div markdown="block" class="alert alert-warning">
 :exclamation: **Caution:**
 In this version of Match, removing an availability will not delete his/her assignments on that day.
 </div>
+
+### Exporting to CSV: `export`
+
+Exports data to a comma-separated values (CSV) file located at `[JAR file location]/data`. Both persons and assignments are exported as `persons.csv` and `assignments.csv` respectively.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about `export` command:**<br>
+
+* When using the application for the first time, executing the `export` command when the `addressbook.json` is missing will result in an error. Try executing other commands first. This will result `addressbook.json` file to be created.
+* When the `perons.csv` or `assignments.csv` files are being used by another application running `export` command will result in an error.
+
+</div>
+
+Format: `export`
+
+### Refreshing availabilities : `refresh`
+
+Remove outdated availabilities based on current date from address book.
+
+Format: `refresh`
+
 
 ### Clearing all entries : `clear`
 
@@ -234,11 +283,31 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Take note:**<br>
+
+* As clear is deemed as a critical operation, you will see a confirmation message.
+
+* Do not panic, entering `y` following it will delete proceed to delete the specified entry, while entering anything else will default to cancelling the operation.
+
+</div>
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+### Accessing the command history
+
+To access the command history:
+* From the input field, press the down arrow key (↓) to bring out the drop-down menu of previous commands.
+* Use the up (↑) and down (↓) arrow keys to navigate through the command history.
+
+### Using the autocomplete
+
+Autocomplete provides suggestions based on your command history as you type. You can navigate through the suggestions using the arrow keys, similar to the command history.
 
 ### Saving the data
 
@@ -270,6 +339,7 @@ _Details coming soon ..._
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **When deleting a person or availability**, the assignment associated will not be deleted. This will be fixed in v1.4.
+3. **Invisible input caret**, there are times when the input caret (cursor) may become invisible even though the input field has focus. To resolve this, regain focus in the input field by pressing the Tab key a few times.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -278,8 +348,9 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/AVAILABILITY [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/25/05/2024 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Clear**[^1] | `clear`
+**Copy** | `copy`
+**Delete**[^1] | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/AVAILABILITY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [n/NAME] [a/AVAILABILITY] [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Assign** | `assign INDEX d/ASSIGNMENT_DETAILS a/AVAILABILITY`
@@ -287,3 +358,5 @@ Action | Format, Examples
 **View Assignments** | `lista`
 **List** | `list`
 **Help** | `help`
+
+[^1]: Are critical operations and will have an additional confirmation step.
