@@ -153,6 +153,11 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+<div markdown="block" class="alert alert-warning">
+**:warning: Warning**<br>
+In this version of Match, deleting a person will not delete his/her assignments.
+</div>
+
 ### Assigning volunteers : `assign`
 Adds an assignment to the address book.
 
@@ -218,6 +223,10 @@ Examples:
 * `removeavail 1 a/01/01/2024`
 * `removeavail 2 a/02/03/2024 a/03/03/2024`
 
+<div markdown="block" class="alert alert-warning">
+**:warning: Warning**<br>
+In this version of Match, removing an availability will not delete his/her assignments on that day.
+</div>
 
 ### Clearing all entries : `clear`
 
