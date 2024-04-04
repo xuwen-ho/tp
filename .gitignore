@@ -18,9 +18,18 @@ hs_err_pid[0-9]*.log
 # Test sandbox files
 src/test/data/sandbox/
 
+# Test data/*.csv files
+src/test/data/ConfigUtilTest/*.csv
+src/test/data/JsonAddressBookStorageTest/*.csv
+src/test/data/JsonSerializableAddressBookTest/*.csv
+src/test/data/JsonUserPrefsStorageTest/*.csv
+
 # MacOS custom attributes files created by Finder
 .DS_Store
 docs/_site/
 
 # bin
 /bin/
+
+# .vscode settings files
+.vscode/

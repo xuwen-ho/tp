@@ -26,7 +26,7 @@
       "name": "Daniel Meier",
       "phone": "87652533",
       "email": "cornelia@example.com",
-      "availabilities": ["01/06/2024", "31/06/2024"],
+      "availabilities": ["01/06/2024", "30/06/2024"],
       "tags": ["Environment"]
     },
     {
@@ -51,5 +51,5 @@
       "tags": []
     }
   ],
-  "assignments" : [  ]
+  "assignments": []
 }

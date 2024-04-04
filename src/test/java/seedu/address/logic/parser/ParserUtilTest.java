@@ -200,6 +200,12 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseAvailability("not a date"));
         assertThrows(ParseException.class, () -> ParserUtil.parseAvailability("02/02/2024/02"));
 
+        // date format but invalid date
+        assertThrows(ParseException.class, () -> ParserUtil.parseAvailability("00/01/2024"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseAvailability("32/01/2024"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseAvailability("01/00/2024"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseAvailability("01/13/2024"));
+
         // should not be empty
         assertThrows(ParseException.class, () -> ParserUtil.parseAvailability(""));
     }
