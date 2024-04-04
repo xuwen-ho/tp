@@ -256,7 +256,7 @@ Format: `clear`
 
 **:information_source: Take note:**<br>
 
-* As clear is deemed as a critical operation, you will see a confirmation message shown below.
+* As clear is deemed as a critical operation, you will see a confirmation message.
 
 * Do not panic, entering `y` following it will delete proceed to delete the specified entry, while entering anything else will default to cancelling the operation.
 
