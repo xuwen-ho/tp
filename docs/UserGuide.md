@@ -5,10 +5,10 @@ title: User Guide
 
 Match is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Match can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
+- Table of Contents
+  {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Quick start
 
@@ -25,19 +25,19 @@ Match is a **desktop app for managing contacts, optimized for use via a Command 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   - `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/25/05/2025` : Adds a contact named `John Doe` to the Address Book.
+   - `add n/John Doe p/98765432 e/johnd@example.com a/25/05/2025` : Adds a contact named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   - `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Delete all contacts.
+   - `clear` : Delete all contacts.
 
-   * `exit` : Exits the app.
+   - `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Features
 
@@ -45,22 +45,22 @@ Match is a **desktop app for managing contacts, optimized for use via a Command 
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
-* Items in square brackets are optional.<br>
+- Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+- Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-* Parameters can be in any order.<br>
+- Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+- If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
 ### Viewing help : `help`
@@ -70,7 +70,6 @@ Shows a message explaning how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
 
 ### Adding a person: `add`
 
@@ -83,8 +82,9 @@ A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/22/05/2024`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/25/05/2024 p/1234567 t/criminal`
+
+- `add n/John Doe p/98765432 e/johnd@example.com a/22/05/2024`
+- `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/25/05/2024 p/1234567 t/criminal`
 
 ### Listing all persons : `list`
 
@@ -98,16 +98,17 @@ Edits an existing person in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/AVAILABILITY] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+- Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+- At least one of the optional fields must be provided.
+- Existing values will be updated to the input values.
+- When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+- You can remove all the person’s tags by typing `t/` without
+  specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+- `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+- `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
 
@@ -115,16 +116,17 @@ Find people whose names contain any of the given name, availability or keywords.
 
 Format: `find KEYWORD [n/NAME] [a/AVAILABILITY] [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+- The search is case-insensitive. e.g `hans` will match `Hans`
+- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+- Only full words will be matched e.g. `Han` will not match `Hans`
+- Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john`, `John`, `John Doe` and so on...
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-* `find a/23/05/2024` returns people that are available on 23/05/2024
+
+- `find John` returns `john`, `John`, `John Doe` and so on...
+- `find alex david` returns `Alex Yeoh`, `David Li`<br>
+- `find a/23/05/2024` returns people that are available on 23/05/2024
 
 ### Deleting a person : `delete`
 
@@ -136,21 +138,22 @@ Format: `delete INDEX`
 
 **:information_source: Take note:**<br>
 
-* As delete is deemed as a critical operation, you will see a confirmation message shown below.
+- As delete is deemed as a critical operation, you will see a confirmation message shown below.
 
 ![delete confirmation](./images/features/DeleteConfirmation.gif)
 
-* Do not panic, entering `y` following it will delete proceed to delete the specified entry, while entering anything else will default to cancelling the operation. 
+- Do not panic, entering `y` following it will delete proceed to delete the specified entry, while entering anything else will default to cancelling the operation.
 
 </div>
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+- Deletes the person at the specified `INDEX`.
+- The index refers to the index number shown in the displayed person list.
+- The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+- `list` followed by `delete 2` deletes the 2nd person in the address book.
+- `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Copying emails : `copy`
 
@@ -160,35 +163,38 @@ Copies the email addresses of all people in the currently filtered list to the c
 
 **Notes about the command:**<br>
 
-* This command cannot be used when the assignment list is being displayed. Switch back to the volunteer list by using the `list` command before using `copy`.
+- This command cannot be used when the assignment list is being displayed. Switch back to the volunteer list by using the `list` command before using `copy`.
 
-* The email addresses will be copied in a comma-separated format, e.g. `john@example.com, jane@example.com, ...`.
+- The email addresses will be copied in a comma-separated format, e.g. `john@example.com, jane@example.com, ...`.
 
-* If there are no people in the filtered list, an error message will be shown.
+- If there are no people in the filtered list, an error message will be shown.
 
 </div>
 
 Format: `copy`
 
 Examples:
-* `list` followed by `copy` copies all email addresses in the address book.
-* `find n/john` followed by `copy` copies the email addresses of people whose names contain "john".
+
+- `list` followed by `copy` copies all email addresses in the address book.
+- `find n/john` followed by `copy` copies the email addresses of people whose names contain "john".
 
 ### Assigning volunteers : `assign`
+
 Adds an assignment to the address book.
 
 Format: `assign INDEX d/ASSIGNMENTDETAILS a/AVAILABILITY`
-* Assigns the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
+
+- Assigns the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+- Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The index here works the same way as Edit!
 </div>
 
 Examples:
-* `assign 1 d/Tutoring a/01/01/2024`
-* `assign 2 d/Elderly Care a/02/03/2024`
 
+- `assign 1 d/Tutoring a/01/01/2024`
+- `assign 2 d/Elderly Care a/02/03/2024`
 
 ### Listing all assignments : `lista`
 
@@ -203,27 +209,30 @@ To switch back to volunteer list, type `list`
 Adds availabilities to the address book.
 
 Format: `addavail INDEX a/AVAILABILITY`
-* Adds to person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
-* Availability must be not be present at the index in order to add. 
+
+- Adds to person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+- Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
+- Availability must be not be present at the index in order to add.
 
 Examples:
-* `addavail 1 a/01/01/2024`
-* `addavail 2 a/02/03/2024 a/03/03/2024`
+
+- `addavail 1 a/01/01/2024`
+- `addavail 2 a/02/03/2024 a/03/03/2024`
 
 ### Removing availabilities : `removeavail`
 
 Removes availabilities from the address book.
 
 Format: `removeavail INDEX a/AVAILABILITY`
-* Removes from person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
-* Availability must be present at the index in order to remove.
+
+- Removes from person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+- Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
+- Availability must be present at the index in order to remove.
 
 Examples:
-* `removeavail 1 a/01/01/2024`
-* `removeavail 2 a/02/03/2024 a/03/03/2024`
 
+- `removeavail 1 a/01/01/2024`
+- `removeavail 2 a/02/03/2024 a/03/03/2024`
 
 ### Clearing all entries : `clear`
 
@@ -254,32 +263,32 @@ Furthermore, certain edits can cause the Match to behave in unexpected ways (e.g
 
 _Details coming soon ..._
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Match home folder.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/AVAILABILITY [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/25/05/2024 t/friend t/colleague`
-**Clear** | `clear`
-**Copy** | `copy`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/AVAILABILITY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [n/NAME] [a/AVAILABILITY] [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Assign** | `assign INDEX d/ASSIGNMENT_DETAILS a/AVAILABILITY`
-**View Assignments** | `lista`
-**List** | `list`
-**Help** | `help`
+| Action               | Format, Examples                                                                                                                                            |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/AVAILABILITY [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/25/05/2024 t/friend t/colleague` |
+| **Clear**            | `clear`                                                                                                                                                     |
+| **Copy**             | `copy`                                                                                                                                                      |
+| **Delete**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                         |
+| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/AVAILABILITY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                            |
+| **Find**             | `find KEYWORD [n/NAME] [a/AVAILABILITY] [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                        |
+| **Assign**           | `assign INDEX d/ASSIGNMENT_DETAILS a/AVAILABILITY`                                                                                                          |
+| **View Assignments** | `lista`                                                                                                                                                     |
+| **List**             | `list`                                                                                                                                                      |
+| **Help**             | `help`                                                                                                                                                      |
