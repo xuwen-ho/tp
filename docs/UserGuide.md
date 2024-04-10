@@ -336,10 +336,11 @@ To access the command history:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Take Note**<br>
-
-- Long input commands will be truncated when viewed in the command history.
-- This has no effect on the functioning of the command history or the execution of previous commands.
+**:information_source: Note**<br>
+- After you enter a command, the command history will automatically close. If you wish to close the command history manually, you have two options:
+  1. Press the `Ctrl` key on your keyboard.
+  2. Click anywhere outside of the command history dropdown.
+- Long input commands will be truncated when viewed in the command history. This has no effect on the functioning of the command history or the execution of previous commands.
 
 </div>
 
