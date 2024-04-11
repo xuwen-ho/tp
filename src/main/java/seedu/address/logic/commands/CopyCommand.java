@@ -23,7 +23,7 @@ public class CopyCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Copy the emails of all the people in the filtered list\n";
 
-    public static final String MESSAGE_COPY_SUCCESS = "Emails copied to clipboard";
+    public static final String MESSAGE_COPY_SUCCESS = "Email(s) copied to clipboard";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
