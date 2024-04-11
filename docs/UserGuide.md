@@ -138,7 +138,7 @@ Format: `removeavail INDEX a/AVAILABILITY`
 
 <div markdown="block" class="alert alert-warning">
 :exclamation: **Caution:**
-In this version of Match, removing an availability will not delete his/her assignments on that day.
+In this version of Match, removing an availability will not delete assignments tagged to that deleted availability.
 </div>
 
 What you should see:
