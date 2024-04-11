@@ -3,7 +3,11 @@ layout: page
 title: User Guide
 ---
 
-Match is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Match can get your contact management tasks done faster than traditional GUI apps.
+Match is a **desktop app for volunteer coordinators** to keep track of volunteer contacts as well as assign volunteering assignments to them.
+
+We are **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+
+If you can type fast, Match can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
