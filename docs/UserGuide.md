@@ -9,7 +9,12 @@ title: User Guide
 
 <br>
 
-Match is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Match can get your contact management tasks done faster than traditional GUI apps.
+Match is a **desktop app for volunteer coordinators** to keep track of volunteer contacts as well as assign volunteering assignments to them.
+
+We are **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+
+If you can type fast, Match can get your contact management tasks done faster than traditional GUI apps.
+
 
 - Table of Contents
   {:toc}
@@ -162,7 +167,8 @@ Examples:
 
 <div markdown="block" class="alert alert-warning">
 :exclamation: **Caution:**
-In this version of Match, removing an availability will not delete his/her assignments on that day.
+In this version of Match, removing an availability will not delete assignments tagged to that deleted availability.
+This is mainly for record-keeping purposes.
 </div>
 
 What you should see:
