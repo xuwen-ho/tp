@@ -3,6 +3,12 @@ layout: page
 title: User Guide
 ---
 
+<br>
+
+![Match](images/Match.png)
+
+<br>
+
 Match is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Match can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
@@ -348,14 +354,6 @@ Match data are saved automatically as a JSON file `[JAR file location]/data/addr
 If your changes to the data file makes its format invalid, Match will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the Match to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
----
-
-<div style="page-break-after: always;"></div>
 
 ## FAQ
 
