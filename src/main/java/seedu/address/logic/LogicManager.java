@@ -110,6 +110,12 @@ public class LogicManager implements Logic {
         model.setGuiSettings(guiSettings);
     }
 
+    /**
+     * Handles command confirmation stage.
+     *
+     * @param commandText The confirmation text.
+     * @return the result of the command execution.
+     */
     public CommandResult handleConfirmation(String commandText) {
         try {
             if (commandText.equalsIgnoreCase("y")) {
@@ -118,7 +124,11 @@ public class LogicManager implements Logic {
 
             return new CommandResult(MESSAGE_CONFIRMATION_CANCELLED);
         } catch (CommandException e) {
-            return new CommandResult(e + "\n" + MESSAGE_CONFIRMATION_ERROR_AUTO_CANCELLED);
+            return new CommandResult(
+                    e
+                    + "\n"
+                    + MESSAGE_CONFIRMATION_ERROR_AUTO_CANCELLED
+            );
         }
     }
 }
