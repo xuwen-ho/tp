@@ -11,8 +11,8 @@ title: User Guide
 
 Match is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Match can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
+- Table of Contents
+  {:toc}
 
 ---
 
@@ -155,6 +155,11 @@ Format: `removeavail INDEX a/AVAILABILITY`
 - Availability must be in the format of DD/MM/YYYY eg: 28/03/2024
 - Availability must be present at the index in order to remove.
 
+Examples:
+
+- `removeavail 1 a/01/01/2024`
+- `removeavail 2 a/02/03/2024 a/03/03/2024`
+
 <div markdown="block" class="alert alert-warning">
 :exclamation: **Caution:**
 In this version of Match, removing an availability will not delete his/her assignments on that day.
@@ -186,10 +191,10 @@ Format: `find KEYWORD [n/NAME] [a/AVAILABILITY] [MORE_KEYWORDS]`
 
 Examples:
 
-* `find n/John` returns `john`, `John`, `John Doe` and so on...
-* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
-* `find a/23/05/2024` returns people who are available on 23/05/2024
-*  find a/23/05/2024 a/24/05/2024 returns people who are available on either 23/05/2024 or 24/05/2024
+- `find n/John` returns `john`, `John`, `John Doe` and so on...
+- `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
+- `find a/23/05/2024` returns people who are available on 23/05/2024
+- find a/23/05/2024 a/24/05/2024 returns people who are available on either 23/05/2024 or 24/05/2024
 
 What you should see:
 ![find](images/features/find.png)
@@ -219,7 +224,6 @@ Examples:
 - `list` followed by `delete 2` deletes the 2nd person in the address book.
 - `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-
 <div markdown="block" class="alert alert-warning">
 :exclamation: **Caution:**
 In this version of Match, deleting a person will not delete his/her assignments.
@@ -235,9 +239,9 @@ Format: `clear`
 
 **:information_source: Take note:**<br>
 
-* As clear is deemed as a critical operation, you will see a confirmation message.
+- As clear is deemed as a critical operation, you will see a confirmation message.
 
-* Do not panic, entering `y` following it will delete proceed to delete the specified entry, while entering anything else will default to cancelling the operation.
+- Do not panic, entering `y` following it will delete proceed to delete the specified entry, while entering anything else will default to cancelling the operation.
 
 </div>
 
@@ -247,11 +251,11 @@ Adds an assignment to the address book.
 
 Format: `assign INDEX d/ASSIGNMENTDETAILS a/AVAILABILITY`
 
-* Assigns the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* Availability must be in the format of DD/MM/YYYY eg: `28/03/2024`
-* The person at the specified `INDEX` must be available on the `AVAILABILITY` entered.
-* Each person can only be assigned 1 volunteer activity per day.
-* `ASSIGNMENTDETAILS` must be alpha-numeric and cannot be empty. eg: `Willing Hearts`
+- Assigns the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+- Availability must be in the format of DD/MM/YYYY eg: `28/03/2024`
+- The person at the specified `INDEX` must be available on the `AVAILABILITY` entered.
+- Each person can only be assigned 1 volunteer activity per day.
+- `ASSIGNMENTDETAILS` must be alpha-numeric and cannot be empty. eg: `Willing Hearts`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The index here works the same way as Edit!
@@ -280,7 +284,8 @@ What you should see: [here](UserGuide.md/#assigning-volunteers--assign)
 
 Removes an assignment from the assignment list.
 Format: `removeassign INDEX`
-* Removes the assignment at that `INDEX`. The index refers to the index number shown in the displayed assignment list. The index **must be a positive integer** 1, 2, 3, …​
+
+- Removes the assignment at that `INDEX`. The index refers to the index number shown in the displayed assignment list. The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 `removeassign 1`
@@ -326,13 +331,10 @@ Exports data to a comma-separated values (CSV) file located at `[JAR file locati
 
 **:information_source: Notes about `export` command:**<br>
 
-* When using the application for the first time, executing the `export` command when the `addressbook.json` is missing will result in an error. Try executing other commands first. This will result `addressbook.json` file to be created.
-* When the `perons.csv` or `assignments.csv` files are being used by another application running `export` command will result in an error.
+- When using the application for the first time, executing the `export` command when the `addressbook.json` is missing will result in an error. Try executing other commands first. This will result `addressbook.json` file to be created.
+- When the `persons.csv` or `assignments.csv` files are being used by another application running `export` command will result in an error.
 
 </div>
-
-- `removeavail 1 a/01/01/2024`
-- `removeavail 2 a/02/03/2024 a/03/03/2024`
 
 ### Viewing help : `help`
 
@@ -354,6 +356,16 @@ To access the command history:
 
 - From the input field, press the down arrow key (↓) to bring out the drop-down menu of previous commands.
 - Use the up (↑) and down (↓) arrow keys to navigate through the command history.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+- After you enter a command, the command history will automatically close. If you wish to close the command history manually, you have two options:
+  1. Press the `Ctrl` key on your keyboard.
+  2. Click anywhere outside of the command history dropdown.
+- Long input commands will be truncated when viewed in the command history. This has no effect on the functioning of the command history or the execution of previous commands.
+
+</div>
 
 ### Using the autocomplete
 
