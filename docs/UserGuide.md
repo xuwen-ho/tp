@@ -139,6 +139,7 @@ Format: `removeavail INDEX a/AVAILABILITY`
 <div markdown="block" class="alert alert-warning">
 :exclamation: **Caution:**
 In this version of Match, removing an availability will not delete assignments tagged to that deleted availability.
+This is mainly for record-keeping purposes.
 </div>
 
 What you should see:
