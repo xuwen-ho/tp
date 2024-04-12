@@ -309,7 +309,7 @@ Exports data to a comma-separated values (CSV) file located at `[JAR file locati
 **:information_source: Notes about `export` command:**<br>
 
 - When using the application for the first time, executing the `export` command when the `addressbook.json` is missing will result in an error. Try executing other commands first. This will result `addressbook.json` file to be created.
-- When the `perons.csv` or `assignments.csv` files are being used by another application running `export` command will result in an error.
+- When the `persons.csv` or `assignments.csv` files are being used by another application running `export` command will result in an error.
 
 </div>
 
