@@ -81,7 +81,17 @@ Adds a person to the address book.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [a/AVAILABILITY] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+
 A person can have any number of tags and any number of availabilities (including 0)
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Take note:**<br>
+
+You can use tags of any length, but tags that are longer than 25 characters will be truncated when they are shown.
+
 </div>
 
 Examples:
