@@ -125,7 +125,7 @@ public class LogicManager implements Logic {
             return new CommandResult(MESSAGE_CONFIRMATION_CANCELLED);
         } catch (CommandException e) {
             return new CommandResult(
-                    e
+                    e.getMessage()
                     + "\n"
                     + MESSAGE_CONFIRMATION_ERROR_AUTO_CANCELLED
             );
