@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import static seedu.address.logic.Messages.MESSAGE_CONFIRMATION;
 import static seedu.address.logic.Messages.MESSAGE_CONFIRMATION_CANCELLED;
+import static seedu.address.logic.Messages.MESSAGE_CONFIRMATION_ERROR_AUTO_CANCELLED;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
@@ -53,12 +54,9 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
+
         if (isConfirmation) {
-            if (commandText.equalsIgnoreCase("y")) {
-                commandResult = prevCommand.execute(model);
-            } else {
-                commandResult = new CommandResult(MESSAGE_CONFIRMATION_CANCELLED);
-            }
+            commandResult = handleConfirmation(commandText);
         } else {
             Command command = addressBookParser.parseCommand(commandText);
             prevCommand = command;
@@ -110,5 +108,17 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    public CommandResult handleConfirmation(String commandText) {
+        try {
+            if (commandText.equalsIgnoreCase("y")) {
+                return prevCommand.execute(model);
+            }
+
+            return new CommandResult(MESSAGE_CONFIRMATION_CANCELLED);
+        } catch (CommandException e) {
+            return new CommandResult(e + "\n" + MESSAGE_CONFIRMATION_ERROR_AUTO_CANCELLED);
+        }
     }
 }
