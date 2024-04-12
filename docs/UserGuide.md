@@ -58,6 +58,9 @@ Match is a **desktop app for managing contacts, optimized for use via a Command 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
+- Command are case-sensitive and are to be  in `lower_case`. <br>
+  e.g. in `add n/NAME`, `add` is a command which should be in lower-case.
+
 - Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
@@ -119,6 +122,10 @@ Examples:
 
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+What you should see:
+![edit1](images/features/edit1.png)
+![edit2](images/features/edit2.png)
 
 ### Adding availabilities : `addavail`
 
