@@ -25,7 +25,9 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_CONFIRMATION = "Are you sure that you want to proceed with that action? "
             + "[y/N]";
-    public static final String MESSAGE_CONFIRMATION_CANCELLED = "Command execution has been cancelled.";
+    public static final String MESSAGE_CONFIRMATION_CANCELLED = "Command execution has been cancelled";
+    public static final String MESSAGE_CONFIRMATION_ERROR_AUTO_CANCELLED = "Command execution encountered an "
+            + "error and will be automatically cancelled";
     public static final String MESSAGE_EMPTY_LIST = "There is no person currently displayed";
 
 

@@ -3,6 +3,7 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_CONFIRMATION;
 import static seedu.address.logic.Messages.MESSAGE_CONFIRMATION_CANCELLED;
+import static seedu.address.logic.Messages.MESSAGE_CONFIRMATION_ERROR_AUTO_CANCELLED;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.AVAILABILITY_DESC_AMY;
@@ -61,11 +62,12 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_commandExecutionError_throwsCommandException() throws CommandException, ParseException {
+    public void execute_commandExecutionError_commandCancelled() throws CommandException, ParseException {
         String deleteCommand = "delete 9";
         String confirmation = "y";
         assertCommandSuccess(deleteCommand, false, MESSAGE_CONFIRMATION, model);
-        assertCommandException(confirmation, true, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandSuccess(confirmation, true, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                + "\n" + MESSAGE_CONFIRMATION_ERROR_AUTO_CANCELLED, model);
     }
 
     @Test
