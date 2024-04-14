@@ -364,6 +364,7 @@ Examples:
 
 What you should see:
 ![copy](images/features/copy.png)
+After pasting copied emails into Gmail:
 ![email](images/features/email.png)
 
 ### Exporting to CSV: `export`
