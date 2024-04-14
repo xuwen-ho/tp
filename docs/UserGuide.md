@@ -183,7 +183,8 @@ Examples:
 - `addavail 2 a/02/03/2024 a/03/03/2024`
 
 What you should see:
-![addavail](images/features/addavail.png)
+![addavail1](images/features/addavail1.png)
+![addavail2](images/features/addavail2.png)
 
 ### Removing availabilities : `removeavail`
 
