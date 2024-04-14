@@ -11,7 +11,7 @@ title: User Guide
 
 Match is a **desktop app for volunteer coordinators** to keep track of volunteer contacts as well as assign volunteering assignments to them.
 
-We are **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+We are **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 If you can type fast, Match can get your contact management tasks done faster than traditional GUI apps.
 
@@ -23,37 +23,72 @@ If you can type fast, Match can get your contact management tasks done faster th
 
 <div style="page-break-after: always;"></div>
 
+## Glossary
+
+When using Match, you will encounter the symbols and terms explained below:
+
+| Symbol               | Meaning                                      |
+|----------------------|----------------------------------------------|
+| :information_source: | Important information                        |
+| :exclamation:        | Warning or caution                           |
+| :bulb:               | Additional information such as tips or notes |
+
+The following glossary clarifies commonly-used terminology:
+
+| Phrases          | Meaning                                                                                           |
+|------------------|---------------------------------------------------------------------------------------------------|
+| GUI              | Graphical User Interface, the visual display of Match.                                            |
+| GUI component    | Parts that make up the GUI. For details, refer to [Navigating the GUI](#navigating-the-gui).      |
+| CLI              | Command Line Interface, a text-based way to interact with Match.                                  |
+| Command          | Input from the user telling Match to perform an action. See [Command Summary](#command-summary).  |
+| Prefix           | Fields in a command to fill up, capturing important information.                                  |
+| Case-sensitive   | Casing of alphabetic characters matters (e.g., “add” ≠ “ADD”).                                    |
+| Case-insensitive | Casing of alphabetic characters doesn't matter (e.g., “john” = “JOHN”).                           |
+| Contact card     | Box displaying each volunteer's details.                                                          |
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download our latest `match.jar` from [here](https://github.com/AY2324S2-CS2103T-F10-4/tp/releases).
+2. Download our latest `match.jar` from [here](https://github.com/AY2324S2-CS2103T-F10-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Match.
+3. Copy the file to the folder you want to use as the _home folder_ for your Match.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar match.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar match.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   - `list` : Lists all contacts.
+    - `list` : Lists all contacts.
 
-   - `add n/John Doe p/98765432 e/johnd@example.com a/25/05/2025` : Adds a contact named `John Doe` to the Address Book.
+    - `add n/John Doe p/98765432 e/johnd@example.com a/25/05/2025` : Adds a contact named `John Doe` to the Address Book.
 
-   - `delete 3` : Deletes the 3rd contact shown in the current list.
+    - `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   - `clear` : Delete all contacts.
+    - `clear` : Delete all contacts.
 
-   - `exit` : Exits the app.
+    - `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 ---
 
-<div style="page-break-after: always;"></div>
+## Navigating the GUI
 
+Match has a Graphical User Interface (GUI) that provides a pleasant visual experience on top of comphrehensive functionality.
+Here is a quick look at the two different tabs present in Match:
+
+### 1) Volunteers Tab
+
+![Volunteers Tab](images/VolunteersTab.png)
+
+### 2) Assignments Tab
+
+![Assignments Tab](images/AssignmentsTab.png)
+
+---
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -202,7 +237,7 @@ Examples:
 - `find a/23/05/2024` returns people who are available on 23/05/2024
 - find a/23/05/2024 a/24/05/2024 returns people who are available on either 23/05/2024 or 24/05/2024
 
-What you should see:
+What you should see after `find n/John`:
 ![find](images/features/find.png)
 
 ### Deleting a person : `delete`
@@ -328,6 +363,7 @@ Examples:
 
 What you should see:
 ![copy](images/features/copy.png)
+![email](images/features/email.png)
 
 ### Exporting to CSV: `export`
 
@@ -367,8 +403,8 @@ To access the command history:
 
 **:information_source: Note**<br>
 - After you enter a command, the command history will automatically close. If you wish to close the command history manually, you have two options:
-  1. Press the `Ctrl` key on your keyboard.
-  2. Click anywhere outside of the command history dropdown.
+    1. Press the `Ctrl` key on your keyboard.
+    2. Click anywhere outside of the command history dropdown.
 - Long input commands will be truncated when viewed in the command history. This has no effect on the functioning of the command history or the execution of previous commands.
 
 </div>
@@ -411,23 +447,23 @@ Furthermore, certain edits can cause the Match to behave in unexpected ways (e.g
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/AVAILABILITY [t/TAG]…​`<br> e.g., `add n/James Ho p/96311212 e/jamesho@example.com a/25/05/2024 t/friend t/colleague`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/AVAILABILITY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Add Availability** | `addavail INDEX a/AVAILABILITY`<br> e.g., `addavail 1 a/01/01/2024`
-**Remove Availability** | `removeavail INDEX a/AVAILABILITY`<br> e.g., `removeavail 1 a/01/01/2024`
-**List** | `list`
-**Find** | `find KEYWORD [n/NAME] [a/AVAILABILITY] [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Delete**[^1] | `delete INDEX`<br> e.g., `delete 3`
-**Clear**[^1] | `clear`
-**Assign** | `assign INDEX d/ASSIGNMENT_DETAILS a/AVAILABILITY`<br> e.g., `assign 1 d/Food Distribution a/01/01/2024`
-**List Assignments** | `lista`
-**Remove Assignments** | `removeassign INDEX`<br> e.g. `removeassign 1`
-**Refresh** | `refresh`
-**Copy** | `copy`
-**Export** | `export`
-**Help** | `help`
-**Exit** | `exit`
+| Action                  | Format, Examples                                                                                                                                           |
+|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL a/AVAILABILITY [t/TAG]…​`<br> e.g., `add n/James Ho p/96311212 e/jamesho@example.com a/25/05/2024 t/friend t/colleague` |
+| **Edit**                | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/AVAILABILITY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                           |
+| **Add Availability**    | `addavail INDEX a/AVAILABILITY`<br> e.g., `addavail 1 a/01/01/2024`                                                                                        |
+| **Remove Availability** | `removeavail INDEX a/AVAILABILITY`<br> e.g., `removeavail 1 a/01/01/2024`                                                                                  |
+| **List**                | `list`                                                                                                                                                     |
+| **Find**                | `find KEYWORD [n/NAME] [a/AVAILABILITY] [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                       |
+| **Delete**[^1]          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                        |
+| **Clear**[^1]           | `clear`                                                                                                                                                    |
+| **Assign**              | `assign INDEX d/ASSIGNMENT_DETAILS a/AVAILABILITY`<br> e.g., `assign 1 d/Food Distribution a/01/01/2024`                                                   |
+| **List Assignments**    | `lista`                                                                                                                                                    |
+| **Remove Assignments**  | `removeassign INDEX`<br> e.g. `removeassign 1`                                                                                                             |
+| **Refresh**             | `refresh`                                                                                                                                                  |
+| **Copy**                | `copy`                                                                                                                                                     |
+| **Export**              | `export`                                                                                                                                                   |
+| **Help**                | `help`                                                                                                                                                     |
+| **Exit**                | `exit`                                                                                                                                                     |
 
 [^1]: Are critical operations and will have an additional confirmation step.
